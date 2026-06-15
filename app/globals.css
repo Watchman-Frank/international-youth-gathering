@@ -1,26 +1,236 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand Colors */
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2D4070;
+  --color-navy-dark: #111D33;
+  --color-gold: #F2B134;
+  --color-gold-dark: #D9960F;
+  --color-gold-light: #F7CC6E;
+  --color-cream: #FAF8F3;
+  --color-cream-dark: #F0ECE3;
+
+  /* Semantic neutrals */
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+
+  /* Typography — references next/font CSS vars injected on <html> */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Base reset ──────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #FAF8F3;
+  color: #1B2A4A;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography utilities ───────────────────────── */
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* ─── Focus ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #F2B134;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ─── Skeleton shimmer ───────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #E2E8F0 25%, #F1F5F9 50%, #E2E8F0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ─── Hero slide animation ───────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-slide-enter { animation: slideUp 0.5s ease forwards; }
+
+/* ─── Prose (article body) ───────────────────────── */
+.prose-iyg {
+  color: #334155;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+.prose-iyg h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1B2A4A;
+  margin: 2.5rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+.prose-iyg h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1B2A4A;
+  margin: 1.75rem 0 0.75rem;
+}
+.prose-iyg p { margin: 0 0 1.5rem; }
+.prose-iyg blockquote {
+  border-left: 3px solid #F2B134;
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: #475569;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.prose-iyg a { color: #1B2A4A; text-decoration: underline; text-decoration-color: #F2B134; text-underline-offset: 2px; }
+.prose-iyg a:hover { color: #2D4070; }
+.prose-iyg ul, .prose-iyg ol { padding-left: 1.5rem; margin: 0 0 1.5rem; }
+.prose-iyg li { margin-bottom: 0.5rem; }
+.prose-iyg strong { color: #1B2A4A; font-weight: 700; }
+
+/* ─── Video player ───────────────────────────────── */
+.video-player-container {
+  position: relative;
+  background: #000;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* ─── Animation Toolkit ──────────────────────────── */
+/* Inspired by: VengenceUI, Jitter.video, Animate UI, UILora */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(242, 177, 52, 0.55); }
+  60%       { box-shadow: 0 0 0 10px rgba(242, 177, 52, 0); }
+}
+
+@keyframes beamSweep {
+  from { transform: translateX(-120%) skewX(-15deg); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  to   { transform: translateX(320%) skewX(-15deg); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.12; }
+  50%       { opacity: 0.75; }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* Staggered entrance classes */
+.anim-up    { animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-up-d1 { animation: fadeSlideUp 0.6s 0.09s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-up-d2 { animation: fadeSlideUp 0.6s 0.19s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-up-d3 { animation: fadeSlideUp 0.6s 0.31s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-up-d4 { animation: fadeSlideUp 0.6s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Animated navy gradient bg (Animate UI / UILora) */
+.gradient-navy {
+  background: linear-gradient(135deg, #111D33 0%, #1B2A4A 30%, #2D4070 60%, #111D33 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 16s ease infinite;
+}
+
+/* Gold pulse glow — for CTAs (VengenceUI) */
+.pulse-gold { animation: pulseGold 2.8s ease-in-out infinite; }
+
+/* Card beam sweep on hover (VengenceUI) */
+.card-beam { position: relative; overflow: hidden; }
+.card-beam::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -10%;
+  width: 35%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(242, 177, 52, 0.09), transparent);
+  transform: translateX(-120%) skewX(-15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+.card-beam:hover::before {
+  animation: beamSweep 0.65s ease forwards;
+}
+
+/* ─── Glassmorphism utility (UIVerse) ────────────── */
+@utility glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Gold glow utility (UIVerse / VengenceUI) ───── */
+@utility glow-gold {
+  box-shadow: 0 0 14px rgba(242, 177, 52, 0.5), 0 0 30px rgba(242, 177, 52, 0.22);
 }

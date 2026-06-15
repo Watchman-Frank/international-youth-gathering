@@ -27,16 +27,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-[#F2B134] flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden>
-                  <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#1B2A4A" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-sm font-bold text-white">International Youth Gathering</div>
-                <div className="text-xs text-white/50">Ministry of Wholistic Development</div>
-              </div>
+            <div className="mb-5">
+              <img
+                src="/logo.png"
+                alt="International Youth Gathering"
+                className="h-16 w-16 rounded-full object-cover"
+              />
             </div>
             <p className="text-sm text-white/60 leading-relaxed max-w-sm">
               <span className="font-semibold text-white/80">Vision:</span> To be a system of wholistic development and transformation — keeping and maintaining the Apostolic Mandate.

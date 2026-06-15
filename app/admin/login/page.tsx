@@ -34,16 +34,8 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-[#FAF8F3] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         {/* Logo */}
-        <div className="flex items-center gap-2.5 mb-10 justify-center">
-          <div className="w-9 h-9 rounded-md bg-[#1B2A4A] flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-              <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#F2B134" />
-            </svg>
-          </div>
-          <div>
-            <div className="text-sm font-bold text-[#1B2A4A]">IYG Admin</div>
-            <div className="text-[10px] text-slate-400 tracking-wide">International Youth Gathering</div>
-          </div>
+        <div className="flex justify-center mb-10">
+          <img src="/logo.png" alt="International Youth Gathering" className="h-20 w-20 rounded-full object-cover" />
         </div>
 
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-8">

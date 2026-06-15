@@ -28,17 +28,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-56 bg-[#1B2A4A] flex flex-col flex-shrink-0">
         {/* Brand */}
         <div className="px-5 py-5 border-b border-white/10">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-md bg-[#F2B134] flex items-center justify-center flex-shrink-0">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden>
-                <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#1B2A4A" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white leading-none">IYG Admin</div>
-              <div className="text-[9px] text-white/40 mt-0.5 tracking-wide">Content Manager</div>
-            </div>
-          </div>
+          <img
+            src="/logo.png"
+            alt="International Youth Gathering"
+            className="h-9 w-9 rounded-full object-cover"
+          />
+          <p className="text-[9px] text-white/40 mt-1.5 tracking-wide uppercase">Admin Panel</p>
         </div>
 
         {/* Nav */}

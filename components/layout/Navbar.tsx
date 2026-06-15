@@ -71,20 +71,14 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 flex-shrink-0"
+            className="flex-shrink-0"
             aria-label="International Youth Gathering — Home"
           >
-            <div className="w-8 h-8 rounded-md bg-[#1B2A4A] flex items-center justify-center flex-shrink-0">
-              <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden>
-                <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#F2B134" />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-[11px] font-extrabold text-[#1B2A4A] tracking-widest uppercase">IYG</span>
-              <span className="text-[9px] text-slate-400 tracking-wide hidden sm:block whitespace-nowrap">
-                International Youth Gathering
-              </span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="International Youth Gathering"
+              className="h-11 w-11 rounded-full object-cover"
+            />
           </Link>
 
           {/* Desktop nav */}

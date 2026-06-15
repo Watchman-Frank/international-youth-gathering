@@ -16,15 +16,12 @@ export function ArticleCard({ article, variant = "default", className }: Article
     return (
       <Link
         href={`/articles/${article.slug}`}
-        className={cn(
-          "flex gap-3 group p-3 rounded-xl hover:bg-slate-50 transition-colors",
-          className
-        )}
+        className={cn("flex gap-3 group p-3 rounded-lg hover:bg-slate-50 transition-colors", className)}
       >
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-20 h-16 rounded-lg object-cover flex-shrink-0"
+          className="w-20 h-16 rounded-md object-cover flex-shrink-0"
           loading="lazy"
         />
         <div className="flex-1 min-w-0">
@@ -43,14 +40,14 @@ export function ArticleCard({ article, variant = "default", className }: Article
       <Link
         href={`/articles/${article.slug}`}
         className={cn(
-          "card-beam flex gap-4 group p-4 bg-white rounded-xl border border-slate-100 hover:border-[#F2B134]/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300",
+          "flex gap-4 group p-4 bg-white rounded-lg border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-200",
           className
         )}
       >
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-32 h-24 rounded-lg object-cover flex-shrink-0"
+          className="w-32 h-24 rounded-md object-cover flex-shrink-0"
           loading="lazy"
         />
         <div className="flex-1 min-w-0">
@@ -73,17 +70,17 @@ export function ArticleCard({ article, variant = "default", className }: Article
       <Link
         href={`/articles/${article.slug}`}
         className={cn(
-          "relative block rounded-2xl overflow-hidden group h-80 md:h-96 transition-all duration-300 hover:ring-2 hover:ring-[#F2B134]/50 hover:ring-offset-2 hover:ring-offset-[#FAF8F3]",
+          "relative block rounded-xl overflow-hidden group h-80 md:h-96",
           className
         )}
       >
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/90 via-[#1B2A4A]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/90 via-[#1B2A4A]/25 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-6">
           <CategoryBadge category={article.category} />
           <h2 className="text-xl md:text-2xl font-bold text-white mt-2 line-clamp-2 text-balance" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
@@ -92,8 +89,8 @@ export function ArticleCard({ article, variant = "default", className }: Article
           <div className="flex items-center gap-3 mt-3">
             <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover" />
             <span className="text-white/80 text-sm">{article.author.name}</span>
-            <span className="text-white/50 text-sm">·</span>
-            <span className="text-white/60 text-xs">{formatShortDate(article.publishedAt)}</span>
+            <span className="text-white/40 text-sm">·</span>
+            <span className="text-white/55 text-xs">{formatShortDate(article.publishedAt)}</span>
           </div>
         </div>
       </Link>
@@ -104,7 +101,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
     <Link
       href={`/articles/${article.slug}`}
       className={cn(
-        "card-beam block bg-white rounded-xl overflow-hidden border border-slate-100 hover:border-slate-200 hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 group",
+        "block bg-white rounded-lg overflow-hidden border border-slate-100 hover:border-slate-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group",
         className
       )}
     >
@@ -112,7 +109,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-400"
           loading="lazy"
         />
         <div className="absolute top-3 left-3">

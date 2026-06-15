@@ -37,14 +37,12 @@ export function Navbar() {
 
   const isActive = (href: string) => pathname.startsWith(href);
 
-  // Track scroll for shadow
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -55,7 +53,6 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
     setOpenDropdown(null);
@@ -64,24 +61,20 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b transition-all duration-300",
-        scrolled
-          ? "border-slate-200/70 shadow-[0_2px_24px_rgba(27,42,74,0.08)]"
-          : "border-transparent"
+        "sticky top-0 z-50 bg-white border-b transition-all duration-200",
+        scrolled ? "border-slate-200 shadow-sm" : "border-slate-100"
       )}
     >
-      <nav
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        aria-label="Main navigation"
-      >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 flex-shrink-0 group"
+            className="flex items-center gap-2.5 flex-shrink-0"
             aria-label="International Youth Gathering — Home"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#1B2A4A] flex items-center justify-center flex-shrink-0 group-hover:bg-[#2D4070] group-hover:shadow-[0_0_0_3px_rgba(242,177,52,0.35)] transition-all duration-300">
+            <div className="w-8 h-8 rounded-md bg-[#1B2A4A] flex items-center justify-center flex-shrink-0">
               <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden>
                 <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#F2B134" />
               </svg>
@@ -101,29 +94,21 @@ export function Navbar() {
                 item.children ? (
                   <li key={item.label} className="relative">
                     <button
-                      onClick={() =>
-                        setOpenDropdown(openDropdown === item.label ? null : item.label)
-                      }
+                      onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
-                      className={cn(
-                        "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap",
-                        "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
-                      )}
+                      className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-[#1B2A4A] rounded-lg hover:bg-slate-50 transition-colors whitespace-nowrap"
                     >
                       {item.label}
                       <ChevronDown
                         size={13}
-                        className={cn(
-                          "transition-transform duration-200",
-                          openDropdown === item.label && "rotate-180"
-                        )}
+                        className={cn("transition-transform duration-200", openDropdown === item.label && "rotate-180")}
                         aria-hidden
                       />
                     </button>
                     {openDropdown === item.label && (
                       <div
-                        className="absolute top-full left-0 mt-1.5 w-56 bg-white rounded-xl border border-slate-200 shadow-xl py-1.5 z-50"
+                        className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl border border-slate-100 shadow-lg py-1 z-50"
                         role="menu"
                       >
                         {item.children.map((child) => (
@@ -134,7 +119,7 @@ export function Navbar() {
                             className={cn(
                               "block px-4 py-2.5 text-sm transition-colors",
                               isActive(child.href)
-                                ? "text-[#1B2A4A] font-semibold bg-amber-50"
+                                ? "text-[#1B2A4A] font-semibold"
                                 : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
                             )}
                           >
@@ -151,16 +136,13 @@ export function Navbar() {
                       className={cn(
                         "relative block px-3 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap",
                         isActive(item.href!)
-                          ? "text-[#1B2A4A] font-bold"
+                          ? "text-[#1B2A4A] font-semibold"
                           : "text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-50/80"
                       )}
                     >
                       {item.label}
                       {isActive(item.href!) && (
-                        <span
-                          className="absolute bottom-0.5 left-2 right-2 h-[2px] rounded-full bg-[#F2B134]"
-                          aria-hidden
-                        />
+                        <span className="absolute bottom-0.5 left-3 right-3 h-px bg-[#F2B134]" aria-hidden />
                       )}
                     </Link>
                   </li>
@@ -183,21 +165,18 @@ export function Navbar() {
               className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-100 transition-colors relative"
             >
               <Bell size={17} />
-              <span
-                className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F2B134] rounded-full border border-white"
-                aria-hidden
-              />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F2B134] rounded-full border border-white" aria-hidden />
             </button>
             <div className="w-px h-5 bg-slate-200 mx-1" aria-hidden />
             <Link
               href="/give"
-              className="pulse-gold flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-lg hover:bg-[#D9960F] transition-colors"
+              className="px-4 py-2 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-lg hover:bg-[#D9960F] transition-colors"
             >
               Give
             </Link>
             <Link
               href="/sign-in"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1B2A4A] rounded-lg hover:bg-[#2D4070] hover:shadow-lg transition-all duration-200"
+              className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1B2A4A] rounded-lg hover:bg-[#2D4070] transition-colors"
             >
               <User size={14} aria-hidden />
               Sign In
@@ -227,11 +206,7 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div
-            id="mobile-menu"
-            className="lg:hidden border-t border-slate-100 pb-5 pt-3"
-            aria-label="Mobile navigation"
-          >
+          <div id="mobile-menu" className="lg:hidden border-t border-slate-100 pb-5 pt-3" aria-label="Mobile navigation">
             <ul className="space-y-0.5" role="list">
               {navItems.map((item) =>
                 item.children ? (
@@ -244,9 +219,9 @@ export function Navbar() {
                         key={child.href}
                         href={child.href}
                         className={cn(
-                          "block px-5 py-2.5 text-sm rounded-xl transition-colors",
+                          "block px-5 py-2.5 text-sm rounded-lg transition-colors",
                           isActive(child.href)
-                            ? "text-[#1B2A4A] font-semibold bg-amber-50"
+                            ? "text-[#1B2A4A] font-semibold"
                             : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
                         )}
                       >
@@ -259,9 +234,9 @@ export function Navbar() {
                     <Link
                       href={item.href!}
                       className={cn(
-                        "block px-3 py-2.5 text-sm rounded-xl transition-colors",
+                        "block px-3 py-2.5 text-sm rounded-lg transition-colors",
                         isActive(item.href!)
-                          ? "text-[#1B2A4A] font-semibold bg-amber-50"
+                          ? "text-[#1B2A4A] font-semibold"
                           : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
                       )}
                     >
@@ -271,7 +246,6 @@ export function Navbar() {
                 )
               )}
             </ul>
-
             <div className="mt-4 pt-4 border-t border-slate-100 px-3 flex gap-2">
               <Link
                 href="/sign-in"
@@ -282,7 +256,7 @@ export function Navbar() {
               </Link>
               <Link
                 href="/give"
-                className="pulse-gold flex items-center justify-center px-4 py-2.5 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-xl hover:bg-[#D9960F] transition-colors"
+                className="flex items-center justify-center px-5 py-2.5 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-xl hover:bg-[#D9960F] transition-colors"
               >
                 Give
               </Link>

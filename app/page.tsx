@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Mic2, Play, Calendar, ChevronRight, Flame, Globe } from "lucide-react";
+import { ArrowRight, BookOpen, Play, Calendar, ChevronRight } from "lucide-react";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { NewsletterBanner } from "@/components/home/NewsletterBanner";
 import { ArticleCard } from "@/components/cards/ArticleCard";
@@ -18,50 +18,6 @@ export const metadata: Metadata = {
   description: "International Youth Gathering — Daily devotionals, apostolic teaching, live events, and a podcast for young believers worldwide.",
 };
 
-function SectionHeading({
-  id,
-  title,
-  subtitle,
-  eyebrow,
-  href,
-  hrefLabel = "View all",
-}: {
-  id: string;
-  title: string;
-  subtitle?: string;
-  eyebrow?: string;
-  href?: string;
-  hrefLabel?: string;
-}) {
-  return (
-    <div className="flex items-end justify-between mb-6 gap-4">
-      <div className="border-l-[3px] border-[#F2B134] pl-4">
-        {eyebrow && (
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#F2B134] mb-1">
-            {eyebrow}
-          </p>
-        )}
-        <h2
-          id={id}
-          className="text-2xl sm:text-3xl font-bold text-[#1B2A4A] leading-tight"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          {title}
-        </h2>
-        {subtitle && <p className="text-sm text-slate-500 mt-1">{subtitle}</p>}
-      </div>
-      {href && (
-        <Link
-          href={href}
-          className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
-        >
-          {hrefLabel} <ArrowRight size={14} aria-hidden />
-        </Link>
-      )}
-    </div>
-  );
-}
-
 export default function HomePage() {
   const featuredArticles = articles.slice(0, 6);
   const todayDevotional = devotionals[0];
@@ -71,49 +27,32 @@ export default function HomePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-16">
-      {/* ── Hero ─────────────────────────────────── */}
+
+      {/* ── Hero ───────────────────────────────────── */}
       <HeroCarousel />
 
-      {/* ── Stats strip ──────────────────────────── */}
-      <div className="gradient-navy rounded-2xl p-4 sm:p-5 -mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          { value: "10k+", label: "Lives Touched", icon: Globe },
-          { value: "Daily", label: "Word for the Day", icon: BookOpen },
-          { value: "12+", label: "Podcast Episodes", icon: Mic2 },
-          { value: "Global", label: "Reach & Community", icon: Flame },
-        ].map(({ value, label, icon: Icon }) => (
-          <div
-            key={label}
-            className="glass rounded-xl p-4 text-center hover:-translate-y-1 hover:bg-white/15 transition-all duration-300"
-          >
-            <Icon
-              size={18}
-              className="text-[#F2B134] mx-auto mb-2"
-              style={{ filter: "drop-shadow(0 0 6px rgba(242,177,52,0.65))" }}
-              aria-hidden
-            />
-            <div
-              className="text-xl font-bold text-white"
+      {/* ── Latest Articles ──────────────────────────── */}
+      <section aria-labelledby="articles-heading">
+        <div className="flex items-end justify-between mb-8 gap-4">
+          <div>
+            <h2
+              id="articles-heading"
+              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              {value}
-            </div>
-            <div className="text-xs text-white/50 mt-0.5 leading-tight">{label}</div>
+              Latest Articles
+            </h2>
+            <p className="text-sm text-slate-500 mt-1.5">Faith, ministry, and Kingdom culture</p>
+            <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
           </div>
-        ))}
-      </div>
+          <Link
+            href="/articles"
+            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+          >
+            View all <ArrowRight size={14} aria-hidden />
+          </Link>
+        </div>
 
-      {/* ── Latest Articles ───────────────────────── */}
-      <section aria-labelledby="articles-heading">
-        <SectionHeading
-          id="articles-heading"
-          title="Latest Articles"
-          subtitle="Faith, ministry, and Kingdom culture"
-          eyebrow="Kingdom Media"
-          href="/articles"
-        />
-
-        {/* Featured + grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           <div className="lg:col-span-1">
             <ArticleCard article={featuredArticles[0]} variant="featured" className="h-full min-h-[280px]" />
@@ -125,7 +64,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Horizontal list */}
         <div className="mt-5 space-y-3">
           {featuredArticles.slice(5, 6).map((a) => (
             <ArticleCard key={a.id} article={a} variant="horizontal" />
@@ -133,15 +71,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Word for the Day + Upcoming Events ────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
+      {/* ── Word for the Day + Upcoming Events ─────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
         {/* Word for the Day */}
         <section className="lg:col-span-3" aria-labelledby="wftd-heading">
           <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center">
-                <BookOpen size={17} className="text-amber-600" aria-hidden />
-              </div>
+            <div className="flex items-center gap-3">
+              <BookOpen size={18} className="text-amber-500" aria-hidden />
               <div>
                 <h2
                   id="wftd-heading"
@@ -155,25 +91,23 @@ export default function HomePage() {
             </div>
             <Link
               href="/word-for-the-day"
-              className="text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] flex items-center gap-1 transition-colors"
+              className="text-sm font-semibold text-slate-400 hover:text-[#1B2A4A] flex items-center gap-1 transition-colors"
             >
               Archive <ChevronRight size={13} aria-hidden />
             </Link>
           </div>
 
-          <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
+          <div className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm">
             <VideoPlayer
               youtubeId={todayDevotional.youtubeId}
               thumbnailUrl={todayDevotional.thumbnailUrl}
               title={todayDevotional.title}
             />
             <div className="p-5 sm:p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
-                  <BookOpen size={10} aria-hidden />
-                  {todayDevotional.scripture}
-                </span>
-              </div>
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100 mb-3">
+                <BookOpen size={10} aria-hidden />
+                {todayDevotional.scripture}
+              </span>
               <h3
                 className="text-xl font-bold text-[#1B2A4A] leading-snug"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -199,9 +133,7 @@ export default function HomePage() {
         {/* Upcoming Events */}
         <section className="lg:col-span-2" aria-labelledby="events-heading">
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-9 h-9 rounded-xl bg-[#1B2A4A]/5 border border-[#1B2A4A]/10 flex items-center justify-center">
-              <Calendar size={17} className="text-[#1B2A4A]" aria-hidden />
-            </div>
+            <Calendar size={18} className="text-[#1B2A4A]" aria-hidden />
             <h2
               id="events-heading"
               className="text-lg font-bold text-[#1B2A4A]"
@@ -231,19 +163,30 @@ export default function HomePage() {
         </section>
       </div>
 
-      {/* ── Latest Podcast Episode ─────────────────── */}
+      {/* ── Latest Podcast Episode ────────────────────── */}
       <section aria-labelledby="podcast-heading">
-        <SectionHeading
-          id="podcast-heading"
-          title="The Qavah Podcast"
-          subtitle="Honest conversations for young believers who refuse to be conformed"
-          eyebrow="Audio & Video"
-          href="/podcast"
-          hrefLabel="All episodes"
-        />
+        <div className="flex items-end justify-between mb-8 gap-4">
+          <div>
+            <h2
+              id="podcast-heading"
+              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              The Qavah Podcast
+            </h2>
+            <p className="text-sm text-slate-500 mt-1.5">Honest conversations for young believers who refuse to be conformed</p>
+            <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+          </div>
+          <Link
+            href="/podcast"
+            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+          >
+            All episodes <ArrowRight size={14} aria-hidden />
+          </Link>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Featured episode */}
-          <div className="lg:col-span-2 bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
+          <div className="lg:col-span-2 bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm">
             <VideoPlayer
               youtubeId={latestEpisode.youtubeId}
               thumbnailUrl={latestEpisode.thumbnailUrl}
@@ -266,7 +209,7 @@ export default function HomePage() {
               <p className="text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">{latestEpisode.description}</p>
               <Link
                 href={`/podcast/${latestEpisode.id}`}
-                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white bg-[#1B2A4A] px-5 py-2.5 rounded-xl hover:bg-[#2D4070] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white bg-[#1B2A4A] px-5 py-2.5 rounded-lg hover:bg-[#2D4070] transition-colors"
               >
                 <Play size={14} fill="currentColor" aria-hidden />
                 Listen Now
@@ -274,9 +217,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Episode list sidebar */}
           <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">More Episodes</p>
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">More Episodes</p>
             <div className="space-y-1">
               {podcastEpisodes.slice(1, 5).map((ep) => (
                 <PodcastEpisodeCard key={ep.id} episode={ep} variant="compact" />
@@ -284,7 +226,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/podcast"
-              className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors py-2"
+              className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors py-2"
             >
               All episodes <ArrowRight size={13} aria-hidden />
             </Link>
@@ -292,34 +234,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Past Events / On Demand ────────────────── */}
+      {/* ── Past Events / On Demand ───────────────────── */}
       {pastOnDemand.length > 0 && (
         <section aria-labelledby="ondemand-heading">
-          <SectionHeading
-            id="ondemand-heading"
-            title="Past Events · On Demand"
-            subtitle="Watch full replays from previous conferences and gatherings"
-            eyebrow="Recordings"
-            href="/conference"
-            hrefLabel="View all"
-          />
+          <div className="flex items-end justify-between mb-8 gap-4">
+            <div>
+              <h2
+                id="ondemand-heading"
+                className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Past Events · On Demand
+              </h2>
+              <p className="text-sm text-slate-500 mt-1.5">Watch full replays from previous conferences and gatherings</p>
+              <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+            </div>
+            <Link
+              href="/conference"
+              className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+            >
+              View all <ArrowRight size={14} aria-hidden />
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {pastOnDemand.map((event) => (
               <Link
                 key={event.id}
                 href="/conference"
-                className="card-beam block bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-[#F2B134]/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+                className="block bg-white rounded-xl overflow-hidden border border-slate-100 hover:border-slate-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
               >
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={event.pastRecordings![0].thumbnailUrl}
                     alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-400"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-[#1B2A4A]/40 flex items-center justify-center">
-                    <div className="w-13 h-13 w-12 h-12 rounded-full bg-[#F2B134] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                      <Play size={18} className="text-[#1B2A4A] ml-0.5" fill="currentColor" aria-hidden />
+                  <div className="absolute inset-0 bg-[#1B2A4A]/35 flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-full bg-[#F2B134] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                      <Play size={16} className="text-[#1B2A4A] ml-0.5" fill="currentColor" aria-hidden />
                     </div>
                   </div>
                 </div>
@@ -328,7 +282,7 @@ export default function HomePage() {
                     {event.title}
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
-                    <Play size={11} aria-hidden />
+                    <Play size={10} aria-hidden />
                     {event.pastRecordings!.length} session{event.pastRecordings!.length !== 1 ? "s" : ""} available
                   </p>
                 </div>
@@ -338,58 +292,33 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ── Core Values strip ─────────────────────── */}
-      <div className="gradient-navy rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-        {/* Twinkling star particles */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none opacity-50"
-          aria-hidden
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
+      {/* ── Core Values ──────────────────────────────── */}
+      <div className="bg-[#FAF8F3] border border-slate-100 rounded-xl px-8 sm:px-14 py-14">
+        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] text-center mb-12">
+          Our Core Values
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-center">
           {[
-            [10, 15, 1, 0, 3], [84, 20, 1.5, 0.7, 2.5], [50, 78, 1, 1.2, 3.5],
-            [25, 58, 1.5, 0.4, 2.8], [74, 44, 1, 1.8, 3.2], [91, 74, 2, 0.2, 2.3],
-            [40, 28, 1, 1.0, 3.8], [16, 84, 1.5, 0.6, 2.6], [62, 10, 1, 0.3, 3.0],
-          ].map(([x, y, r, delay, dur], i) => (
-            <circle
-              key={i}
-              cx={`${x}%`}
-              cy={`${y}%`}
-              r={r}
-              fill="#F2B134"
-              style={{ animation: `twinkle ${dur}s ${delay}s ease-in-out infinite` }}
-            />
-          ))}
-        </svg>
-
-        <div className="relative z-10">
-          <p className="text-[11px] font-bold text-[#F2B134] uppercase tracking-[0.18em] text-center mb-10">
-            Our Core Values
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "Prayer", verse: "1 Tim 2:1" },
-              { value: "Dedication", verse: "Luke 9:62" },
-              { value: "Discipline", verse: "2 Tim 1:7" },
-              { value: "Spiritual Intelligence", verse: "1 Chr 12:32" },
-            ].map(({ value, verse }) => (
-              <div key={value} className="group">
-                <div
-                  className="text-base sm:text-xl font-bold text-white leading-snug group-hover:text-[#F2B134] transition-colors duration-300"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {value}
-                </div>
-                <div className="text-xs text-white/40 mt-1.5 font-medium tracking-wide">{verse}</div>
-                <div className="mt-3 mx-auto w-5 h-px bg-[#F2B134]/25 group-hover:bg-[#F2B134]/70 group-hover:w-10 transition-all duration-300" />
+            { value: "Prayer", verse: "1 Tim 2:1" },
+            { value: "Dedication", verse: "Luke 9:62" },
+            { value: "Discipline", verse: "2 Tim 1:7" },
+            { value: "Spiritual Intelligence", verse: "1 Chr 12:32" },
+          ].map(({ value, verse }) => (
+            <div key={value}>
+              <div
+                className="text-xl sm:text-2xl font-bold text-[#1B2A4A] leading-snug"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {value}
               </div>
-            ))}
-          </div>
+              <div className="w-6 h-px bg-[#F2B134] mx-auto my-3" />
+              <div className="text-xs text-slate-400 font-medium tracking-wide">{verse}</div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ── Newsletter ────────────────────────────── */}
+      {/* ── Newsletter ───────────────────────────────── */}
       <NewsletterBanner />
     </div>
   );

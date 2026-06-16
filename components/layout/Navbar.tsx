@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Search, ChevronDown, User, Bell, LogOut } from "lucide-react";
+import { Menu, X, Search, ChevronDown, User, Bell, LogOut, Settings } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
@@ -210,6 +210,14 @@ export function Navbar() {
                       <p className="text-sm font-semibold text-[#1B2A4A] truncate">{session.user?.name}</p>
                       <p className="text-xs text-slate-400 truncate">{session.user?.email}</p>
                     </div>
+                    <Link
+                      href="/profile"
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50 transition-colors"
+                      onClick={() => setUserMenuOpen(false)}
+                    >
+                      <Settings size={14} aria-hidden />
+                      My Profile
+                    </Link>
                     <button
                       onClick={() => signOut({ callbackUrl: "/" })}
                       className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-red-600 hover:bg-red-50 transition-colors"
@@ -296,13 +304,22 @@ export function Navbar() {
             </ul>
             <div className="mt-4 pt-4 border-t border-slate-100 px-3 flex gap-2">
               {session ? (
-                <button
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
-                >
-                  <LogOut size={15} aria-hidden />
-                  Sign Out
-                </button>
+                <>
+                  <Link
+                    href="/profile"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-[#1B2A4A] bg-slate-100 rounded-xl hover:bg-slate-200 transition-colors"
+                  >
+                    <User size={15} aria-hidden />
+                    My Profile
+                  </Link>
+                  <button
+                    onClick={() => signOut({ callbackUrl: "/" })}
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
+                  >
+                    <LogOut size={15} aria-hidden />
+                    Sign Out
+                  </button>
+                </>
               ) : (
                 <Link
                   href="/sign-in"

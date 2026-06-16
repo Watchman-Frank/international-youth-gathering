@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 import { FacebookIcon } from "@/components/ui/SocialIcons";
@@ -19,7 +19,6 @@ function GoogleIcon({ size = 18 }: { size?: number }) {
 }
 
 function SignInForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/";
   const urlError = searchParams.get("error");
@@ -61,8 +60,8 @@ function SignInForm() {
       setError("Invalid email or password. Please try again.");
       setLoading(null);
     } else {
-      router.push(callbackUrl);
-      router.refresh();
+      // Full reload so the session cookie is picked up by the Navbar and all components
+      window.location.href = isSignUp ? "/profile" : callbackUrl;
     }
   }
 

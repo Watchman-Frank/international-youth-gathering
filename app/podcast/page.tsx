@@ -16,15 +16,15 @@ export default function PodcastPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       {/* Header */}
       <section>
-        <div className="bg-gradient-to-br from-[#1B2A4A] to-[#2D3A5E] rounded-3xl p-8 sm:p-12">
+        <div className="bg-gradient-to-br from-[#0D6B30] to-[#2D3A5E] rounded-3xl p-8 sm:p-12">
           <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#F2B134] flex items-center justify-center">
-                  <Mic2 size={24} className="text-[#1B2A4A]" aria-hidden />
+                <div className="w-12 h-12 rounded-2xl bg-[#C8831A] flex items-center justify-center">
+                  <Mic2 size={24} className="text-[#0D6B30]" aria-hidden />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-[#F2B134] uppercase tracking-widest">IYG Original</div>
+                  <div className="text-xs font-bold text-[#C8831A] uppercase tracking-widest">IYG Original</div>
                   <h1
                     className="text-2xl font-bold text-white"
                     style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
@@ -67,12 +67,12 @@ export default function PodcastPage() {
         <div className="flex items-center gap-3 mb-4">
           <h2
             id="latest-heading"
-            className="text-xl font-bold text-[#1B2A4A]"
+            className="text-xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Latest Episode
           </h2>
-          <span className="text-xs font-bold text-[#F2B134] bg-amber-50 px-2.5 py-1 rounded-full">New</span>
+          <span className="text-xs font-bold text-[#C8831A] bg-amber-50 px-2.5 py-1 rounded-full">New</span>
         </div>
         <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
           <div className="flex flex-col sm:flex-row gap-5">
@@ -85,7 +85,7 @@ export default function PodcastPage() {
               <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
                 Season {latest.season} · Episode {latest.episode}
               </div>
-              <h3 className="text-xl font-bold text-[#1B2A4A] leading-snug" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+              <h3 className="text-xl font-bold text-[#0D6B30] leading-snug" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                 {latest.title}
               </h3>
               <p className="text-sm text-slate-500 mt-2 leading-relaxed">{latest.description}</p>
@@ -96,7 +96,7 @@ export default function PodcastPage() {
           </div>
           {latest.showNotes && (
             <div className="mt-5 pt-5 border-t border-slate-100">
-              <h4 className="text-sm font-bold text-[#1B2A4A] mb-2">Show Notes</h4>
+              <h4 className="text-sm font-bold text-[#0D6B30] mb-2">Show Notes</h4>
               <pre className="text-xs text-slate-500 whitespace-pre-wrap leading-relaxed font-sans">{latest.showNotes}</pre>
             </div>
           )}
@@ -107,7 +107,7 @@ export default function PodcastPage() {
       <section aria-labelledby="all-episodes-heading">
         <h2
           id="all-episodes-heading"
-          className="text-2xl font-bold text-[#1B2A4A] mb-6"
+          className="text-2xl font-bold text-[#0D6B30] mb-6"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           All Episodes

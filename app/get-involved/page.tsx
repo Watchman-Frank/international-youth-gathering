@@ -95,9 +95,9 @@ export default function GetInvolvedPage() {
       {/* Hero */}
       <section>
         <div className="flex items-center gap-3 mb-3">
-          <Users size={28} className="text-[#1B2A4A]" aria-hidden />
+          <Users size={28} className="text-[#0D6B30]" aria-hidden />
           <h1
-            className="text-3xl sm:text-4xl font-bold text-[#1B2A4A]"
+            className="text-3xl sm:text-4xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Get Involved
@@ -112,7 +112,7 @@ export default function GetInvolvedPage() {
       <section aria-labelledby="roles-heading">
         <h2
           id="roles-heading"
-          className="text-2xl font-bold text-[#1B2A4A] mb-6"
+          className="text-2xl font-bold text-[#0D6B30] mb-6"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           Open Volunteer Roles
@@ -126,11 +126,11 @@ export default function GetInvolvedPage() {
                 className="bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-md transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-[#1B2A4A] flex items-center justify-center flex-shrink-0">
-                    <Icon size={20} className="text-[#F2B134]" aria-hidden />
+                  <div className="w-11 h-11 rounded-xl bg-[#0D6B30] flex items-center justify-center flex-shrink-0">
+                    <Icon size={20} className="text-[#C8831A]" aria-hidden />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-[#1B2A4A] text-lg" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+                    <h3 className="font-bold text-[#0D6B30] text-lg" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                       {role.title}
                     </h3>
                     <p className="text-sm text-slate-500 mt-1 leading-relaxed">{role.description}</p>
@@ -145,7 +145,7 @@ export default function GetInvolvedPage() {
                       </span>
                       <button
                         onClick={() => { setActiveRole(role.id); setSubmitted(false); setError(""); }}
-                        className="text-sm font-semibold text-[#F2B134] hover:text-[#D9960F] transition-colors"
+                        className="text-sm font-semibold text-[#C8831A] hover:text-[#A56914] transition-colors"
                       >
                         Apply →
                       </button>
@@ -164,7 +164,7 @@ export default function GetInvolvedPage() {
           <div className="max-w-xl">
             <h2
               id="apply-heading"
-              className="text-2xl font-bold text-[#1B2A4A] mb-2"
+              className="text-2xl font-bold text-[#0D6B30] mb-2"
               style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
             >
               Apply: {selectedRole?.title}
@@ -182,69 +182,69 @@ export default function GetInvolvedPage() {
             <form onSubmit={handleSubmit} className="space-y-4" aria-label="Volunteer application form">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="v-name" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Full Name *</label>
+                  <label htmlFor="v-name" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Full Name *</label>
                   <input
                     id="v-name"
                     type="text"
                     required
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="v-email" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Email *</label>
+                  <label htmlFor="v-email" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Email *</label>
                   <input
                     id="v-email"
                     type="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                     placeholder="you@email.com"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="v-role" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Role Applying For *</label>
+                <label htmlFor="v-role" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Role Applying For *</label>
                 <select
                   id="v-role"
                   required
                   value={activeRole}
                   onChange={(e) => setActiveRole(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                 >
                   {roles.map((r) => <option key={r.id} value={r.id}>{r.title}</option>)}
                 </select>
               </div>
               <div>
-                <label htmlFor="v-portfolio" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Portfolio / Work Samples URL</label>
+                <label htmlFor="v-portfolio" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Portfolio / Work Samples URL</label>
                 <input
                   id="v-portfolio"
                   type="url"
                   value={form.portfolio}
                   onChange={(e) => setForm((f) => ({ ...f, portfolio: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                   placeholder="https://yourwork.com"
                 />
               </div>
               <div>
-                <label htmlFor="v-message" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Message *</label>
+                <label htmlFor="v-message" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Message *</label>
                 <textarea
                   id="v-message"
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                   placeholder="Tell us about yourself, your experience, and why you'd like to serve with IYG…"
                 />
               </div>
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 bg-[#1B2A4A] text-white font-bold text-sm rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full py-3.5 bg-[#0D6B30] text-white font-bold text-sm rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
               >
                 {submitting && <Loader2 size={15} className="animate-spin" />}
                 {submitting ? "Submitting…" : "Submit Application"}
@@ -257,13 +257,13 @@ export default function GetInvolvedPage() {
       {submitted && (
         <div className="bg-green-50 border border-green-200 rounded-2xl p-10 max-w-xl text-center">
           <CheckCircle2 size={40} className="text-green-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>Application Received!</h2>
+          <h2 className="text-xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>Application Received!</h2>
           <p className="text-slate-500 text-sm mt-2">
             Thank you, <strong>{form.name}</strong>, for your heart to serve with IYG. Our team will review your application and reach out within 5 business days.
           </p>
           <button
             onClick={() => { setSubmitted(false); setActiveRole(null); }}
-            className="mt-4 text-sm font-semibold text-[#1B2A4A] underline"
+            className="mt-4 text-sm font-semibold text-[#0D6B30] underline"
           >
             Apply for another role
           </button>
@@ -271,11 +271,11 @@ export default function GetInvolvedPage() {
       )}
 
       {/* Advertise */}
-      <section aria-labelledby="advertise-heading" className="bg-[#FAF8F3] rounded-2xl p-8 sm:p-10">
+      <section aria-labelledby="advertise-heading" className="bg-[#F0FAF3] rounded-2xl p-8 sm:p-10">
         <div className="max-w-xl">
           <h2
             id="advertise-heading"
-            className="text-2xl font-bold text-[#1B2A4A] mb-3"
+            className="text-2xl font-bold text-[#0D6B30] mb-3"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Advertise With IYG
@@ -286,14 +286,14 @@ export default function GetInvolvedPage() {
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="mailto:info@internationalyouthgathering.com?subject=Advertising%20Inquiry"
-              className="flex items-center justify-center gap-2 px-5 py-3 bg-[#1B2A4A] text-white font-semibold text-sm rounded-xl hover:bg-[#2D4070] transition-colors"
+              className="flex items-center justify-center gap-2 px-5 py-3 bg-[#0D6B30] text-white font-semibold text-sm rounded-xl hover:bg-[#0A5423] transition-colors"
             >
               <ExternalLink size={15} />
               Email Us to Advertise
             </a>
             <a
               href="tel:+16074442359"
-              className="flex items-center justify-center gap-2 px-5 py-3 border border-slate-200 text-[#1B2A4A] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors"
+              className="flex items-center justify-center gap-2 px-5 py-3 border border-slate-200 text-[#0D6B30] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors"
             >
               +1 607 444 2359
             </a>

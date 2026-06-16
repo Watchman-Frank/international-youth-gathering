@@ -65,7 +65,7 @@ export function SocialShare({ url, title = "Check this out", className }: Social
       <button
         onClick={copyLink}
         aria-label="Copy link"
-        className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 text-slate-500 hover:text-[#1B2A4A] transition-colors"
+        className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 text-slate-500 hover:text-[#0D6B30] transition-colors"
       >
         {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
       </button>

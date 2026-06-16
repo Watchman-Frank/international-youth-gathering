@@ -73,7 +73,7 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
           <div>
-            <h2 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-display)" }}>
+            <h2 className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-display)" }}>
               Register for Event
             </h2>
             <p className="text-xs text-slate-500 mt-0.5 truncate max-w-[280px]">{event.title}</p>
@@ -87,16 +87,16 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
           {/* Not signed in */}
           {status !== "loading" && !session && (
             <div className="text-center py-6">
-              <div className="w-14 h-14 rounded-full bg-[#1B2A4A]/10 flex items-center justify-center mx-auto mb-4">
-                <User size={24} className="text-[#1B2A4A]" />
+              <div className="w-14 h-14 rounded-full bg-[#0D6B30]/10 flex items-center justify-center mx-auto mb-4">
+                <User size={24} className="text-[#0D6B30]" />
               </div>
-              <h3 className="font-bold text-[#1B2A4A] mb-1">Sign in to Register</h3>
+              <h3 className="font-bold text-[#0D6B30] mb-1">Sign in to Register</h3>
               <p className="text-sm text-slate-500 mb-5">
                 You need an IYG account to register for events and receive your confirmation ticket.
               </p>
               <Link
                 href={`/sign-in?callbackUrl=/conference`}
-                className="inline-flex items-center justify-center px-6 py-3 bg-[#1B2A4A] text-white text-sm font-bold rounded-xl hover:bg-[#2D4070] transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 bg-[#0D6B30] text-white text-sm font-bold rounded-xl hover:bg-[#0A5423] transition-colors"
               >
                 Sign In / Create Account
               </Link>
@@ -107,7 +107,7 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
           {done && (
             <div className="text-center py-4">
               <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
-              <h3 className="font-bold text-[#1B2A4A] text-lg mb-2" style={{ fontFamily: "var(--font-display)" }}>
+              <h3 className="font-bold text-[#0D6B30] text-lg mb-2" style={{ fontFamily: "var(--font-display)" }}>
                 You&rsquo;re Registered, {form.firstName}!
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed mb-2">
@@ -117,13 +117,13 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
                 Your confirmation email and ticket/access will be sent to{" "}
                 <strong>{form.email}</strong> soon. If you don&rsquo;t receive it within 24 hours,
                 contact us at{" "}
-                <a href="mailto:info@intlyouthgathering@gmail.com" className="text-[#1B2A4A] underline">
+                <a href="mailto:info@intlyouthgathering@gmail.com" className="text-[#0D6B30] underline">
                   info@intlyouthgathering@gmail.com
                 </a>
               </p>
               <button
                 onClick={onClose}
-                className="mt-5 px-6 py-2.5 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors"
+                className="mt-5 px-6 py-2.5 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors"
               >
                 Close
               </button>
@@ -142,43 +142,43 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#1B2A4A] mb-1">First Name *</label>
+                  <label className="block text-xs font-semibold text-[#0D6B30] mb-1">First Name *</label>
                   <input
                     required
                     value={form.firstName}
                     onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#1B2A4A] mb-1">Last Name *</label>
+                  <label className="block text-xs font-semibold text-[#0D6B30] mb-1">Last Name *</label>
                   <input
                     required
                     value={form.lastName}
                     onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
-                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1B2A4A] mb-1">Email Address *</label>
+                <label className="block text-xs font-semibold text-[#0D6B30] mb-1">Email Address *</label>
                 <input
                   required
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1B2A4A] mb-1">Country *</label>
+                <label className="block text-xs font-semibold text-[#0D6B30] mb-1">Country *</label>
                 <select
                   required
                   value={form.country}
                   onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] bg-white"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] bg-white"
                 >
                   <option value="">Select your country</option>
                   {countries.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -186,22 +186,22 @@ export function RegisterModal({ event, isOpen, onClose }: Props) {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#1B2A4A] mb-1">Phone (optional)</label>
+                <label className="block text-xs font-semibold text-[#0D6B30] mb-1">Phone (optional)</label>
                 <input
                   type="tel"
                   value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                   placeholder="+1 234 567 8900"
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                  className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                className="w-full py-3 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
               >
-                {loading && <span className="h-4 w-4 rounded-full border-2 border-[#1B2A4A]/30 border-t-[#1B2A4A] animate-spin" />}
+                {loading && <span className="h-4 w-4 rounded-full border-2 border-[#0D6B30]/30 border-t-[#0D6B30] animate-spin" />}
                 Confirm Registration
               </button>
 

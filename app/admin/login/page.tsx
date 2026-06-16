@@ -37,7 +37,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF8F3] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#F0FAF3] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex justify-center mb-10">
@@ -45,10 +45,10 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-8">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#1B2A4A]/5 mb-6 mx-auto">
-            <Lock size={20} className="text-[#1B2A4A]" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#0D6B30]/5 mb-6 mx-auto">
+            <Lock size={20} className="text-[#0D6B30]" />
           </div>
-          <h1 className="text-xl font-bold text-[#1B2A4A] text-center mb-1" style={{ fontFamily: "var(--font-display)" }}>
+          <h1 className="text-xl font-bold text-[#0D6B30] text-center mb-1" style={{ fontFamily: "var(--font-display)" }}>
             Admin Access
           </h1>
           <p className="text-sm text-slate-500 text-center mb-6">
@@ -61,7 +61,7 @@ export default function AdminLoginPage() {
               type="button"
               onClick={() => { setMode("superadmin"); setError(""); }}
               className={`flex-1 py-2 text-xs font-semibold transition-colors ${
-                mode === "superadmin" ? "bg-[#1B2A4A] text-white" : "text-slate-500 hover:text-[#1B2A4A]"
+                mode === "superadmin" ? "bg-[#0D6B30] text-white" : "text-slate-500 hover:text-[#0D6B30]"
               }`}
             >
               Superadmin
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
               type="button"
               onClick={() => { setMode("admin"); setError(""); }}
               className={`flex-1 py-2 text-xs font-semibold transition-colors ${
-                mode === "admin" ? "bg-[#1B2A4A] text-white" : "text-slate-500 hover:text-[#1B2A4A]"
+                mode === "admin" ? "bg-[#0D6B30] text-white" : "text-slate-500 hover:text-[#0D6B30]"
               }`}
             >
               Admin (Access Code)
@@ -86,7 +86,7 @@ export default function AdminLoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Superadmin password"
                   required
-                  className="w-full px-4 py-3 pr-10 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 pr-10 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                 />
                 <button
                   type="button"
@@ -106,7 +106,7 @@ export default function AdminLoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email address"
                     required
-                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                   />
                 </div>
                 <div className="relative">
@@ -118,7 +118,7 @@ export default function AdminLoginPage() {
                     placeholder="Access code (e.g. ABC12345)"
                     required
                     maxLength={8}
-                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 text-sm font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 text-sm font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                   />
                 </div>
               </>
@@ -129,7 +129,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading || (mode === "superadmin" ? !password : !email || !code)}
-              className="w-full py-3 bg-[#1B2A4A] text-white text-sm font-bold rounded-lg hover:bg-[#2D4070] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-[#0D6B30] text-white text-sm font-bold rounded-lg hover:bg-[#0A5423] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Signing in…" : "Sign In"}
             </button>

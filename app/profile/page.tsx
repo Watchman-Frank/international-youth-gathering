@@ -97,7 +97,7 @@ export default function ProfilePage() {
   if (status === "loading") {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <Loader2 size={32} className="text-[#1B2A4A] animate-spin" />
+        <Loader2 size={32} className="text-[#0D6B30] animate-spin" />
       </div>
     );
   }
@@ -105,10 +105,10 @@ export default function ProfilePage() {
   if (!session?.user) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 py-16 text-center">
-        <div className="w-20 h-20 rounded-full bg-[#FAF8F3] border-2 border-[#1B2A4A]/10 flex items-center justify-center mb-6">
-          <User size={32} className="text-[#1B2A4A]/40" />
+        <div className="w-20 h-20 rounded-full bg-[#F0FAF3] border-2 border-[#0D6B30]/10 flex items-center justify-center mb-6">
+          <User size={32} className="text-[#0D6B30]/40" />
         </div>
-        <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+        <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
           Sign In to View Your Profile
         </h1>
         <p className="text-slate-500 mt-2 text-sm max-w-xs leading-relaxed">
@@ -116,7 +116,7 @@ export default function ProfilePage() {
         </p>
         <Link
           href="/sign-in?callbackUrl=/profile"
-          className="mt-6 px-6 py-3 bg-[#1B2A4A] text-white font-semibold text-sm rounded-xl hover:bg-[#2D4070] transition-colors"
+          className="mt-6 px-6 py-3 bg-[#0D6B30] text-white font-semibold text-sm rounded-xl hover:bg-[#0A5423] transition-colors"
         >
           Sign In / Create Account
         </Link>
@@ -131,7 +131,7 @@ export default function ProfilePage() {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10 space-y-10">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+        <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
           My Profile
         </h1>
         <p className="text-sm text-slate-500 mt-1">Manage how you appear on IYG — at events, on articles, and in the community.</p>
@@ -139,7 +139,7 @@ export default function ProfilePage() {
 
       {/* Avatar section */}
       <div className="bg-white rounded-2xl border border-slate-100 p-6">
-        <h2 className="font-bold text-[#1B2A4A] mb-4" style={{ fontFamily: "var(--font-display)" }}>Profile Picture</h2>
+        <h2 className="font-bold text-[#0D6B30] mb-4" style={{ fontFamily: "var(--font-display)" }}>Profile Picture</h2>
         <div className="flex items-center gap-5">
           <div className="relative">
             {avatarUrl ? (
@@ -149,7 +149,7 @@ export default function ProfilePage() {
                 className="w-20 h-20 rounded-full object-cover border-2 border-slate-100"
               />
             ) : (
-              <div className="w-20 h-20 rounded-full bg-[#1B2A4A] flex items-center justify-center text-white font-bold text-xl" style={{ fontFamily: "var(--font-display)" }}>
+              <div className="w-20 h-20 rounded-full bg-[#0D6B30] flex items-center justify-center text-white font-bold text-xl" style={{ fontFamily: "var(--font-display)" }}>
                 {initials}
               </div>
             )}
@@ -164,7 +164,7 @@ export default function ProfilePage() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploadingAvatar}
-              className="flex items-center gap-2 px-4 py-2.5 bg-[#1B2A4A] text-white text-sm font-semibold rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-50"
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#0D6B30] text-white text-sm font-semibold rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-50"
             >
               <Camera size={15} />
               {uploadingAvatar ? "Uploading…" : "Upload Photo"}
@@ -183,7 +183,7 @@ export default function ProfilePage() {
 
       {/* Profile form */}
       <div className="bg-white rounded-2xl border border-slate-100 p-6">
-        <h2 className="font-bold text-[#1B2A4A] mb-1" style={{ fontFamily: "var(--font-display)" }}>Profile Details</h2>
+        <h2 className="font-bold text-[#0D6B30] mb-1" style={{ fontFamily: "var(--font-display)" }}>Profile Details</h2>
         <p className="text-xs text-slate-400 mb-5">
           Your <strong>official name</strong> is used for event registration. Your <strong>username</strong> appears on published articles.
         </p>
@@ -191,7 +191,7 @@ export default function ProfilePage() {
         <form onSubmit={handleSave} className="space-y-4">
           {/* Read-only email */}
           <div>
-            <label className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">Email Address</label>
+            <label className="block text-xs font-semibold text-[#0D6B30] mb-1.5">Email Address</label>
             <input
               readOnly
               value={session.user.email ?? ""}
@@ -200,7 +200,7 @@ export default function ProfilePage() {
           </div>
 
           <div>
-            <label htmlFor="officialName" className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">
+            <label htmlFor="officialName" className="block text-xs font-semibold text-[#0D6B30] mb-1.5">
               Official Name <span className="text-slate-400 font-normal">(used at events)</span>
             </label>
             <input
@@ -209,12 +209,12 @@ export default function ProfilePage() {
               value={form.officialName}
               onChange={(e) => setForm((f) => ({ ...f, officialName: e.target.value }))}
               placeholder="Your full name"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="username" className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">
+            <label htmlFor="username" className="block text-xs font-semibold text-[#0D6B30] mb-1.5">
               Username <span className="text-slate-400 font-normal">(displayed on articles)</span>
             </label>
             <div className="relative">
@@ -225,20 +225,20 @@ export default function ProfilePage() {
                 value={form.username}
                 onChange={(e) => setForm((f) => ({ ...f, username: e.target.value.replace(/[^a-zA-Z0-9_.]/g, "") }))}
                 placeholder="yourhandle"
-                className="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                className="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="bio" className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">Bio</label>
+            <label htmlFor="bio" className="block text-xs font-semibold text-[#0D6B30] mb-1.5">Bio</label>
             <textarea
               id="bio"
               rows={4}
               value={form.bio}
               onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
               placeholder="Tell the IYG community a bit about yourself…"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
             />
           </div>
 
@@ -259,7 +259,7 @@ export default function ProfilePage() {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-3 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors disabled:opacity-60"
+            className="flex items-center gap-2 px-6 py-3 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors disabled:opacity-60"
           >
             {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
             {saving ? "Saving…" : "Save Profile"}
@@ -269,11 +269,11 @@ export default function ProfilePage() {
 
       {/* Account info */}
       <div className="bg-white rounded-2xl border border-slate-100 p-6">
-        <h2 className="font-bold text-[#1B2A4A] mb-4" style={{ fontFamily: "var(--font-display)" }}>Account</h2>
+        <h2 className="font-bold text-[#0D6B30] mb-4" style={{ fontFamily: "var(--font-display)" }}>Account</h2>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between items-center py-2 border-b border-slate-50">
             <span className="text-slate-500">Signed in as</span>
-            <span className="font-medium text-[#1B2A4A]">{session.user.email}</span>
+            <span className="font-medium text-[#0D6B30]">{session.user.email}</span>
           </div>
           {profile?.updatedAt && (
             <div className="flex justify-between items-center py-2 border-b border-slate-50">

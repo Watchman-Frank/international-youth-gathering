@@ -31,11 +31,11 @@ export default function LibraryPage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-[#1B2A4A] flex items-center justify-center">
-            <Library size={20} className="text-[#F2B134]" aria-hidden />
+          <div className="w-10 h-10 rounded-xl bg-[#0D6B30] flex items-center justify-center">
+            <Library size={20} className="text-[#C8831A]" aria-hidden />
           </div>
           <h1
-            className="text-3xl font-bold text-[#1B2A4A]"
+            className="text-3xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Library
@@ -56,7 +56,7 @@ export default function LibraryPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search resources…"
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
               aria-label="Search library"
             />
           </div>
@@ -65,7 +65,7 @@ export default function LibraryPage() {
               type="checkbox"
               checked={showFreeOnly}
               onChange={(e) => setShowFreeOnly(e.target.checked)}
-              className="w-4 h-4 rounded accent-[#F2B134]"
+              className="w-4 h-4 rounded accent-[#C8831A]"
             />
             <span className="text-sm font-medium text-slate-600">Free only</span>
           </label>
@@ -80,7 +80,7 @@ export default function LibraryPage() {
               className={cn(
                 "px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all",
                 topic === t
-                  ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                  ? "bg-[#0D6B30] text-white border-[#0D6B30]"
                   : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
               )}
             >
@@ -98,7 +98,7 @@ export default function LibraryPage() {
               className={cn(
                 "px-3 py-1 rounded-full text-[11px] font-semibold border transition-all capitalize",
                 type === t
-                  ? "bg-[#F2B134] text-[#1B2A4A] border-[#F2B134]"
+                  ? "bg-[#C8831A] text-[#0D6B30] border-[#C8831A]"
                   : "bg-white text-slate-500 border-slate-200 hover:border-slate-300"
               )}
             >
@@ -125,7 +125,7 @@ export default function LibraryPage() {
           <p className="text-slate-400 text-sm mt-1">Try adjusting your filters.</p>
           <button
             onClick={() => { setTopic("All"); setType("All"); setSearch(""); setShowFreeOnly(false); }}
-            className="mt-4 text-sm font-semibold text-[#1B2A4A] underline"
+            className="mt-4 text-sm font-semibold text-[#0D6B30] underline"
           >
             Clear filters
           </button>
@@ -133,14 +133,14 @@ export default function LibraryPage() {
       )}
 
       {/* Sign in CTA */}
-      <div className="bg-[#1B2A4A] rounded-2xl p-8 text-white text-center">
+      <div className="bg-[#0D6B30] rounded-2xl p-8 text-white text-center">
         <h2 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
           Want to download free resources?
         </h2>
         <p className="text-white/60 text-sm mb-5">Create a free IYG account to access all free downloads, save your progress, and get notified when new resources drop.</p>
         <a
           href="/sign-in"
-          className="inline-block px-6 py-3 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors"
+          className="inline-block px-6 py-3 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors"
         >
           Create Free Account
         </a>

@@ -68,8 +68,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-white border-b transition-all duration-200",
-        scrolled ? "border-slate-200 shadow-sm" : "border-slate-100"
+        "sticky top-0 z-50 bg-white border-b-2 transition-all duration-300",
+        scrolled
+          ? "border-[#0D6B30] shadow-[0_4px_20px_rgba(13,107,48,0.12)]"
+          : "border-[#0D6B30]/60"
       )}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
@@ -78,17 +80,17 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 flex-shrink-0"
+            className="flex items-center gap-2.5 flex-shrink-0 group"
             aria-label="International Youth Gathering — Home"
           >
             <img
               src="/logo.png"
               alt=""
               aria-hidden
-              className="h-11 w-11 rounded-full object-cover flex-shrink-0"
+              className="h-11 w-11 rounded-full object-cover flex-shrink-0 transition-all duration-300 group-hover:shadow-[0_0_0_3px_#0D6B30,0_0_16px_rgba(13,107,48,0.35)] group-hover:scale-105"
             />
             <span
-              className="text-[#1B2A4A] font-extrabold text-sm sm:text-base leading-tight hidden sm:block"
+              className="text-[#083D1C] font-extrabold text-sm sm:text-base leading-tight hidden sm:block"
               style={{ fontFamily: "var(--font-display)" }}
             >
               International<br />Youth Gathering
@@ -105,7 +107,7 @@ export function Navbar() {
                       onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
-                      className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-[#1B2A4A] rounded-lg hover:bg-slate-50 transition-colors whitespace-nowrap"
+                      className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-[#0D6B30] rounded-lg hover:bg-[#F0FAF3] transition-all duration-300 whitespace-nowrap"
                     >
                       {item.label}
                       <ChevronDown
@@ -116,7 +118,7 @@ export function Navbar() {
                     </button>
                     {openDropdown === item.label && (
                       <div
-                        className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl border border-slate-100 shadow-lg py-1 z-50"
+                        className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl border border-[#0D6B30]/15 shadow-lg shadow-green-900/10 py-1 z-50"
                         role="menu"
                       >
                         {item.children.map((child) => (
@@ -125,10 +127,10 @@ export function Navbar() {
                             href={child.href}
                             role="menuitem"
                             className={cn(
-                              "block px-4 py-2.5 text-sm transition-colors",
+                              "block px-4 py-2.5 text-sm transition-all duration-200 border-l-2",
                               isActive(child.href)
-                                ? "text-[#1B2A4A] font-semibold"
-                                : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
+                                ? "text-[#0D6B30] font-semibold border-[#C8831A] bg-[#F0FAF3]"
+                                : "text-slate-600 hover:text-[#0D6B30] hover:bg-[#F0FAF3] hover:border-[#C8831A] border-transparent"
                             )}
                           >
                             {child.label}
@@ -142,15 +144,15 @@ export function Navbar() {
                     <Link
                       href={item.href!}
                       className={cn(
-                        "relative block px-3 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap",
+                        "relative block px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 whitespace-nowrap",
                         isActive(item.href!)
-                          ? "text-[#1B2A4A] font-semibold"
-                          : "text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-50/80"
+                          ? "text-[#0D6B30] font-semibold"
+                          : "text-slate-500 hover:text-[#0D6B30] hover:bg-[#F0FAF3]"
                       )}
                     >
                       {item.label}
                       {isActive(item.href!) && (
-                        <span className="absolute bottom-0.5 left-3 right-3 h-px bg-[#F2B134]" aria-hidden />
+                        <span className="absolute bottom-0.5 left-3 right-3 h-px bg-[#0D6B30]" aria-hidden />
                       )}
                     </Link>
                   </li>
@@ -164,21 +166,21 @@ export function Navbar() {
             <Link
               href="/search"
               aria-label="Search"
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-100 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#0D6B30] hover:bg-[#F0FAF3] transition-all duration-300"
             >
               <Search size={17} />
             </Link>
             <button
               aria-label="Notifications"
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-100 transition-colors relative"
+              className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#0D6B30] hover:bg-[#F0FAF3] transition-all duration-300 relative"
             >
               <Bell size={17} />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#F2B134] rounded-full border border-white" aria-hidden />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#C8831A] rounded-full border border-white" aria-hidden />
             </button>
             <div className="w-px h-5 bg-slate-200 mx-1" aria-hidden />
             <Link
               href="/give"
-              className="px-4 py-2 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-lg hover:bg-[#D9960F] transition-colors"
+              className="px-4 py-2 text-sm font-bold text-white bg-[#C8831A] rounded-lg hover:bg-[#A56914] transition-all duration-300 active:scale-95"
             >
               Give
             </Link>
@@ -186,33 +188,33 @@ export function Navbar() {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-lg hover:bg-slate-100 transition-colors"
+                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-lg hover:bg-[#F0FAF3] transition-all duration-300"
                   aria-label="Account menu"
                 >
                   {session.user?.image ? (
                     <img
                       src={session.user.image}
                       alt={session.user.name ?? ""}
-                      className="w-7 h-7 rounded-full object-cover border border-slate-200"
+                      className="w-7 h-7 rounded-full object-cover ring-2 ring-[#0D6B30] ring-offset-1"
                     />
                   ) : (
-                    <span className="w-7 h-7 rounded-full bg-[#1B2A4A] text-white text-xs font-bold flex items-center justify-center">
+                    <span className="w-7 h-7 rounded-full bg-[#0D6B30] text-white text-xs font-bold flex items-center justify-center ring-2 ring-[#0D6B30] ring-offset-1">
                       {(session.user?.name ?? "U")[0].toUpperCase()}
                     </span>
                   )}
-                  <span className="text-sm font-semibold text-[#1B2A4A] max-w-[100px] truncate">
+                  <span className="text-sm font-semibold text-[#083D1C] max-w-[100px] truncate">
                     {session.user?.name?.split(" ")[0]}
                   </span>
                 </button>
                 {userMenuOpen && (
-                  <div className="absolute right-0 top-full mt-1.5 w-52 bg-white rounded-xl border border-slate-100 shadow-lg py-1.5 z-50">
+                  <div className="absolute right-0 top-full mt-1.5 w-52 bg-white rounded-xl border border-[#0D6B30]/15 shadow-lg shadow-green-900/10 py-1.5 z-50">
                     <div className="px-4 py-2 border-b border-slate-100 mb-1">
-                      <p className="text-sm font-semibold text-[#1B2A4A] truncate">{session.user?.name}</p>
+                      <p className="text-sm font-semibold text-[#083D1C] truncate">{session.user?.name}</p>
                       <p className="text-xs text-slate-400 truncate">{session.user?.email}</p>
                     </div>
                     <Link
                       href="/profile"
-                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50 transition-colors"
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-[#0D6B30] hover:bg-[#F0FAF3] transition-all duration-200"
                       onClick={() => setUserMenuOpen(false)}
                     >
                       <Settings size={14} aria-hidden />
@@ -220,7 +222,7 @@ export function Navbar() {
                     </Link>
                     <button
                       onClick={() => signOut({ callbackUrl: "/" })}
-                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-red-600 hover:bg-red-50 transition-colors"
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200"
                     >
                       <LogOut size={14} aria-hidden />
                       Sign Out
@@ -231,7 +233,7 @@ export function Navbar() {
             ) : (
               <Link
                 href="/sign-in"
-                className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1B2A4A] rounded-lg hover:bg-[#2D4070] transition-colors"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#0D6B30] rounded-lg hover:bg-[#0A5423] transition-all duration-300 active:scale-95"
               >
                 <User size={14} aria-hidden />
                 Sign In
@@ -244,12 +246,12 @@ export function Navbar() {
             <Link
               href="/search"
               aria-label="Search"
-              className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:bg-[#F0FAF3] hover:text-[#0D6B30] transition-all duration-300"
             >
               <Search size={19} />
             </Link>
             <button
-              className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:bg-[#F0FAF3] hover:text-[#0D6B30] transition-all duration-300"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -262,12 +264,12 @@ export function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div id="mobile-menu" className="lg:hidden border-t border-slate-100 pb-5 pt-3" aria-label="Mobile navigation">
+          <div id="mobile-menu" className="lg:hidden border-t border-[#0D6B30]/20 pb-5 pt-3" aria-label="Mobile navigation">
             <ul className="space-y-0.5" role="list">
               {navItems.map((item) =>
                 item.children ? (
                   <li key={item.label}>
-                    <p className="px-3 pt-4 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <p className="px-3 pt-4 pb-1 text-[10px] font-bold text-[#0D6B30]/60 uppercase tracking-widest">
                       {item.label}
                     </p>
                     {item.children.map((child) => (
@@ -275,10 +277,10 @@ export function Navbar() {
                         key={child.href}
                         href={child.href}
                         className={cn(
-                          "block px-5 py-2.5 text-sm rounded-lg transition-colors",
+                          "block px-5 py-2.5 text-sm rounded-lg transition-all duration-200",
                           isActive(child.href)
-                            ? "text-[#1B2A4A] font-semibold"
-                            : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
+                            ? "text-[#0D6B30] font-semibold bg-[#F0FAF3]"
+                            : "text-slate-600 hover:text-[#0D6B30] hover:bg-[#F0FAF3]"
                         )}
                       >
                         {child.label}
@@ -290,10 +292,10 @@ export function Navbar() {
                     <Link
                       href={item.href!}
                       className={cn(
-                        "block px-3 py-2.5 text-sm rounded-lg transition-colors",
+                        "block px-3 py-2.5 text-sm rounded-lg transition-all duration-200",
                         isActive(item.href!)
-                          ? "text-[#1B2A4A] font-semibold"
-                          : "text-slate-600 hover:text-[#1B2A4A] hover:bg-slate-50"
+                          ? "text-[#0D6B30] font-semibold bg-[#F0FAF3]"
+                          : "text-slate-600 hover:text-[#0D6B30] hover:bg-[#F0FAF3]"
                       )}
                     >
                       {item.label}
@@ -302,19 +304,19 @@ export function Navbar() {
                 )
               )}
             </ul>
-            <div className="mt-4 pt-4 border-t border-slate-100 px-3 flex gap-2">
+            <div className="mt-4 pt-4 border-t border-[#0D6B30]/15 px-3 flex gap-2">
               {session ? (
                 <>
                   <Link
                     href="/profile"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-[#1B2A4A] bg-slate-100 rounded-xl hover:bg-slate-200 transition-colors"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-[#083D1C] bg-[#F0FAF3] rounded-xl hover:bg-[#D8F0DF] transition-all duration-300"
                   >
                     <User size={15} aria-hidden />
                     My Profile
                   </Link>
                   <button
                     onClick={() => signOut({ callbackUrl: "/" })}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-white bg-[#0D6B30] rounded-xl hover:bg-[#0A5423] transition-all duration-300"
                   >
                     <LogOut size={15} aria-hidden />
                     Sign Out
@@ -323,7 +325,7 @@ export function Navbar() {
               ) : (
                 <Link
                   href="/sign-in"
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#0D6B30] rounded-xl hover:bg-[#0A5423] transition-all duration-300"
                 >
                   <User size={15} aria-hidden />
                   Sign In
@@ -331,7 +333,7 @@ export function Navbar() {
               )}
               <Link
                 href="/give"
-                className="flex items-center justify-center px-5 py-2.5 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-xl hover:bg-[#D9960F] transition-colors"
+                className="flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-[#C8831A] rounded-xl hover:bg-[#A56914] transition-all duration-300"
               >
                 Give
               </Link>

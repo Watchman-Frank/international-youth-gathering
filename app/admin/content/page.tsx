@@ -11,7 +11,7 @@ export default function ContentPage() {
   return (
     <div className="p-8 max-w-5xl">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>Content</h1>
+        <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>Content</h1>
         <p className="text-sm text-slate-500 mt-1">Overview of all website content. Use the Library admin to add or remove resources live.</p>
       </div>
 
@@ -23,14 +23,14 @@ export default function ContentPage() {
         ].map(({ href, icon: Icon, label, count, unit, action, live }) => (
           <Link key={label} href={href} className="group block bg-white rounded-xl border border-slate-100 p-6 hover:border-slate-200 hover:shadow-md transition-all">
             <div className="flex items-start justify-between">
-              <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center">
-                <Icon size={18} className="text-[#1B2A4A]" />
+              <div className="w-10 h-10 rounded-lg bg-[#0D6B30]/5 flex items-center justify-center">
+                <Icon size={18} className="text-[#0D6B30]" />
               </div>
               {live && <span className="text-[10px] font-bold text-green-600 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">Live</span>}
             </div>
-            <p className="text-3xl font-bold text-[#1B2A4A] mt-4">{count}</p>
+            <p className="text-3xl font-bold text-[#0D6B30] mt-4">{count}</p>
             <p className="text-sm text-slate-500">{label} · {unit}</p>
-            <div className="flex items-center gap-1 text-xs font-bold text-[#1B2A4A] group-hover:text-[#F2B134] transition-colors mt-4">
+            <div className="flex items-center gap-1 text-xs font-bold text-[#0D6B30] group-hover:text-[#C8831A] transition-colors mt-4">
               {action} <ArrowRight size={12} />
             </div>
           </Link>
@@ -38,28 +38,28 @@ export default function ContentPage() {
 
         <Link href="/admin/content/about" className="group block bg-white rounded-xl border border-slate-100 p-6 hover:border-slate-200 hover:shadow-md transition-all">
           <div className="flex items-start justify-between">
-            <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center">
-              <BookOpen size={18} className="text-[#1B2A4A]" />
+            <div className="w-10 h-10 rounded-lg bg-[#0D6B30]/5 flex items-center justify-center">
+              <BookOpen size={18} className="text-[#0D6B30]" />
             </div>
             <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">Editable</span>
           </div>
-          <p className="text-lg font-bold text-[#1B2A4A] mt-4">About IYG</p>
+          <p className="text-lg font-bold text-[#0D6B30] mt-4">About IYG</p>
           <p className="text-sm text-slate-500">Mission, vision &amp; page content</p>
-          <div className="flex items-center gap-1 text-xs font-bold text-[#1B2A4A] group-hover:text-[#F2B134] transition-colors mt-4">
+          <div className="flex items-center gap-1 text-xs font-bold text-[#0D6B30] group-hover:text-[#C8831A] transition-colors mt-4">
             Edit About Page <ArrowRight size={12} />
           </div>
         </Link>
 
         <Link href="/admin/content/give" className="group block bg-white rounded-xl border border-slate-100 p-6 hover:border-slate-200 hover:shadow-md transition-all">
           <div className="flex items-start justify-between">
-            <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center">
-              <FileText size={18} className="text-[#1B2A4A]" />
+            <div className="w-10 h-10 rounded-lg bg-[#0D6B30]/5 flex items-center justify-center">
+              <FileText size={18} className="text-[#0D6B30]" />
             </div>
             <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">Editable</span>
           </div>
-          <p className="text-lg font-bold text-[#1B2A4A] mt-4">Give / Support</p>
+          <p className="text-lg font-bold text-[#0D6B30] mt-4">Give / Support</p>
           <p className="text-sm text-slate-500">Payment details &amp; donation links</p>
-          <div className="flex items-center gap-1 text-xs font-bold text-[#1B2A4A] group-hover:text-[#F2B134] transition-colors mt-4">
+          <div className="flex items-center gap-1 text-xs font-bold text-[#0D6B30] group-hover:text-[#C8831A] transition-colors mt-4">
             Edit Give Page <ArrowRight size={12} />
           </div>
         </Link>
@@ -67,13 +67,13 @@ export default function ContentPage() {
 
       {/* Articles quick list */}
       <div className="bg-white rounded-xl border border-slate-100 p-6 mb-5">
-        <h2 className="font-bold text-[#1B2A4A] mb-4" style={{ fontFamily: "var(--font-display)" }}>Published Articles ({articles.length})</h2>
+        <h2 className="font-bold text-[#0D6B30] mb-4" style={{ fontFamily: "var(--font-display)" }}>Published Articles ({articles.length})</h2>
         <div className="space-y-2">
           {articles.map((a) => (
             <div key={a.id} className="flex items-center justify-between gap-4 py-2 border-b border-slate-50 last:border-0">
-              <p className="text-sm font-medium text-[#1B2A4A] line-clamp-1 flex-1">{a.title}</p>
+              <p className="text-sm font-medium text-[#0D6B30] line-clamp-1 flex-1">{a.title}</p>
               <span className="text-xs text-slate-400 flex-shrink-0">{new Date(a.publishedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
-              <Link href={`/articles/${a.slug}`} target="_blank" className="text-xs font-semibold text-slate-400 hover:text-[#1B2A4A] flex-shrink-0">View →</Link>
+              <Link href={`/articles/${a.slug}`} target="_blank" className="text-xs font-semibold text-slate-400 hover:text-[#0D6B30] flex-shrink-0">View →</Link>
             </div>
           ))}
         </div>
@@ -81,13 +81,13 @@ export default function ContentPage() {
 
       {/* Events quick list */}
       <div className="bg-white rounded-xl border border-slate-100 p-6">
-        <h2 className="font-bold text-[#1B2A4A] mb-4" style={{ fontFamily: "var(--font-display)" }}>Events ({events.length})</h2>
+        <h2 className="font-bold text-[#0D6B30] mb-4" style={{ fontFamily: "var(--font-display)" }}>Events ({events.length})</h2>
         <div className="space-y-2">
           {events.map((e) => (
             <div key={e.id} className="flex items-center justify-between gap-4 py-2 border-b border-slate-50 last:border-0">
-              <p className="text-sm font-medium text-[#1B2A4A] line-clamp-1 flex-1">{e.title}</p>
+              <p className="text-sm font-medium text-[#0D6B30] line-clamp-1 flex-1">{e.title}</p>
               <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${e.isUpcoming ? "bg-green-50 text-green-700" : "bg-slate-100 text-slate-500"}`}>{e.isUpcoming ? "Upcoming" : "Past"}</span>
-              <Link href="/admin/registrations" className="text-xs font-semibold text-slate-400 hover:text-[#1B2A4A] flex-shrink-0">Registrations →</Link>
+              <Link href="/admin/registrations" className="text-xs font-semibold text-slate-400 hover:text-[#0D6B30] flex-shrink-0">Registrations →</Link>
             </div>
           ))}
         </div>

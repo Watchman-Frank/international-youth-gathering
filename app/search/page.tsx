@@ -38,7 +38,7 @@ export default function SearchPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-[#1B2A4A] mb-4" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+        <h1 className="text-3xl font-bold text-[#0D6B30] mb-4" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
           Search IYG
         </h1>
         <SearchBar
@@ -73,8 +73,8 @@ export default function SearchPage() {
       {results.articles.length > 0 && (
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <Newspaper size={16} className="text-[#1B2A4A]" aria-hidden />
-            <h2 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+            <Newspaper size={16} className="text-[#0D6B30]" aria-hidden />
+            <h2 className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
               Articles ({results.articles.length})
             </h2>
           </div>
@@ -88,8 +88,8 @@ export default function SearchPage() {
       {results.podcast.length > 0 && (
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <Mic2 size={16} className="text-[#1B2A4A]" aria-hidden />
-            <h2 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+            <Mic2 size={16} className="text-[#0D6B30]" aria-hidden />
+            <h2 className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
               Podcast ({results.podcast.length})
             </h2>
           </div>
@@ -103,8 +103,8 @@ export default function SearchPage() {
       {results.devotionals.length > 0 && (
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <BookOpen size={16} className="text-[#1B2A4A]" aria-hidden />
-            <h2 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+            <BookOpen size={16} className="text-[#0D6B30]" aria-hidden />
+            <h2 className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
               Word for the Day ({results.devotionals.length})
             </h2>
           </div>
@@ -113,8 +113,8 @@ export default function SearchPage() {
               <a key={d.id} href="/word-for-the-day" className="flex gap-3 p-3 bg-white rounded-xl border border-slate-100 hover:shadow-sm transition-all">
                 <img src={d.thumbnailUrl} alt={d.title} className="w-20 h-14 rounded-lg object-cover flex-shrink-0" />
                 <div>
-                  <div className="text-xs text-[#F2B134] font-semibold">{d.scripture}</div>
-                  <h3 className="font-semibold text-[#1B2A4A] text-sm mt-0.5" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{d.title}</h3>
+                  <div className="text-xs text-[#C8831A] font-semibold">{d.scripture}</div>
+                  <h3 className="font-semibold text-[#0D6B30] text-sm mt-0.5" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{d.title}</h3>
                   <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">{d.summary}</p>
                 </div>
               </a>
@@ -127,8 +127,8 @@ export default function SearchPage() {
       {results.resources.length > 0 && (
         <section>
           <div className="flex items-center gap-2 mb-4">
-            <Library size={16} className="text-[#1B2A4A]" aria-hidden />
-            <h2 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+            <Library size={16} className="text-[#0D6B30]" aria-hidden />
+            <h2 className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
               Library ({results.resources.length})
             </h2>
           </div>
@@ -138,7 +138,7 @@ export default function SearchPage() {
                 <img src={r.thumbnailUrl} alt={r.title} className="w-20 h-14 rounded-lg object-cover flex-shrink-0" />
                 <div>
                   <div className="text-xs text-slate-400 capitalize">{r.type} · {r.topic}</div>
-                  <h3 className="font-semibold text-[#1B2A4A] text-sm mt-0.5" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{r.title}</h3>
+                  <h3 className="font-semibold text-[#0D6B30] text-sm mt-0.5" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{r.title}</h3>
                   <div className="text-xs font-semibold mt-0.5">{r.isFree ? <span className="text-green-600">Free</span> : <span className="text-amber-600">{r.price}</span>}</div>
                 </div>
               </a>

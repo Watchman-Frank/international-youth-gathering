@@ -51,12 +51,12 @@ function VideoCard({ video, featured = false }: { video: YTVideo; featured?: boo
         hovered ? "opacity-100" : "opacity-80"
       )}>
         <div className={cn(
-          "flex items-center justify-center rounded-full bg-[#F2B134] transition-all duration-300 shadow-lg",
+          "flex items-center justify-center rounded-full bg-[#C8831A] transition-all duration-300 shadow-lg",
           featured ? "w-16 h-16" : "w-11 h-11",
           hovered && "scale-110"
         )}>
           <Play
-            className="text-[#1B2A4A] ml-0.5"
+            className="text-[#0D6B30] ml-0.5"
             fill="currentColor"
             size={featured ? 24 : 16}
             aria-hidden
@@ -86,7 +86,7 @@ function VideoCard({ video, featured = false }: { video: YTVideo; featured?: boo
 
       {/* Watch prompt on hover */}
       <div className={cn(
-        "absolute top-2 right-2 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F2B134] text-[#1B2A4A] text-[10px] font-bold transition-all duration-300",
+        "absolute top-2 right-2 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#C8831A] text-[#0D6B30] text-[10px] font-bold transition-all duration-300",
         hovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
       )}>
         <ExternalLink size={10} aria-hidden />
@@ -129,14 +129,14 @@ export function YoutubeGallery() {
             <PlayCircle size={18} className="text-red-500" aria-hidden />
             <h2
               id="yt-gallery-heading"
-              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+              className="text-2xl sm:text-3xl font-bold text-[#0D6B30]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Watch &amp; Learn
             </h2>
           </div>
           <p className="text-sm text-slate-500">Latest videos from our YouTube channel</p>
-          <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+          <div className="mt-3 w-10 h-0.5 bg-[#C8831A]" />
         </div>
         <a
           href={channelUrl}

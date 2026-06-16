@@ -28,7 +28,7 @@ export default function AdminVolunteersPage() {
     <div className="p-8 space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-[#1B2A4A]">Volunteer Applications</h1>
+        <h1 className="text-2xl font-bold text-[#0D6B30]">Volunteer Applications</h1>
         <p className="text-sm text-slate-500 mt-1">{volunteers.length} total application{volunteers.length !== 1 ? "s" : ""}</p>
       </div>
 
@@ -39,7 +39,7 @@ export default function AdminVolunteersPage() {
             key={r}
             onClick={() => setFilter(r)}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${
-              filter === r ? "bg-[#1B2A4A] text-white border-[#1B2A4A]" : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
+              filter === r ? "bg-[#0D6B30] text-white border-[#0D6B30]" : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
             }`}
           >
             {r}
@@ -67,8 +67,8 @@ export default function AdminVolunteersPage() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-1">
-                    <h3 className="font-bold text-[#1B2A4A]">{v.name}</h3>
-                    <span className="text-[10px] font-semibold bg-[#1B2A4A]/10 text-[#1B2A4A] px-2 py-0.5 rounded-full">
+                    <h3 className="font-bold text-[#0D6B30]">{v.name}</h3>
+                    <span className="text-[10px] font-semibold bg-[#0D6B30]/10 text-[#0D6B30] px-2 py-0.5 rounded-full">
                       {v.role}
                     </span>
                   </div>
@@ -84,7 +84,7 @@ export default function AdminVolunteersPage() {
                         href={v.portfolio}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-[#F2B134] hover:text-[#D9960F] font-medium"
+                        className="flex items-center gap-1 text-[#C8831A] hover:text-[#A56914] font-medium"
                       >
                         <Briefcase size={11} /> Portfolio <ExternalLink size={10} />
                       </a>
@@ -96,7 +96,7 @@ export default function AdminVolunteersPage() {
               <div className="mt-4 pt-3 border-t border-slate-50 flex gap-3">
                 <a
                   href={`mailto:${v.email}?subject=Your IYG Volunteer Application&body=Hi ${v.name},%0A%0AThank you for applying to volunteer with IYG as a ${v.role}.`}
-                  className="text-xs font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors flex items-center gap-1"
+                  className="text-xs font-semibold text-[#0D6B30] hover:text-[#C8831A] transition-colors flex items-center gap-1"
                 >
                   <Mail size={12} /> Reply via Email
                 </a>

@@ -73,29 +73,29 @@ export default function AboutPage() {
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-[#1B2A4A] leading-tight text-balance"
+            className="text-4xl sm:text-5xl font-bold text-[#0D6B30] leading-tight text-balance"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             A Ministry Built for This Generation
           </h1>
           <div className="mt-6 space-y-5">
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#1B2A4A] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Target size={18} className="text-[#F2B134]" aria-hidden />
+              <div className="w-10 h-10 rounded-xl bg-[#0D6B30] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Target size={18} className="text-[#C8831A]" aria-hidden />
               </div>
               <div>
-                <h2 className="font-bold text-[#1B2A4A] text-base">Our Vision</h2>
+                <h2 className="font-bold text-[#0D6B30] text-base">Our Vision</h2>
                 <p className="text-slate-500 text-sm mt-1 leading-relaxed">
                   To be a system of wholistic development and transformation — keeping and maintaining the Apostolic Mandate.
                 </p>
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#F2B134] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Lightbulb size={18} className="text-[#1B2A4A]" aria-hidden />
+              <div className="w-10 h-10 rounded-xl bg-[#C8831A] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Lightbulb size={18} className="text-[#0D6B30]" aria-hidden />
               </div>
               <div>
-                <h2 className="font-bold text-[#1B2A4A] text-base">Our Mission</h2>
+                <h2 className="font-bold text-[#0D6B30] text-base">Our Mission</h2>
                 <p className="text-slate-500 text-sm mt-1 leading-relaxed">
                   To use "The Mountain of Influence" (Media) as a kingdom tool to connect young people around the world.
                 </p>
@@ -109,11 +109,11 @@ export default function AboutPage() {
             alt="IYG community gathering"
             className="w-full rounded-3xl object-cover h-80"
           />
-          <div className="absolute -bottom-4 -left-4 bg-[#F2B134] rounded-2xl px-6 py-4 shadow-lg">
-            <div className="text-2xl font-bold text-[#1B2A4A]">4+</div>
-            <div className="text-xs text-[#1B2A4A]/70 font-medium">Years of Ministry</div>
+          <div className="absolute -bottom-4 -left-4 bg-[#C8831A] rounded-2xl px-6 py-4 shadow-lg">
+            <div className="text-2xl font-bold text-[#0D6B30]">4+</div>
+            <div className="text-xs text-[#0D6B30]/70 font-medium">Years of Ministry</div>
           </div>
-          <div className="absolute -top-4 -right-4 bg-[#1B2A4A] rounded-2xl px-6 py-4 shadow-lg">
+          <div className="absolute -top-4 -right-4 bg-[#0D6B30] rounded-2xl px-6 py-4 shadow-lg">
             <div className="text-2xl font-bold text-white">10k+</div>
             <div className="text-xs text-white/60 font-medium">Lives Touched</div>
           </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
       <section aria-labelledby="values-heading">
         <h2
           id="values-heading"
-          className="text-2xl font-bold text-[#1B2A4A] mb-8"
+          className="text-2xl font-bold text-[#0D6B30] mb-8"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           Core Values
@@ -133,15 +133,15 @@ export default function AboutPage() {
           {values.map((v, i) => (
             <div key={v.name} className="bg-white rounded-2xl border border-slate-100 p-7 hover:shadow-md transition-all">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-[#F2B134] flex items-center justify-center text-[#1B2A4A] font-bold text-sm">
+                <div className="w-8 h-8 rounded-lg bg-[#C8831A] flex items-center justify-center text-[#0D6B30] font-bold text-sm">
                   {i + 1}
                 </div>
-                <h3 className="text-lg font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+                <h3 className="text-lg font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                   {v.name}
                 </h3>
               </div>
               <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
-              <p className="text-xs text-[#F2B134] font-semibold mt-3 italic">{v.ref}</p>
+              <p className="text-xs text-[#C8831A] font-semibold mt-3 italic">{v.ref}</p>
             </div>
           ))}
         </div>
@@ -150,10 +150,10 @@ export default function AboutPage() {
       {/* Leadership */}
       <section aria-labelledby="leadership-heading">
         <div className="flex items-center gap-2 mb-8">
-          <Users size={22} className="text-[#1B2A4A]" aria-hidden />
+          <Users size={22} className="text-[#0D6B30]" aria-hidden />
           <h2
             id="leadership-heading"
-            className="text-2xl font-bold text-[#1B2A4A]"
+            className="text-2xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Our Team
@@ -165,12 +165,12 @@ export default function AboutPage() {
               <img
                 src={person.image}
                 alt={person.name}
-                className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-[#FAF8F3]"
+                className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-[#F0FAF3]"
               />
-              <h3 className="font-bold text-[#1B2A4A] text-base mt-4" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+              <h3 className="font-bold text-[#0D6B30] text-base mt-4" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                 {person.name}
               </h3>
-              <p className="text-xs font-semibold text-[#F2B134] mt-0.5">{person.role}</p>
+              <p className="text-xs font-semibold text-[#C8831A] mt-0.5">{person.role}</p>
               <p className="text-sm text-slate-500 mt-3 leading-relaxed">{person.bio}</p>
             </div>
           ))}
@@ -178,7 +178,7 @@ export default function AboutPage() {
       </section>
 
       {/* Testimonies */}
-      <section aria-labelledby="testimonies-heading" className="bg-[#1B2A4A] rounded-3xl p-10 sm:p-14">
+      <section aria-labelledby="testimonies-heading" className="bg-[#0D6B30] rounded-3xl p-10 sm:p-14">
         <h2
           id="testimonies-heading"
           className="text-2xl font-bold text-white mb-8 text-center"
@@ -189,25 +189,25 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {testimonies.map((t) => (
             <div key={t.name} className="bg-white/10 rounded-2xl p-6">
-              <Quote size={20} className="text-[#F2B134] mb-3" aria-hidden />
+              <Quote size={20} className="text-[#C8831A] mb-3" aria-hidden />
               <p className="text-white/80 text-sm leading-relaxed italic">{t.quote}</p>
-              <p className="text-[#F2B134] text-xs font-bold mt-4">{t.name}</p>
+              <p className="text-[#C8831A] text-xs font-bold mt-4">{t.name}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Contact */}
-      <section className="bg-[#FAF8F3] rounded-2xl p-8 sm:p-10 text-center">
-        <h2 className="text-xl font-bold text-[#1B2A4A] mb-2" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+      <section className="bg-[#F0FAF3] rounded-2xl p-8 sm:p-10 text-center">
+        <h2 className="text-xl font-bold text-[#0D6B30] mb-2" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
           Get in Touch
         </h2>
         <p className="text-slate-500 text-sm mb-5">Questions, partnerships, speaking requests, or just want to connect?</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="mailto:info@internationalyouthgathering.com" className="px-5 py-3 bg-[#1B2A4A] text-white font-semibold text-sm rounded-xl hover:bg-[#2D4070] transition-colors">
+          <a href="mailto:info@internationalyouthgathering.com" className="px-5 py-3 bg-[#0D6B30] text-white font-semibold text-sm rounded-xl hover:bg-[#0A5423] transition-colors">
             info@internationalyouthgathering.com
           </a>
-          <a href="tel:+16074442359" className="px-5 py-3 border border-slate-200 text-[#1B2A4A] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors">
+          <a href="tel:+16074442359" className="px-5 py-3 border border-slate-200 text-[#0D6B30] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors">
             +1 607 444 2359
           </a>
         </div>

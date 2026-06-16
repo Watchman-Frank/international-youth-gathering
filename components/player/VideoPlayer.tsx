@@ -163,9 +163,9 @@ export function VideoPlayer({
             <button
               onClick={(e) => { e.stopPropagation(); togglePlay(); }}
               aria-label="Play video"
-              className="w-16 h-16 rounded-full bg-[#F2B134] flex items-center justify-center hover:scale-105 transition-transform"
+              className="w-16 h-16 rounded-full bg-[#C8831A] flex items-center justify-center hover:scale-105 transition-transform"
             >
-              <Play size={28} className="text-[#1B2A4A] ml-1" fill="currentColor" />
+              <Play size={28} className="text-[#0D6B30] ml-1" fill="currentColor" />
             </button>
           </div>
         </div>
@@ -200,7 +200,7 @@ export function VideoPlayer({
         <div className="mb-3 relative h-1.5 group/progress">
           <div className="absolute inset-0 bg-white/30 rounded-full" />
           <div
-            className="absolute inset-y-0 left-0 bg-[#F2B134] rounded-full"
+            className="absolute inset-y-0 left-0 bg-[#C8831A] rounded-full"
             style={{ width: `${progress}%` }}
           />
           <input
@@ -217,15 +217,15 @@ export function VideoPlayer({
 
         <div className="flex items-center gap-3">
           {/* Play/Pause */}
-          <button onClick={togglePlay} aria-label={playing ? "Pause" : "Play"} className="text-white hover:text-[#F2B134] transition-colors">
+          <button onClick={togglePlay} aria-label={playing ? "Pause" : "Play"} className="text-white hover:text-[#C8831A] transition-colors">
             {playing ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-0.5" />}
           </button>
 
           {/* Skip */}
-          <button onClick={() => skip(-10)} aria-label="Rewind 10 seconds" className="text-white hover:text-[#F2B134] transition-colors">
+          <button onClick={() => skip(-10)} aria-label="Rewind 10 seconds" className="text-white hover:text-[#C8831A] transition-colors">
             <RotateCcw size={18} />
           </button>
-          <button onClick={() => skip(10)} aria-label="Forward 10 seconds" className="text-white hover:text-[#F2B134] transition-colors">
+          <button onClick={() => skip(10)} aria-label="Forward 10 seconds" className="text-white hover:text-[#C8831A] transition-colors">
             <RotateCw size={18} />
           </button>
 
@@ -238,7 +238,7 @@ export function VideoPlayer({
 
           {/* Volume */}
           <div className="flex items-center gap-2">
-            <button onClick={toggleMute} aria-label={muted ? "Unmute" : "Mute"} className="text-white hover:text-[#F2B134] transition-colors">
+            <button onClick={toggleMute} aria-label={muted ? "Unmute" : "Mute"} className="text-white hover:text-[#C8831A] transition-colors">
               {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
             </button>
             <input
@@ -248,7 +248,7 @@ export function VideoPlayer({
               step={0.05}
               value={muted ? 0 : volume}
               onChange={handleVolumeChange}
-              className="w-16 accent-[#F2B134]"
+              className="w-16 accent-[#C8831A]"
               aria-label="Volume"
             />
           </div>
@@ -259,7 +259,7 @@ export function VideoPlayer({
               onClick={() => setCaptionsOn(!captionsOn)}
               aria-label={captionsOn ? "Hide captions" : "Show captions"}
               aria-pressed={captionsOn}
-              className={cn("transition-colors", captionsOn ? "text-[#F2B134]" : "text-white hover:text-[#F2B134]")}
+              className={cn("transition-colors", captionsOn ? "text-[#C8831A]" : "text-white hover:text-[#C8831A]")}
             >
               <Captions size={18} />
             </button>
@@ -270,7 +270,7 @@ export function VideoPlayer({
             <button
               onClick={() => setShowSpeedMenu(!showSpeedMenu)}
               aria-label="Playback speed"
-              className="text-white hover:text-[#F2B134] transition-colors flex items-center gap-1 text-xs font-semibold"
+              className="text-white hover:text-[#C8831A] transition-colors flex items-center gap-1 text-xs font-semibold"
             >
               <Gauge size={16} />
               {SPEEDS[speedIdx]}x
@@ -283,7 +283,7 @@ export function VideoPlayer({
                     onClick={() => setSpeed(i)}
                     className={cn(
                       "w-full text-left px-3 py-1.5 text-xs text-white hover:bg-white/10 transition-colors",
-                      speedIdx === i && "text-[#F2B134]"
+                      speedIdx === i && "text-[#C8831A]"
                     )}
                   >
                     {s}x {speedIdx === i && "✓"}
@@ -294,7 +294,7 @@ export function VideoPlayer({
           </div>
 
           {/* Fullscreen */}
-          <button onClick={enterFullscreen} aria-label="Enter fullscreen" className="text-white hover:text-[#F2B134] transition-colors">
+          <button onClick={enterFullscreen} aria-label="Enter fullscreen" className="text-white hover:text-[#C8831A] transition-colors">
             <Maximize size={18} />
           </button>
         </div>

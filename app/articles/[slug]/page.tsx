@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }: Props) {
         {/* Back */}
         <Link
           href="/articles"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#1B2A4A] transition-colors mb-8 group"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#0D6B30] transition-colors mb-8 group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" aria-hidden />
           Back to Articles
@@ -84,7 +84,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* Title */}
           <h1
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B2A4A] leading-tight text-balance"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0D6B30] leading-tight text-balance"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {article.title}
@@ -104,7 +104,7 @@ export default async function ArticlePage({ params }: Props) {
                 className="w-11 h-11 rounded-full object-cover ring-2 ring-white border border-slate-200"
               />
               <div>
-                <p className="font-semibold text-[#1B2A4A] text-sm">{article.author.name}</p>
+                <p className="font-semibold text-[#0D6B30] text-sm">{article.author.name}</p>
                 {article.author.role && (
                   <p className="text-xs text-slate-400">{article.author.role}</p>
                 )}
@@ -155,16 +155,16 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* Author bio box */}
           {article.author.bio && (
-            <div className="mt-8 p-6 bg-[#FAF8F3] rounded-2xl border border-slate-100 flex gap-4">
+            <div className="mt-8 p-6 bg-[#F0FAF3] rounded-2xl border border-slate-100 flex gap-4">
               <img
                 src={article.author.avatar}
                 alt={article.author.name}
                 className="w-14 h-14 rounded-full object-cover flex-shrink-0"
               />
               <div>
-                <p className="font-bold text-[#1B2A4A] text-sm">{article.author.name}</p>
+                <p className="font-bold text-[#0D6B30] text-sm">{article.author.name}</p>
                 {article.author.role && (
-                  <p className="text-xs text-[#F2B134] font-semibold">{article.author.role}</p>
+                  <p className="text-xs text-[#C8831A] font-semibold">{article.author.role}</p>
                 )}
                 <p className="text-sm text-slate-500 mt-1.5 leading-relaxed">{article.author.bio}</p>
               </div>
@@ -175,18 +175,18 @@ export default async function ArticlePage({ params }: Props) {
           <section aria-labelledby="comments-heading" className="mt-12 pt-8 border-t border-slate-100">
             <h2
               id="comments-heading"
-              className="text-xl font-bold text-[#1B2A4A] mb-6"
+              className="text-xl font-bold text-[#0D6B30] mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Comments
             </h2>
-            <div className="bg-[#FAF8F3] border border-slate-200 rounded-2xl p-8 text-center">
+            <div className="bg-[#F0FAF3] border border-slate-200 rounded-2xl p-8 text-center">
               <p className="text-slate-500 text-sm leading-relaxed">
                 Sign in to leave a comment and join the conversation.
               </p>
               <Link
                 href="/sign-in"
-                className="mt-4 inline-block px-6 py-2.5 bg-[#1B2A4A] text-white text-sm font-bold rounded-xl hover:bg-[#2D4070] transition-colors"
+                className="mt-4 inline-block px-6 py-2.5 bg-[#0D6B30] text-white text-sm font-bold rounded-xl hover:bg-[#0A5423] transition-colors"
               >
                 Sign In to Comment
               </Link>
@@ -203,12 +203,12 @@ export default async function ArticlePage({ params }: Props) {
             <div className="flex items-center justify-between mb-6">
               <h2
                 id="related-heading"
-                className="text-2xl font-bold text-[#1B2A4A]"
+                className="text-2xl font-bold text-[#0D6B30]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Related Articles
               </h2>
-              <Link href="/articles" className="text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors flex items-center gap-1">
+              <Link href="/articles" className="text-sm font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors flex items-center gap-1">
                 All articles <ArrowLeft size={13} className="rotate-180" aria-hidden />
               </Link>
             </div>

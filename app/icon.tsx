@@ -8,7 +8,7 @@ export default function Icon() {
     (
       <div
         style={{
-          background: "#1B2A4A",
+          background: "#0D6B30",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -18,7 +18,7 @@ export default function Icon() {
         }}
       >
         <svg width={20} height={20} viewBox="0 0 18 18" fill="none">
-          <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#F2B134" />
+          <path d="M9 2L11.5 7H16L12.5 10.5L14 15.5L9 12.5L4 15.5L5.5 10.5L2 7H6.5L9 2Z" fill="#C8831A" />
         </svg>
       </div>
     ),

@@ -24,7 +24,7 @@ export default function Error({ error, reset }: ErrorProps) {
         </svg>
       </div>
 
-      <h1 className="text-3xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+      <h1 className="text-3xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
         Something Went Wrong
       </h1>
       <p className="text-slate-500 mt-3 text-base max-w-md leading-relaxed">
@@ -38,14 +38,14 @@ export default function Error({ error, reset }: ErrorProps) {
       <div className="flex flex-col sm:flex-row gap-3 mt-8">
         <button
           onClick={reset}
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-[#1B2A4A] text-white font-semibold text-sm rounded-xl hover:bg-[#2D4070] transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-[#0D6B30] text-white font-semibold text-sm rounded-xl hover:bg-[#0A5423] transition-colors"
         >
           <RefreshCw size={16} aria-hidden />
           Try Again
         </button>
         <Link
           href="/"
-          className="flex items-center justify-center gap-2 px-6 py-3 border border-slate-200 text-[#1B2A4A] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3 border border-slate-200 text-[#0D6B30] font-semibold text-sm rounded-xl hover:bg-slate-50 transition-colors"
         >
           <Home size={16} aria-hidden />
           Back to Home
@@ -58,7 +58,7 @@ export default function Error({ error, reset }: ErrorProps) {
           Persistent issues?{" "}
           <a
             href="mailto:info@internationalyouthgathering.com"
-            className="text-[#1B2A4A] hover:text-[#F2B134] transition-colors font-medium"
+            className="text-[#0D6B30] hover:text-[#C8831A] transition-colors font-medium"
           >
             Contact us
           </a>

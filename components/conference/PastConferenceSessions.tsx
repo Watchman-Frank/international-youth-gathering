@@ -74,9 +74,9 @@ export function PastConferenceSessions() {
 
   if (error || !videos.length) {
     return (
-      <div className="text-center py-16 bg-[#FAF8F3] rounded-2xl border border-slate-100">
+      <div className="text-center py-16 bg-[#F0FAF3] rounded-2xl border border-slate-100">
         <AlertCircle size={32} className="text-slate-300 mx-auto mb-3" />
-        <p className="font-semibold text-[#1B2A4A] text-sm">
+        <p className="font-semibold text-[#0D6B30] text-sm">
           {error ? "Could not load recordings" : "No conference recordings yet"}
         </p>
         <p className="text-xs text-slate-400 mt-1">
@@ -101,7 +101,7 @@ export function PastConferenceSessions() {
             />
             <div className="p-5">
               <h3
-                className="font-bold text-[#1B2A4A] text-lg leading-snug"
+                className="font-bold text-[#0D6B30] text-lg leading-snug"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {selected.title}
@@ -137,7 +137,7 @@ export function PastConferenceSessions() {
               className={cn(
                 "w-full text-left flex gap-3 p-3 rounded-xl border transition-all duration-200",
                 active
-                  ? "bg-[#1B2A4A] border-[#1B2A4A]"
+                  ? "bg-[#0D6B30] border-[#0D6B30]"
                   : "bg-white border-slate-100 hover:border-slate-200 hover:shadow-sm"
               )}
             >
@@ -152,11 +152,11 @@ export function PastConferenceSessions() {
                 />
                 <div className={cn(
                   "absolute inset-0 flex items-center justify-center",
-                  active ? "bg-[#F2B134]/25" : "bg-black/30"
+                  active ? "bg-[#C8831A]/25" : "bg-black/30"
                 )}>
                   <Play
                     size={14}
-                    className={active ? "text-[#F2B134]" : "text-white"}
+                    className={active ? "text-[#C8831A]" : "text-white"}
                     fill="currentColor"
                   />
                 </div>
@@ -167,7 +167,7 @@ export function PastConferenceSessions() {
                 <p
                   className={cn(
                     "text-sm font-semibold line-clamp-2 leading-snug",
-                    active ? "text-white" : "text-[#1B2A4A]"
+                    active ? "text-white" : "text-[#0D6B30]"
                   )}
                   style={{ fontFamily: "var(--font-display)" }}
                 >
@@ -191,7 +191,7 @@ export function PastConferenceSessions() {
             href="https://www.youtube.com/@InternationalYouthGathering"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#1B2A4A] hover:text-[#F2B134] font-medium transition-colors"
+            className="text-[#0D6B30] hover:text-[#C8831A] font-medium transition-colors"
           >
             @InternationalYouthGathering
           </a>{" "}

@@ -70,7 +70,7 @@ function SignInForm() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <img src="/logo.png" alt="" aria-hidden className="h-16 w-16 rounded-full object-cover mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+          <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
             {isSignUp ? "Join IYG" : "Welcome Back"}
           </h1>
           <p className="text-slate-500 text-sm mt-1">
@@ -123,7 +123,7 @@ function SignInForm() {
           <form className="space-y-4" onSubmit={handleCredentials}>
             {isSignUp && (
               <div>
-                <label htmlFor="fullname" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Full Name</label>
+                <label htmlFor="fullname" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Full Name</label>
                 <input
                   id="fullname"
                   type="text"
@@ -131,13 +131,13 @@ function SignInForm() {
                   placeholder="Your full name"
                   value={form.name}
                   onChange={(e) => setField("name", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                 />
               </div>
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Email Address</label>
               <input
                 id="email"
                 type="email"
@@ -145,12 +145,12 @@ function SignInForm() {
                 placeholder="you@email.com"
                 value={form.email}
                 onChange={(e) => setField("email", e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Password</label>
+              <label htmlFor="password" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Password</label>
               <div className="relative">
                 <input
                   id="password"
@@ -160,7 +160,7 @@ function SignInForm() {
                   placeholder="Min. 8 characters"
                   value={form.password}
                   onChange={(e) => setField("password", e.target.value)}
-                  className="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  className="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
                 />
                 <button
                   type="button"
@@ -176,7 +176,7 @@ function SignInForm() {
             <button
               type="submit"
               disabled={!!loading}
-              className="w-full py-3.5 bg-[#1B2A4A] text-white font-bold text-sm rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#0D6B30] text-white font-bold text-sm rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
             >
               {loading === "credentials" && (
                 <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
@@ -189,7 +189,7 @@ function SignInForm() {
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
             <button
               onClick={() => { setIsSignUp(!isSignUp); setError(""); setForm({ name: "", email: "", password: "" }); }}
-              className="font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
+              className="font-semibold text-[#0D6B30] hover:text-[#C8831A] transition-colors"
             >
               {isSignUp ? "Sign In" : "Sign Up Free"}
             </button>
@@ -200,7 +200,7 @@ function SignInForm() {
           By continuing, you agree to IYG&apos;s terms of use and privacy policy.
         </p>
         <div className="text-center mt-4">
-          <Link href="/" className="text-sm text-slate-500 hover:text-[#1B2A4A] transition-colors">
+          <Link href="/" className="text-sm text-slate-500 hover:text-[#0D6B30] transition-colors">
             ← Back to Home
           </Link>
         </div>
@@ -213,7 +213,7 @@ export default function SignInPage() {
   return (
     <Suspense fallback={
       <div className="min-h-[80vh] flex items-center justify-center">
-        <span className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-[#1B2A4A] animate-spin" />
+        <span className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-[#0D6B30] animate-spin" />
       </div>
     }>
       <SignInForm />

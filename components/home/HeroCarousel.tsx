@@ -68,7 +68,7 @@ export function HeroCarousel() {
 
   return (
     <section
-      className="relative overflow-hidden rounded-xl h-[420px] sm:h-[500px] lg:h-[580px] bg-[#0D1624]"
+      className="relative overflow-hidden rounded-xl h-[420px] sm:h-[500px] lg:h-[580px] bg-[#083D1C]"
       aria-label="Featured content carousel"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -89,8 +89,8 @@ export function HeroCarousel() {
             className="w-full h-full object-cover"
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0D1624]/88 via-[#0D1624]/50 to-[#0D1624]/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1624]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#083D1C]/88 via-[#083D1C]/50 to-[#083D1C]/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#083D1C]/60 via-transparent to-transparent" />
         </div>
       ))}
 
@@ -98,7 +98,7 @@ export function HeroCarousel() {
       <div className="absolute inset-0 z-20 flex flex-col justify-center p-8 sm:p-12 lg:p-16">
         <div key={slide.id} className="max-w-xl">
           {/* Tag */}
-          <p className="text-[#F2B134] text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
+          <p className="text-[#C8831A] text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
             {slide.tag}
           </p>
 
@@ -126,7 +126,7 @@ export function HeroCarousel() {
           <div className="flex flex-wrap gap-3 mt-7">
             <Link
               href={slide.cta.href}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-lg hover:bg-[#D9960F] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-white bg-[#C8831A] rounded-lg hover:bg-[#A56914] transition-all duration-300 active:scale-95"
             >
               {slide.cta.label}
             </Link>
@@ -173,7 +173,7 @@ export function HeroCarousel() {
             aria-label={`Slide ${i + 1}: ${s.title}`}
             className={cn(
               "rounded-full transition-all duration-400",
-              i === current ? "w-6 h-1.5 bg-[#F2B134]" : "w-1.5 h-1.5 bg-white/35 hover:bg-white/60"
+              i === current ? "w-6 h-1.5 bg-[#C8831A]" : "w-1.5 h-1.5 bg-white/35 hover:bg-white/60"
             )}
           />
         ))}

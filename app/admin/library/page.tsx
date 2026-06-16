@@ -68,14 +68,14 @@ export default function AdminLibraryPage() {
     <div className="p-8 max-w-5xl">
       <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>Library</h1>
+          <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>Library</h1>
           <p className="text-sm text-slate-500 mt-1">{all.length} resources total · {additions.length} added via admin</p>
         </div>
         <div className="flex gap-2">
           <button onClick={load} className="flex items-center gap-1.5 px-3 py-2 text-sm text-slate-500 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
             <RefreshCw size={14} />
           </button>
-          <button onClick={() => setShowForm(!showForm)} className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-lg hover:bg-[#D9960F] transition-colors">
+          <button onClick={() => setShowForm(!showForm)} className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#0D6B30] bg-[#C8831A] rounded-lg hover:bg-[#A56914] transition-colors">
             <Plus size={15} />Add Resource
           </button>
         </div>
@@ -83,63 +83,63 @@ export default function AdminLibraryPage() {
 
       {showForm && (
         <div className="bg-white rounded-xl border border-slate-100 p-6 mb-6">
-          <h2 className="font-bold text-[#1B2A4A] mb-4">New Resource</h2>
+          <h2 className="font-bold text-[#0D6B30] mb-4">New Resource</h2>
           <form onSubmit={handleAdd} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
                 <label className="block text-xs font-semibold text-slate-600 mb-1">Title *</label>
-                <input required value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                <input required value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
               </div>
               <div className="sm:col-span-2">
                 <label className="block text-xs font-semibold text-slate-600 mb-1">Description *</label>
-                <textarea required rows={3} value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] resize-none" />
+                <textarea required rows={3} value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] resize-none" />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1">Type</label>
-                <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value as ResourceType }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#F2B134]">
+                <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value as ResourceType }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C8831A]">
                   {TYPES.map((t) => <option key={t} value={t} className="capitalize">{t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1">Topic</label>
-                <select value={form.topic} onChange={(e) => setForm((f) => ({ ...f, topic: e.target.value as ResourceTopic }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#F2B134]">
+                <select value={form.topic} onChange={(e) => setForm((f) => ({ ...f, topic: e.target.value as ResourceTopic }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C8831A]">
                   {TOPICS.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div className="sm:col-span-2 flex items-center gap-3">
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" checked={form.isFree} onChange={(e) => setForm((f) => ({ ...f, isFree: e.target.checked }))} className="w-4 h-4 rounded accent-[#F2B134]" />
+                  <input type="checkbox" checked={form.isFree} onChange={(e) => setForm((f) => ({ ...f, isFree: e.target.checked }))} className="w-4 h-4 rounded accent-[#C8831A]" />
                   <span className="text-sm font-medium text-slate-600">Free resource</span>
                 </label>
               </div>
               {form.isFree ? (
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-semibold text-slate-600 mb-1">Download URL (PDF / file link)</label>
-                  <input value={form.downloadUrl} onChange={(e) => setForm((f) => ({ ...f, downloadUrl: e.target.value }))} placeholder="https://… or Vercel Blob URL" className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                  <input value={form.downloadUrl} onChange={(e) => setForm((f) => ({ ...f, downloadUrl: e.target.value }))} placeholder="https://… or Vercel Blob URL" className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
                 </div>
               ) : (
                 <>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1">Buy/External URL</label>
-                    <input value={form.externalUrl} onChange={(e) => setForm((f) => ({ ...f, externalUrl: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                    <input value={form.externalUrl} onChange={(e) => setForm((f) => ({ ...f, externalUrl: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 mb-1">Price (e.g. $9.99)</label>
-                    <input value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                    <input value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
                   </div>
                 </>
               )}
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1">Thumbnail URL (optional)</label>
-                <input value={form.thumbnailUrl} onChange={(e) => setForm((f) => ({ ...f, thumbnailUrl: e.target.value }))} placeholder="https://…" className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                <input value={form.thumbnailUrl} onChange={(e) => setForm((f) => ({ ...f, thumbnailUrl: e.target.value }))} placeholder="https://…" className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-600 mb-1">File Size (optional, e.g. 2.4 MB)</label>
-                <input value={form.fileSize} onChange={(e) => setForm((f) => ({ ...f, fileSize: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]" />
+                <input value={form.fileSize} onChange={(e) => setForm((f) => ({ ...f, fileSize: e.target.value }))} className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]" />
               </div>
             </div>
             <div className="flex gap-2 pt-2">
-              <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-[#1B2A4A] text-white text-sm font-bold rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-60">
+              <button type="submit" disabled={saving} className="flex items-center gap-2 px-5 py-2.5 bg-[#0D6B30] text-white text-sm font-bold rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-60">
                 {saving && <span className="h-3 w-3 rounded-full border border-white/30 border-t-white animate-spin" />}
                 Save Resource
               </button>
@@ -156,10 +156,10 @@ export default function AdminLibraryPage() {
           {all.map((r) => {
             const isStatic = "_static" in r;
             return (
-              <div key={r.id} className={cn("flex items-center gap-4 bg-white rounded-xl border p-4 transition-all", isStatic ? "border-slate-100" : "border-[#F2B134]/30")}>
+              <div key={r.id} className={cn("flex items-center gap-4 bg-white rounded-xl border p-4 transition-all", isStatic ? "border-slate-100" : "border-[#C8831A]/30")}>
                 <img src={r.thumbnailUrl} alt="" className="w-14 h-10 rounded-lg object-cover flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-[#1B2A4A] truncate">{r.title}</p>
+                  <p className="text-sm font-bold text-[#0D6B30] truncate">{r.title}</p>
                   <p className="text-xs text-slate-400 mt-0.5 capitalize">{r.type} · {r.topic} · {r.isFree ? "Free" : r.price}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
@@ -169,7 +169,7 @@ export default function AdminLibraryPage() {
                     </button>
                   )}
                   {(r.downloadUrl || r.externalUrl) && r.downloadUrl !== "#download" && (
-                    <a href={r.downloadUrl ?? r.externalUrl ?? "#"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-[#1B2A4A] hover:bg-slate-100 transition-colors">
+                    <a href={r.downloadUrl ?? r.externalUrl ?? "#"} target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-[#0D6B30] hover:bg-slate-100 transition-colors">
                       <ExternalLink size={14} />
                     </a>
                   )}

@@ -32,7 +32,7 @@ export default function ArticlesPage() {
       {/* Page header */}
       <div className="mb-8">
         <h1
-          className="text-3xl sm:text-4xl font-bold text-[#1B2A4A]"
+          className="text-3xl sm:text-4xl font-bold text-[#0D6B30]"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           Articles
@@ -66,7 +66,7 @@ export default function ArticlesPage() {
               className={cn(
                 "px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all border",
                 category === cat
-                  ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                  ? "bg-[#0D6B30] text-white border-[#0D6B30]"
                   : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
               )}
             >
@@ -90,7 +90,7 @@ export default function ArticlesPage() {
           <p className="text-slate-400 text-sm mt-1">Try a different search term or category.</p>
           <button
             onClick={() => { setSearch(""); setCategory("All"); }}
-            className="mt-4 text-sm font-semibold text-[#1B2A4A] underline"
+            className="mt-4 text-sm font-semibold text-[#0D6B30] underline"
           >
             Clear filters
           </button>
@@ -98,12 +98,12 @@ export default function ArticlesPage() {
       )}
 
       {/* Submit CTA */}
-      <div className="mt-16 bg-[#FAF8F3] border border-slate-200 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
-        <div className="w-14 h-14 rounded-2xl bg-[#1B2A4A] flex items-center justify-center flex-shrink-0">
-          <PenLine size={24} className="text-[#F2B134]" aria-hidden />
+      <div className="mt-16 bg-[#F0FAF3] border border-slate-200 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
+        <div className="w-14 h-14 rounded-2xl bg-[#0D6B30] flex items-center justify-center flex-shrink-0">
+          <PenLine size={24} className="text-[#C8831A]" aria-hidden />
         </div>
         <div className="flex-1 text-center sm:text-left">
-          <h2 className="font-bold text-[#1B2A4A] text-xl" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+          <h2 className="font-bold text-[#0D6B30] text-xl" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
             Have something to share?
           </h2>
           <p className="text-slate-500 text-sm mt-1">
@@ -112,7 +112,7 @@ export default function ArticlesPage() {
         </div>
         <Link
           href="/articles/submit"
-          className="flex-shrink-0 px-6 py-3 bg-[#1B2A4A] text-white font-semibold text-sm rounded-xl hover:bg-[#2D4070] transition-colors"
+          className="flex-shrink-0 px-6 py-3 bg-[#0D6B30] text-white font-semibold text-sm rounded-xl hover:bg-[#0A5423] transition-colors"
         >
           Submit Article
         </Link>

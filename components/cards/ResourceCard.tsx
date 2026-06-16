@@ -32,7 +32,7 @@ export function ResourceCard({ resource, className, isAuthenticated = false, onD
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#1B2A4A]/40" />
+        <div className="absolute inset-0 bg-[#0D6B30]/40" />
         <div className="absolute top-3 left-3 flex gap-2">
           <Badge variant={resource.isFree ? "success" : "gold"}>
             {resource.isFree ? "Free" : resource.price ?? "Paid"}
@@ -52,7 +52,7 @@ export function ResourceCard({ resource, className, isAuthenticated = false, onD
       </div>
       <div className="p-4">
         <Badge variant="muted">{resource.topic}</Badge>
-        <h3 className="font-bold text-[#1B2A4A] text-sm leading-snug mt-2 line-clamp-2" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+        <h3 className="font-bold text-[#0D6B30] text-sm leading-snug mt-2 line-clamp-2" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
           {resource.title}
         </h3>
         <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">{resource.description}</p>

@@ -20,14 +20,14 @@ export function PodcastEpisodeCard({ episode, variant = "default", className }: 
         <div className="relative flex-shrink-0">
           <img src={episode.thumbnailUrl} alt={episode.title} className="w-16 h-16 rounded-lg object-cover" loading="lazy" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-8 h-8 rounded-full bg-[#F2B134]/90 flex items-center justify-center">
-              <Play size={12} className="text-[#1B2A4A] ml-0.5" fill="currentColor" />
+            <div className="w-8 h-8 rounded-full bg-[#C8831A]/90 flex items-center justify-center">
+              <Play size={12} className="text-[#0D6B30] ml-0.5" fill="currentColor" />
             </div>
           </div>
         </div>
         <div className="flex-1 min-w-0">
           <div className="text-xs text-slate-400 mb-0.5">Ep. {episode.episode}</div>
-          <h4 className="text-sm font-semibold text-[#1B2A4A] line-clamp-2 leading-snug group-hover:text-[#2D4070] transition-colors">
+          <h4 className="text-sm font-semibold text-[#0D6B30] line-clamp-2 leading-snug group-hover:text-[#0A5423] transition-colors">
             {episode.title}
           </h4>
           <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
@@ -55,8 +55,8 @@ export function PodcastEpisodeCard({ episode, variant = "default", className }: 
           loading="lazy"
         />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-          <div className="w-14 h-14 rounded-full bg-[#F2B134] flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Play size={22} className="text-[#1B2A4A] ml-1" fill="currentColor" />
+          <div className="w-14 h-14 rounded-full bg-[#C8831A] flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Play size={22} className="text-[#0D6B30] ml-1" fill="currentColor" />
           </div>
         </div>
         <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -64,14 +64,14 @@ export function PodcastEpisodeCard({ episode, variant = "default", className }: 
           {formatDuration(episode.duration)}
         </div>
         {episode.season && episode.episode && (
-          <div className="absolute top-2 left-2 bg-[#F2B134] text-[#1B2A4A] text-xs font-bold px-2 py-0.5 rounded-full">
+          <div className="absolute top-2 left-2 bg-[#C8831A] text-[#0D6B30] text-xs font-bold px-2 py-0.5 rounded-full">
             S{episode.season} E{episode.episode}
           </div>
         )}
       </div>
       <div className="p-4">
         <h3
-          className="font-bold text-[#1B2A4A] text-sm leading-snug line-clamp-2 group-hover:text-[#2D4070] transition-colors"
+          className="font-bold text-[#0D6B30] text-sm leading-snug line-clamp-2 group-hover:text-[#0A5423] transition-colors"
           style={{ fontFamily: "var(--font-display, Georgia, serif)" }}
         >
           {episode.title}

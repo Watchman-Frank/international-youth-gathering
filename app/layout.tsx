@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { SessionProvider } from "@/components/providers/SessionProvider";
+import { WelcomeAnimation } from "@/components/ui/WelcomeAnimation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,11 +53,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="bg-[#FAF8F3] text-[#1B2A4A] antialiased" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+      <body className="bg-[#F0FAF3] text-[#0D6B30] antialiased" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
         <SessionProvider>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#F2B134] focus:text-[#1B2A4A] focus:font-bold focus:rounded-lg">
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#C8831A] focus:text-[#0D6B30] focus:font-bold focus:rounded-lg">
             Skip to main content
           </a>
+          <WelcomeAnimation />
           <Navbar />
           <main id="main-content" tabIndex={-1}>
             {children}

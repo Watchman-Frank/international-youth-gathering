@@ -20,7 +20,7 @@ export function EventCard({ event, variant = "card", className }: EventCardProps
     return (
       <div className={cn("flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all", className)}>
         <div className="flex-shrink-0 text-center w-14">
-          <div className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+          <div className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
             {new Date(event.date).getDate()}
           </div>
           <div className="text-xs text-slate-400 uppercase tracking-wide">
@@ -33,7 +33,7 @@ export function EventCard({ event, variant = "card", className }: EventCardProps
             {isConference && <Badge variant="gold" size="sm">Conference</Badge>}
             {isPrayerParty && <Badge variant="navy" size="sm">Prayer</Badge>}
           </div>
-          <h3 className="font-semibold text-[#1B2A4A] text-sm line-clamp-1">{event.title}</h3>
+          <h3 className="font-semibold text-[#0D6B30] text-sm line-clamp-1">{event.title}</h3>
           <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
             {event.location && (
               <span className="flex items-center gap-1"><MapPin size={11} aria-hidden />{event.location.split(",")[0]}</span>
@@ -44,7 +44,7 @@ export function EventCard({ event, variant = "card", className }: EventCardProps
         {event.isUpcoming && event.joinLink && (
           <a
             href={event.joinLink}
-            className="flex-shrink-0 text-xs font-semibold text-[#F2B134] hover:text-[#D9960F] transition-colors"
+            className="flex-shrink-0 text-xs font-semibold text-[#C8831A] hover:text-[#A56914] transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -57,11 +57,11 @@ export function EventCard({ event, variant = "card", className }: EventCardProps
 
   if (variant === "featured") {
     return (
-      <div className={cn("bg-[#1B2A4A] rounded-2xl overflow-hidden text-white", className)}>
+      <div className={cn("bg-[#0D6B30] rounded-2xl overflow-hidden text-white", className)}>
         {event.flyer && (
           <div className="relative h-48 overflow-hidden">
             <img src={event.flyer} alt={event.title} className="w-full h-full object-cover opacity-60" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1B2A4A]/20 to-[#1B2A4A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0D6B30]/20 to-[#0D6B30]" />
           </div>
         )}
         <div className="p-6">
@@ -110,12 +110,12 @@ export function EventCard({ event, variant = "card", className }: EventCardProps
           <div className="flex-1">
             {isConference && <Badge variant="gold">Conference</Badge>}
             {isPrayerParty && <Badge variant="navy">Prayer Party</Badge>}
-            <h3 className="font-bold text-[#1B2A4A] text-base mt-2 leading-snug" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+            <h3 className="font-bold text-[#0D6B30] text-base mt-2 leading-snug" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
               {event.title}
             </h3>
           </div>
-          <div className="text-center flex-shrink-0 bg-[#FAF8F3] rounded-lg px-3 py-2">
-            <div className="text-xl font-bold text-[#1B2A4A]">{new Date(event.date).getDate()}</div>
+          <div className="text-center flex-shrink-0 bg-[#F0FAF3] rounded-lg px-3 py-2">
+            <div className="text-xl font-bold text-[#0D6B30]">{new Date(event.date).getDate()}</div>
             <div className="text-xs text-slate-500 uppercase">{new Date(event.date).toLocaleString("en-US", { month: "short" })}</div>
           </div>
         </div>

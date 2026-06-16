@@ -33,7 +33,7 @@ export default async function PodcastEpisodePage({ params }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link href="/podcast" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#1B2A4A] mb-6">
+      <Link href="/podcast" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[#0D6B30] mb-6">
         <ArrowLeft size={14} aria-hidden />
         Back to The Qavah Podcast
       </Link>
@@ -51,7 +51,7 @@ export default async function PodcastEpisodePage({ params }: Props) {
               Season {ep.season} · Episode {ep.episode}
             </div>
             <h1
-              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A] mt-2 leading-tight"
+              className="text-2xl sm:text-3xl font-bold text-[#0D6B30] mt-2 leading-tight"
               style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
             >
               {ep.title}
@@ -68,8 +68,8 @@ export default async function PodcastEpisodePage({ params }: Props) {
           <p className="text-slate-600 leading-relaxed">{ep.description}</p>
 
           {ep.showNotes && (
-            <div className="bg-[#FAF8F3] rounded-2xl p-6">
-              <h2 className="font-bold text-[#1B2A4A] mb-3" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+            <div className="bg-[#F0FAF3] rounded-2xl p-6">
+              <h2 className="font-bold text-[#0D6B30] mb-3" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                 Show Notes
               </h2>
               <pre className="text-sm text-slate-600 whitespace-pre-wrap leading-relaxed font-sans">{ep.showNotes}</pre>
@@ -85,14 +85,14 @@ export default async function PodcastEpisodePage({ params }: Props) {
           <section aria-labelledby="ep-comments-heading" className="pt-6 border-t border-slate-100">
             <h2
               id="ep-comments-heading"
-              className="font-bold text-xl text-[#1B2A4A] mb-4"
+              className="font-bold text-xl text-[#0D6B30] mb-4"
               style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
             >
               Comments
             </h2>
-            <div className="bg-[#FAF8F3] rounded-xl p-6 text-center">
+            <div className="bg-[#F0FAF3] rounded-xl p-6 text-center">
               <p className="text-slate-500 text-sm">Sign in to leave a comment.</p>
-              <Link href="/sign-in" className="mt-3 inline-block px-5 py-2 bg-[#1B2A4A] text-white text-sm font-semibold rounded-lg">
+              <Link href="/sign-in" className="mt-3 inline-block px-5 py-2 bg-[#0D6B30] text-white text-sm font-semibold rounded-lg">
                 Sign In
               </Link>
             </div>
@@ -102,7 +102,7 @@ export default async function PodcastEpisodePage({ params }: Props) {
         {/* Sidebar */}
         <div>
           <h2
-            className="font-bold text-[#1B2A4A] text-base mb-4"
+            className="font-bold text-[#0D6B30] text-base mb-4"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             More Episodes

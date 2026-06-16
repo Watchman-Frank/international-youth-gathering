@@ -44,7 +44,7 @@ export function SearchBar({
         placeholder={placeholder}
         className={cn(
           "w-full bg-white border border-slate-200 rounded-xl text-slate-800 placeholder:text-slate-400",
-          "focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent transition-all",
+          "focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent transition-all",
           size === "sm" && "pl-8 pr-8 py-1.5 text-sm",
           size === "md" && "pl-10 pr-10 py-2.5 text-sm",
           size === "lg" && "pl-12 pr-12 py-3.5 text-base"

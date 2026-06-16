@@ -41,7 +41,7 @@ export default function ContributorsPage() {
   return (
     <div className="p-8 max-w-5xl">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+        <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
           Contributors
         </h1>
         <p className="text-sm text-slate-500 mt-1">
@@ -65,11 +65,11 @@ export default function ContributorsPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                   <div>
-                    <h2 className="text-base font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+                    <h2 className="text-base font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
                       {author.name}
                     </h2>
                     {author.role && (
-                      <span className="inline-block mt-0.5 text-xs font-semibold text-[#F2B134] bg-[#F2B134]/10 px-2 py-0.5 rounded-full">
+                      <span className="inline-block mt-0.5 text-xs font-semibold text-[#C8831A] bg-[#C8831A]/10 px-2 py-0.5 rounded-full">
                         {author.role}
                       </span>
                     )}
@@ -91,7 +91,7 @@ export default function ContributorsPage() {
                       href={author.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-semibold text-[#0D6B30] hover:text-[#C8831A] transition-colors"
                     >
                       <Globe size={13} aria-hidden />
                       Website
@@ -104,7 +104,7 @@ export default function ContributorsPage() {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors capitalize"
+                        className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors capitalize"
                       >
                         <AtSign size={13} aria-hidden />
                         {platform}
@@ -125,7 +125,7 @@ export default function ContributorsPage() {
                   <Link
                     href={`/articles/${a.slug}`}
                     target="_blank"
-                    className="text-sm text-slate-700 hover:text-[#1B2A4A] font-medium leading-snug line-clamp-1 flex-1"
+                    className="text-sm text-slate-700 hover:text-[#0D6B30] font-medium leading-snug line-clamp-1 flex-1"
                   >
                     {a.title}
                   </Link>

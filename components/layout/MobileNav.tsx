@@ -35,13 +35,13 @@ export function MobileNav() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex flex-col items-center justify-center gap-0.5 py-2 min-h-[56px] w-full transition-colors",
-                  active ? "text-[#1B2A4A]" : "text-slate-400 hover:text-slate-600"
+                  active ? "text-[#0D6B30]" : "text-slate-400 hover:text-slate-600"
                 )}
               >
                 {/* Active top indicator */}
                 {active && (
                   <span
-                    className="absolute top-0 inset-x-3 h-0.5 bg-[#F2B134] rounded-b-full"
+                    className="absolute top-0 inset-x-3 h-0.5 bg-[#C8831A] rounded-b-full"
                     aria-hidden
                   />
                 )}

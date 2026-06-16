@@ -117,7 +117,7 @@ export default function WordForTheDayPage() {
             <BookOpen size={20} className="text-amber-600" aria-hidden />
           </div>
           <h1
-            className="text-3xl sm:text-4xl font-bold text-[#1B2A4A]"
+            className="text-3xl sm:text-4xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Word for the Day
@@ -152,7 +152,7 @@ export default function WordForTheDayPage() {
           ) : error || !selected ? (
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-12 text-center">
               <AlertCircle size={36} className="text-slate-300 mx-auto mb-3" />
-              <p className="font-semibold text-[#1B2A4A]">No videos loaded</p>
+              <p className="font-semibold text-[#0D6B30]">No videos loaded</p>
               <p className="text-sm text-slate-400 mt-1">
                 {error === "fetch"
                   ? "Could not reach YouTube. Check your API key and try again."
@@ -189,7 +189,7 @@ export default function WordForTheDayPage() {
 
                 {/* Title */}
                 <h2
-                  className="text-xl font-bold text-[#1B2A4A] leading-snug"
+                  className="text-xl font-bold text-[#0D6B30] leading-snug"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {selected.title}
@@ -209,7 +209,7 @@ export default function WordForTheDayPage() {
                   </p>
                   <a
                     href="/sign-in"
-                    className="flex-shrink-0 text-xs font-bold text-[#1B2A4A] hover:text-[#F2B134] transition-colors flex items-center gap-1"
+                    className="flex-shrink-0 text-xs font-bold text-[#0D6B30] hover:text-[#C8831A] transition-colors flex items-center gap-1"
                   >
                     Sign in <ChevronRight size={12} aria-hidden />
                   </a>
@@ -235,7 +235,7 @@ export default function WordForTheDayPage() {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search devotionals…"
                 aria-label="Search devotionals"
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent bg-white"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent bg-white"
               />
             </div>
           </div>
@@ -259,7 +259,7 @@ export default function WordForTheDayPage() {
                     className={cn(
                       "w-full text-left flex gap-3 p-3 rounded-xl transition-all border",
                       active
-                        ? "bg-[#1B2A4A] border-[#1B2A4A]"
+                        ? "bg-[#0D6B30] border-[#0D6B30]"
                         : "bg-white border-slate-100 hover:border-slate-200 hover:shadow-sm"
                     )}
                   >
@@ -272,8 +272,8 @@ export default function WordForTheDayPage() {
                         loading="lazy"
                       />
                       {active && (
-                        <div className="absolute inset-0 bg-[#F2B134]/20 flex items-center justify-center">
-                          <div className="w-4 h-4 rounded-full bg-[#F2B134]" aria-hidden />
+                        <div className="absolute inset-0 bg-[#C8831A]/20 flex items-center justify-center">
+                          <div className="w-4 h-4 rounded-full bg-[#C8831A]" aria-hidden />
                         </div>
                       )}
                     </div>
@@ -281,7 +281,7 @@ export default function WordForTheDayPage() {
                       <p
                         className={cn(
                           "text-[10px] font-semibold uppercase tracking-wider mb-0.5",
-                          active ? "text-[#F2B134]" : "text-slate-400"
+                          active ? "text-[#C8831A]" : "text-slate-400"
                         )}
                       >
                         {d.scripture !== "Daily Word" ? d.scripture : "Daily Word"} ·{" "}
@@ -290,7 +290,7 @@ export default function WordForTheDayPage() {
                       <h3
                         className={cn(
                           "text-sm font-semibold line-clamp-2 leading-snug",
-                          active ? "text-white" : "text-[#1B2A4A]"
+                          active ? "text-white" : "text-[#0D6B30]"
                         )}
                         style={{ fontFamily: "var(--font-display)" }}
                       >
@@ -321,7 +321,7 @@ export default function WordForTheDayPage() {
                 href={`https://www.youtube.com/@${process.env.NEXT_PUBLIC_CHANNEL_HANDLE ?? "InternationalYouthGathering"}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1B2A4A] hover:text-[#F2B134] font-medium transition-colors"
+                className="text-[#0D6B30] hover:text-[#C8831A] font-medium transition-colors"
               >
                 @InternationalYouthGathering
               </a>{" "}

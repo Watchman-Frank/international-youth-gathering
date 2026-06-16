@@ -82,7 +82,7 @@ export default function AdminTeamPage() {
     <div className="p-8 space-y-8 max-w-3xl">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-[#1B2A4A]">Admin Team</h1>
+        <h1 className="text-2xl font-bold text-[#0D6B30]">Admin Team</h1>
         <p className="text-sm text-slate-500 mt-1">
           Appoint admins by email. They receive a unique access code to sign in at <strong>/admin/login</strong>. Revoking an admin immediately invalidates their code.
         </p>
@@ -99,10 +99,10 @@ export default function AdminTeamPage() {
             Share their login code with them. This is the only time it will be shown in full.
           </p>
           <div className="flex items-center gap-3 bg-white border border-green-200 rounded-lg px-4 py-3">
-            <span className="font-mono font-bold text-lg text-[#1B2A4A] tracking-widest flex-1">{newMember.code}</span>
+            <span className="font-mono font-bold text-lg text-[#0D6B30] tracking-widest flex-1">{newMember.code}</span>
             <button
               onClick={() => copyCode(newMember.code)}
-              className="text-xs font-semibold text-slate-600 hover:text-[#1B2A4A] flex items-center gap-1"
+              className="text-xs font-semibold text-slate-600 hover:text-[#0D6B30] flex items-center gap-1"
             >
               {codeCopied ? <CheckCircle size={14} className="text-green-500" /> : <Copy size={14} />}
               {codeCopied ? "Copied!" : "Copy"}
@@ -114,31 +114,31 @@ export default function AdminTeamPage() {
 
       {/* Add form */}
       <div className="bg-white rounded-2xl border border-slate-100 p-6">
-        <h2 className="font-bold text-[#1B2A4A] mb-4 flex items-center gap-2">
-          <Plus size={16} className="text-[#F2B134]" /> Appoint New Admin
+        <h2 className="font-bold text-[#0D6B30] mb-4 flex items-center gap-2">
+          <Plus size={16} className="text-[#C8831A]" /> Appoint New Admin
         </h2>
         <form onSubmit={handleAdd} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">Full Name *</label>
+              <label className="block text-xs font-semibold text-[#0D6B30] mb-1.5">Full Name *</label>
               <input
                 type="text"
                 required
                 value={form.name}
                 onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                 placeholder="Admin Name"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#1B2A4A] mb-1.5">Email Address *</label>
+              <label className="block text-xs font-semibold text-[#0D6B30] mb-1.5">Email Address *</label>
               <input
                 type="email"
                 required
                 value={form.email}
                 onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                 placeholder="admin@example.com"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134]"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A]"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function AdminTeamPage() {
           <button
             type="submit"
             disabled={adding}
-            className="flex items-center gap-2 px-5 py-2.5 bg-[#1B2A4A] text-white text-sm font-bold rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-60"
+            className="flex items-center gap-2 px-5 py-2.5 bg-[#0D6B30] text-white text-sm font-bold rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-60"
           >
             {adding ? <Loader2 size={14} className="animate-spin" /> : <Plus size={14} />}
             {adding ? "Appointing…" : "Appoint Admin"}
@@ -160,8 +160,8 @@ export default function AdminTeamPage() {
 
       {/* Active admins */}
       <div>
-        <h2 className="font-bold text-[#1B2A4A] mb-3 flex items-center gap-2">
-          <Shield size={16} className="text-[#F2B134]" /> Active Admins ({active.length})
+        <h2 className="font-bold text-[#0D6B30] mb-3 flex items-center gap-2">
+          <Shield size={16} className="text-[#C8831A]" /> Active Admins ({active.length})
         </h2>
         {loading ? (
           <div className="text-center py-10 text-slate-400">Loading…</div>
@@ -173,17 +173,17 @@ export default function AdminTeamPage() {
           <div className="space-y-3">
             {active.map((m) => (
               <div key={m.id} className="bg-white rounded-xl border border-slate-100 px-5 py-4 flex items-center gap-4">
-                <div className="w-9 h-9 rounded-full bg-[#1B2A4A] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                <div className="w-9 h-9 rounded-full bg-[#0D6B30] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   {m.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-[#1B2A4A] text-sm">{m.name}</p>
+                  <p className="font-semibold text-[#0D6B30] text-sm">{m.name}</p>
                   <p className="text-xs text-slate-500">{m.email}</p>
                   <p className="text-xs text-slate-400 mt-0.5">Appointed {formatDate(m.appointedAt)}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-100 rounded-lg px-3 py-1.5">
-                    <span className="font-mono text-sm font-bold tracking-widest text-[#1B2A4A]">
+                    <span className="font-mono text-sm font-bold tracking-widest text-[#0D6B30]">
                       {showCodes[m.id] ? m.code : "••••••••"}
                     </span>
                     <button
@@ -195,7 +195,7 @@ export default function AdminTeamPage() {
                     </button>
                     <button
                       onClick={() => copyCode(m.code)}
-                      className="text-slate-400 hover:text-[#1B2A4A]"
+                      className="text-slate-400 hover:text-[#0D6B30]"
                       title="Copy code"
                     >
                       <Copy size={13} />

@@ -26,11 +26,11 @@ export default async function GivePage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14">
       {/* Hero */}
       <section className="text-center">
-        <div className="w-16 h-16 rounded-2xl bg-[#F2B134] flex items-center justify-center mx-auto mb-5">
-          <Heart size={28} className="text-[#1B2A4A]" fill="currentColor" aria-hidden />
+        <div className="w-16 h-16 rounded-2xl bg-[#C8831A] flex items-center justify-center mx-auto mb-5">
+          <Heart size={28} className="text-[#0D6B30]" fill="currentColor" aria-hidden />
         </div>
         <h1
-          className="text-4xl font-bold text-[#1B2A4A] text-balance"
+          className="text-4xl font-bold text-[#0D6B30] text-balance"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           {title}
@@ -42,7 +42,7 @@ export default async function GivePage() {
       <section aria-labelledby="impact-heading">
         <h2
           id="impact-heading"
-          className="text-2xl font-bold text-[#1B2A4A] mb-6 text-center"
+          className="text-2xl font-bold text-[#0D6B30] mb-6 text-center"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           Your Giving in Action
@@ -50,11 +50,11 @@ export default async function GivePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {impacts.map(({ icon: Icon, label, desc }) => (
             <div key={label} className="bg-white rounded-2xl border border-slate-100 p-6 flex gap-4 hover:shadow-md transition-all">
-              <div className="w-11 h-11 rounded-xl bg-[#FAF8F3] flex items-center justify-center flex-shrink-0">
-                <Icon size={20} className="text-[#F2B134]" aria-hidden />
+              <div className="w-11 h-11 rounded-xl bg-[#F0FAF3] flex items-center justify-center flex-shrink-0">
+                <Icon size={20} className="text-[#C8831A]" aria-hidden />
               </div>
               <div>
-                <div className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{label}</div>
+                <div className="font-bold text-[#0D6B30] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{label}</div>
                 <p className="text-sm text-slate-500 mt-1 leading-relaxed">{desc}</p>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default async function GivePage() {
       </section>
 
       {/* Donation section */}
-      <section aria-labelledby="donate-heading" className="bg-[#1B2A4A] rounded-3xl p-10 text-center">
+      <section aria-labelledby="donate-heading" className="bg-[#0D6B30] rounded-3xl p-10 text-center">
         <h2
           id="donate-heading"
           className="text-2xl font-bold text-white mb-3"
@@ -79,7 +79,7 @@ export default async function GivePage() {
                 href={give.paypalLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3.5 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors"
+                className="flex items-center gap-2 px-6 py-3.5 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors"
               >
                 <ExternalLink size={15} /> Give via PayPal
               </a>
@@ -103,7 +103,7 @@ export default async function GivePage() {
             <div className="space-y-3 max-w-sm mx-auto">
               <a
                 href="mailto:info@internationalyouthgathering.com?subject=Donation%20/%20Ministry%20Partnership"
-                className="block w-full py-3.5 bg-[#F2B134] text-[#1B2A4A] font-bold text-sm rounded-xl hover:bg-[#D9960F] transition-colors"
+                className="block w-full py-3.5 bg-[#C8831A] text-[#0D6B30] font-bold text-sm rounded-xl hover:bg-[#A56914] transition-colors"
               >
                 Email Us to Give
               </a>
@@ -127,7 +127,7 @@ export default async function GivePage() {
         <section aria-labelledby="bank-heading" className="bg-white rounded-2xl border border-slate-100 p-8">
           <h2
             id="bank-heading"
-            className="text-xl font-bold text-[#1B2A4A] mb-4"
+            className="text-xl font-bold text-[#0D6B30] mb-4"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
             Bank / Wire Transfer Details
@@ -139,14 +139,14 @@ export default async function GivePage() {
       )}
 
       {/* Scripture */}
-      <section className="bg-[#FAF8F3] rounded-2xl p-8 text-center">
+      <section className="bg-[#F0FAF3] rounded-2xl p-8 text-center">
         <blockquote
-          className="text-xl font-semibold text-[#1B2A4A] text-balance"
+          className="text-xl font-semibold text-[#0D6B30] text-balance"
           style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
         >
           &ldquo;Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.&rdquo;
         </blockquote>
-        <cite className="text-sm text-[#F2B134] font-bold mt-3 block not-italic">2 Corinthians 9:7</cite>
+        <cite className="text-sm text-[#C8831A] font-bold mt-3 block not-italic">2 Corinthians 9:7</cite>
       </section>
     </div>
   );

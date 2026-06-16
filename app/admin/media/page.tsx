@@ -147,7 +147,7 @@ export default function MediaPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
+          <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
             Media Library
           </h1>
           <p className="text-sm text-slate-500 mt-1">
@@ -156,7 +156,7 @@ export default function MediaPage() {
         </div>
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="flex items-center gap-2 px-5 py-2.5 bg-[#1B2A4A] text-white text-sm font-bold rounded-lg hover:bg-[#2D4070] transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-[#0D6B30] text-white text-sm font-bold rounded-lg hover:bg-[#0A5423] transition-colors"
         >
           <Upload size={15} aria-hidden />
           Upload Files
@@ -180,11 +180,11 @@ export default function MediaPage() {
         className={cn(
           "border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-colors mb-8",
           dragOver
-            ? "border-[#F2B134] bg-amber-50"
+            ? "border-[#C8831A] bg-amber-50"
             : "border-slate-200 hover:border-slate-300 hover:bg-white"
         )}
       >
-        <Upload size={28} className={cn("mx-auto mb-3", dragOver ? "text-[#F2B134]" : "text-slate-400")} aria-hidden />
+        <Upload size={28} className={cn("mx-auto mb-3", dragOver ? "text-[#C8831A]" : "text-slate-400")} aria-hidden />
         <p className="text-sm font-semibold text-slate-600">
           {dragOver ? "Drop files here" : "Drag & drop files here"}
         </p>
@@ -200,7 +200,7 @@ export default function MediaPage() {
           {uploading.map((f) => (
             <div key={f.id} className="bg-white rounded-lg border border-slate-100 p-4 flex items-center gap-3">
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#1B2A4A] truncate">{f.name}</p>
+                <p className="text-sm font-medium text-[#0D6B30] truncate">{f.name}</p>
                 {f.error ? (
                   <p className="text-xs text-red-500 mt-0.5 flex items-center gap-1">
                     <AlertCircle size={11} /> {f.error}
@@ -208,7 +208,7 @@ export default function MediaPage() {
                 ) : (
                   <div className="mt-1.5 h-1 bg-slate-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#F2B134] rounded-full transition-all duration-300"
+                      className="h-full bg-[#C8831A] rounded-full transition-all duration-300"
                       style={{ width: `${f.progress}%` }}
                     />
                   </div>
@@ -235,8 +235,8 @@ export default function MediaPage() {
             className={cn(
               "px-4 py-1.5 rounded-lg text-sm font-medium transition-colors",
               filter === key
-                ? "bg-[#1B2A4A] text-white"
-                : "text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-100"
+                ? "bg-[#0D6B30] text-white"
+                : "text-slate-500 hover:text-[#0D6B30] hover:bg-slate-100"
             )}
           >
             {label}
@@ -254,7 +254,7 @@ export default function MediaPage() {
       ) : filtered.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-xl border border-slate-100">
           <Upload size={32} className="text-slate-300 mx-auto mb-3" aria-hidden />
-          <p className="font-semibold text-[#1B2A4A] text-sm">
+          <p className="font-semibold text-[#0D6B30] text-sm">
             {blobs.length === 0 ? "No files uploaded yet" : "No files in this category"}
           </p>
           <p className="text-xs text-slate-400 mt-1">
@@ -295,7 +295,7 @@ export default function MediaPage() {
                 </div>
 
                 {/* Actions overlay */}
-                <div className="absolute inset-0 bg-[#1B2A4A]/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <div className="absolute inset-0 bg-[#0D6B30]/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                   <button
                     onClick={() => copyUrl(blob.url)}
                     title="Copy URL"
@@ -303,7 +303,7 @@ export default function MediaPage() {
                       "flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-colors",
                       isCopied
                         ? "bg-green-500 text-white"
-                        : "bg-[#F2B134] text-[#1B2A4A] hover:bg-[#D9960F]"
+                        : "bg-[#C8831A] text-[#0D6B30] hover:bg-[#A56914]"
                     )}
                   >
                     {isCopied ? <CheckCircle size={13} /> : <Copy size={13} />}
@@ -323,7 +323,7 @@ export default function MediaPage() {
 
                 {/* File info */}
                 <div className="p-3 border-t border-slate-100">
-                  <p className="text-xs font-medium text-[#1B2A4A] truncate" title={name}>{name}</p>
+                  <p className="text-xs font-medium text-[#0D6B30] truncate" title={name}>{name}</p>
                   <p className="text-[10px] text-slate-400 mt-0.5">
                     {formatBytes(blob.size)} · {formatDate(blob.uploadedAt)}
                   </p>

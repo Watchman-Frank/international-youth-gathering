@@ -16,7 +16,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
     return (
       <Link
         href={`/articles/${article.slug}`}
-        className={cn("flex gap-3 group p-3 rounded-lg hover:bg-slate-50 transition-colors", className)}
+        className={cn("flex gap-3 group p-3 rounded-lg hover:bg-[#F0FAF3] transition-all duration-300", className)}
       >
         <img
           src={article.featuredImage}
@@ -26,7 +26,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
         />
         <div className="flex-1 min-w-0">
           <CategoryBadge category={article.category} />
-          <h3 className="text-sm font-semibold text-[#1B2A4A] mt-1 line-clamp-2 group-hover:text-[#2D4070] transition-colors leading-snug" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+          <h3 className="text-sm font-semibold text-[#083D1C] mt-1 line-clamp-2 group-hover:text-[#0D6B30] transition-colors leading-snug" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
             {article.title}
           </h3>
           <p className="text-xs text-slate-400 mt-1">{formatShortDate(article.publishedAt)}</p>
@@ -40,7 +40,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
       <Link
         href={`/articles/${article.slug}`}
         className={cn(
-          "flex gap-4 group p-4 bg-white rounded-lg border border-slate-100 hover:border-slate-200 hover:shadow-sm transition-all duration-200",
+          "flex gap-4 group p-4 bg-white rounded-lg border border-slate-100 hover:border-[#0D6B30]/20 hover:shadow-md hover:shadow-green-900/5 hover:-translate-y-0.5 transition-all duration-300",
           className
         )}
       >
@@ -52,7 +52,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
         />
         <div className="flex-1 min-w-0">
           <CategoryBadge category={article.category} />
-          <h3 className="text-base font-bold text-[#1B2A4A] mt-1.5 line-clamp-2 group-hover:text-[#2D4070] transition-colors" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+          <h3 className="text-base font-bold text-[#083D1C] mt-1.5 line-clamp-2 group-hover:text-[#0D6B30] transition-colors" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
             {article.title}
           </h3>
           <p className="text-sm text-slate-500 mt-1 line-clamp-2">{article.excerpt}</p>
@@ -70,7 +70,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
       <Link
         href={`/articles/${article.slug}`}
         className={cn(
-          "relative block rounded-xl overflow-hidden group h-80 md:h-96",
+          "relative block rounded-xl overflow-hidden group h-80 md:h-96 hover:shadow-lg hover:shadow-green-900/20 transition-all duration-300",
           className
         )}
       >
@@ -80,14 +80,14 @@ export function ArticleCard({ article, variant = "default", className }: Article
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/90 via-[#1B2A4A]/25 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#083D1C]/90 via-[#0D6B30]/25 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-6">
           <CategoryBadge category={article.category} />
           <h2 className="text-xl md:text-2xl font-bold text-white mt-2 line-clamp-2 text-balance" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
             {article.title}
           </h2>
           <div className="flex items-center gap-3 mt-3">
-            <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover" />
+            <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover ring-1 ring-[#C8831A]/50" />
             <span className="text-white/80 text-sm">{article.author.name}</span>
             <span className="text-white/40 text-sm">·</span>
             <span className="text-white/55 text-xs">{formatShortDate(article.publishedAt)}</span>
@@ -101,7 +101,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
     <Link
       href={`/articles/${article.slug}`}
       className={cn(
-        "block bg-white rounded-lg overflow-hidden border border-slate-100 hover:border-slate-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group",
+        "block bg-white rounded-lg overflow-hidden border border-slate-100 hover:border-[#0D6B30]/20 hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1 transition-all duration-300 group",
         className
       )}
     >
@@ -117,7 +117,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
         </div>
       </div>
       <div className="p-4">
-        <h3 className="font-bold text-[#1B2A4A] text-base leading-snug line-clamp-2 group-hover:text-[#2D4070] transition-colors" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+        <h3 className="font-bold text-[#083D1C] text-base leading-snug line-clamp-2 group-hover:text-[#0D6B30] transition-colors" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
           {article.title}
         </h3>
         <p className="text-sm text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">{article.excerpt}</p>

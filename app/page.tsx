@@ -35,17 +35,17 @@ export default function HomePage() {
           <div>
             <h2
               id="articles-heading"
-              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+              className="text-2xl sm:text-3xl font-bold text-[#0D6B30]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Latest Articles
             </h2>
             <p className="text-sm text-slate-500 mt-1.5">Faith, ministry, and Kingdom culture</p>
-            <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+            <div className="mt-3 w-10 h-0.5 bg-[#C8831A]" />
           </div>
           <Link
             href="/articles"
-            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors pb-5"
           >
             View all <ArrowRight size={14} aria-hidden />
           </Link>
@@ -75,10 +75,10 @@ export default function HomePage() {
       {/* ── Upcoming Events ──────────────────────────── */}
       <section aria-labelledby="events-heading">
         <div className="flex items-center gap-2.5 mb-6">
-          <Calendar size={18} className="text-[#1B2A4A]" aria-hidden />
+          <Calendar size={18} className="text-[#0D6B30]" aria-hidden />
           <h2
             id="events-heading"
-            className="text-xl font-bold text-[#1B2A4A]"
+            className="text-xl font-bold text-[#0D6B30]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Upcoming Events
@@ -108,17 +108,17 @@ export default function HomePage() {
           <div>
             <h2
               id="podcast-heading"
-              className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+              className="text-2xl sm:text-3xl font-bold text-[#0D6B30]"
               style={{ fontFamily: "var(--font-display)" }}
             >
               The Qavah Podcast
             </h2>
             <p className="text-sm text-slate-500 mt-1.5">Honest conversations for young believers who refuse to be conformed</p>
-            <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+            <div className="mt-3 w-10 h-0.5 bg-[#C8831A]" />
           </div>
           <Link
             href="/podcast"
-            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+            className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors pb-5"
           >
             All episodes <ArrowRight size={14} aria-hidden />
           </Link>
@@ -137,10 +137,10 @@ export default function HomePage() {
                   S{latestEpisode.season} · Ep. {latestEpisode.episode}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-slate-300" aria-hidden />
-                <span className="text-[11px] font-bold text-[#F2B134] uppercase tracking-widest">New</span>
+                <span className="text-[11px] font-bold text-[#C8831A] uppercase tracking-widest">New</span>
               </div>
               <h3
-                className="text-xl font-bold text-[#1B2A4A] leading-snug"
+                className="text-xl font-bold text-[#0D6B30] leading-snug"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {latestEpisode.title}
@@ -148,7 +148,7 @@ export default function HomePage() {
               <p className="text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">{latestEpisode.description}</p>
               <Link
                 href={`/podcast/${latestEpisode.id}`}
-                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white bg-[#1B2A4A] px-5 py-2.5 rounded-lg hover:bg-[#2D4070] transition-colors"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white bg-[#0D6B30] px-5 py-2.5 rounded-lg hover:bg-[#0A5423] transition-colors"
               >
                 <Play size={14} fill="currentColor" aria-hidden />
                 Listen Now
@@ -165,7 +165,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/podcast"
-              className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors py-2"
+              className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors py-2"
             >
               All episodes <ArrowRight size={13} aria-hidden />
             </Link>
@@ -180,17 +180,17 @@ export default function HomePage() {
             <div>
               <h2
                 id="ondemand-heading"
-                className="text-2xl sm:text-3xl font-bold text-[#1B2A4A]"
+                className="text-2xl sm:text-3xl font-bold text-[#0D6B30]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Past Events · On Demand
               </h2>
               <p className="text-sm text-slate-500 mt-1.5">Watch full replays from previous conferences and gatherings</p>
-              <div className="mt-3 w-10 h-0.5 bg-[#F2B134]" />
+              <div className="mt-3 w-10 h-0.5 bg-[#C8831A]" />
             </div>
             <Link
               href="/conference"
-              className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#1B2A4A] transition-colors pb-5"
+              className="flex-shrink-0 flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-[#0D6B30] transition-colors pb-5"
             >
               View all <ArrowRight size={14} aria-hidden />
             </Link>
@@ -210,14 +210,14 @@ export default function HomePage() {
                     className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-400"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-[#1B2A4A]/35 flex items-center justify-center">
-                    <div className="w-11 h-11 rounded-full bg-[#F2B134] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
-                      <Play size={16} className="text-[#1B2A4A] ml-0.5" fill="currentColor" aria-hidden />
+                  <div className="absolute inset-0 bg-[#0D6B30]/35 flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-full bg-[#C8831A] flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                      <Play size={16} className="text-[#0D6B30] ml-0.5" fill="currentColor" aria-hidden />
                     </div>
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold text-[#1B2A4A] text-sm leading-snug" style={{ fontFamily: "var(--font-display)" }}>
+                  <h3 className="font-bold text-[#0D6B30] text-sm leading-snug" style={{ fontFamily: "var(--font-display)" }}>
                     {event.title}
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
@@ -232,7 +232,7 @@ export default function HomePage() {
       )}
 
       {/* ── Core Values ──────────────────────────────── */}
-      <div className="bg-[#FAF8F3] border border-slate-100 rounded-xl px-8 sm:px-14 py-14">
+      <div className="bg-[#F0FAF3] border border-slate-100 rounded-xl px-8 sm:px-14 py-14">
         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] text-center mb-12">
           Our Core Values
         </p>
@@ -245,12 +245,12 @@ export default function HomePage() {
           ].map(({ value, verse }) => (
             <div key={value}>
               <div
-                className="text-xl sm:text-2xl font-bold text-[#1B2A4A] leading-snug"
+                className="text-xl sm:text-2xl font-bold text-[#0D6B30] leading-snug"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {value}
               </div>
-              <div className="w-6 h-px bg-[#F2B134] mx-auto my-3" />
+              <div className="w-6 h-px bg-[#C8831A] mx-auto my-3" />
               <div className="text-xs text-slate-400 font-medium tracking-wide">{verse}</div>
             </div>
           ))}

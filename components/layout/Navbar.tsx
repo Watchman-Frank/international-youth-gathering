@@ -71,14 +71,21 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex-shrink-0"
+            className="flex items-center gap-2.5 flex-shrink-0"
             aria-label="International Youth Gathering — Home"
           >
             <img
               src="/logo.png"
-              alt="International Youth Gathering"
-              className="h-11 w-11 rounded-full object-cover"
+              alt=""
+              aria-hidden
+              className="h-11 w-11 rounded-full object-cover flex-shrink-0"
             />
+            <span
+              className="text-[#1B2A4A] font-extrabold text-sm sm:text-base leading-tight hidden sm:block"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              International<br />Youth Gathering
+            </span>
           </Link>
 
           {/* Desktop nav */}

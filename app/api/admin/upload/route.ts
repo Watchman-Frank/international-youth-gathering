@@ -1,42 +1,46 @@
-import { put } from "@vercel/blob";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-export async function POST(request: Request) {
-  // Auth check
+async function isAdminAuthed(): Promise<boolean> {
   const cookieStore = await cookies();
-  const token = cookieStore.get("iyg_admin");
-  if (!token || token.value !== process.env.ADMIN_TOKEN) {
+  const token = cookieStore.get("iyg_admin")?.value;
+  if (!token) return false;
+  if (token === process.env.ADMIN_TOKEN) return true;
+  // Appointed admin cookie format: "appointed:{email}:{code}"
+  if (token.startsWith("appointed:") && token.split(":").length === 3) return true;
+  return false;
+}
+
+export async function POST(request: Request): Promise<Response> {
+  if (!await isAdminAuthed()) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const form = await request.formData();
-  const file = form.get("file") as File | null;
+  const body = (await request.json()) as HandleUploadBody;
 
-  if (!file) {
-    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+  try {
+    const jsonResponse = await handleUpload({
+      body,
+      request,
+      onBeforeGenerateToken: async (_pathname) => {
+        return {
+          allowedContentTypes: [
+            "image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml",
+            "video/mp4", "video/quicktime", "video/webm", "video/avi", "video/mkv",
+            "audio/mpeg", "audio/wav", "audio/ogg", "audio/aac",
+            "application/pdf",
+          ],
+          maximumSizeInBytes: 2 * 1024 * 1024 * 1024, // 2 GB
+          addRandomSuffix: true,
+        };
+      },
+      onUploadCompleted: async () => {
+        // Metadata is saved separately by the client via /api/admin/media-posts
+      },
+    });
+    return NextResponse.json(jsonResponse);
+  } catch (error) {
+    return NextResponse.json({ error: String(error) }, { status: 400 });
   }
-
-  // Max 50 MB
-  if (file.size > 50 * 1024 * 1024) {
-    return NextResponse.json({ error: "File too large (max 50 MB)" }, { status: 413 });
-  }
-
-  // Allowed types
-  const allowed = [
-    "image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml",
-    "video/mp4", "video/quicktime", "video/webm",
-    "application/pdf",
-    "audio/mpeg", "audio/wav", "audio/ogg",
-  ];
-  if (!allowed.includes(file.type)) {
-    return NextResponse.json({ error: "File type not allowed" }, { status: 415 });
-  }
-
-  const blob = await put(`iyg/${Date.now()}-${file.name}`, file, {
-    access: "public",
-    contentType: file.type,
-  });
-
-  return NextResponse.json(blob);
 }

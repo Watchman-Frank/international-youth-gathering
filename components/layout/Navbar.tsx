@@ -22,6 +22,7 @@ const navItems = [
   {
     label: "More",
     children: [
+      { href: "/media", label: "Media Gallery" },
       { href: "/get-involved", label: "Get Involved / Volunteer" },
       { href: "/about", label: "About IYG" },
       { href: "/give", label: "Give / Support" },

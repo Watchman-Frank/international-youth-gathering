@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Play, Calendar, ChevronRight } from "lucide-react";
+import { ArrowRight, Play, Calendar } from "lucide-react";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { NewsletterBanner } from "@/components/home/NewsletterBanner";
+import { YoutubeGallery } from "@/components/home/YoutubeGallery";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { PodcastEpisodeCard } from "@/components/cards/PodcastEpisodeCard";
 import { VideoPlayer } from "@/components/player/VideoPlayer";
 import { articles } from "@/lib/data/articles";
 import { events, upcomingEvents } from "@/lib/data/events";
-import { devotionals } from "@/lib/data/devotionals";
 import { podcastEpisodes } from "@/lib/data/podcast";
-import { formatShortDate } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const featuredArticles = articles.slice(0, 6);
-  const todayDevotional = devotionals[0];
   const latestEpisode = podcastEpisodes[0];
   const featuredEvent = events.find((e) => e.isFeatured);
   const pastOnDemand = events.filter((e) => !e.isUpcoming && e.pastRecordings?.length);
@@ -71,97 +69,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Word for the Day + Upcoming Events ─────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
-        {/* Word for the Day */}
-        <section className="lg:col-span-3" aria-labelledby="wftd-heading">
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-3">
-              <BookOpen size={18} className="text-amber-500" aria-hidden />
-              <div>
-                <h2
-                  id="wftd-heading"
-                  className="text-lg font-bold text-[#1B2A4A] leading-none"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Word for the Day
-                </h2>
-                <p className="text-xs text-slate-400 mt-0.5">{formatShortDate(todayDevotional.date)}</p>
-              </div>
-            </div>
-            <Link
-              href="/word-for-the-day"
-              className="text-sm font-semibold text-slate-400 hover:text-[#1B2A4A] flex items-center gap-1 transition-colors"
-            >
-              Archive <ChevronRight size={13} aria-hidden />
-            </Link>
-          </div>
+      {/* ── YouTube Video Gallery ─────────────────────── */}
+      <YoutubeGallery />
 
-          <div className="bg-white rounded-xl overflow-hidden border border-slate-100 shadow-sm">
-            <VideoPlayer
-              youtubeId={todayDevotional.youtubeId}
-              thumbnailUrl={todayDevotional.thumbnailUrl}
-              title={todayDevotional.title}
-            />
-            <div className="p-5 sm:p-6">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100 mb-3">
-                <BookOpen size={10} aria-hidden />
-                {todayDevotional.scripture}
-              </span>
-              <h3
-                className="text-xl font-bold text-[#1B2A4A] leading-snug"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {todayDevotional.title}
-              </h3>
-              {todayDevotional.scriptureText && (
-                <blockquote className="mt-3 text-sm text-slate-600 italic border-l-2 border-[#F2B134] pl-3 leading-relaxed">
-                  {todayDevotional.scriptureText}
-                </blockquote>
-              )}
-              <p className="text-sm text-slate-500 mt-3 leading-relaxed line-clamp-3">{todayDevotional.summary}</p>
-              <Link
-                href="/word-for-the-day"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
-              >
-                Full devotional <ArrowRight size={14} aria-hidden />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Upcoming Events */}
-        <section className="lg:col-span-2" aria-labelledby="events-heading">
-          <div className="flex items-center gap-2.5 mb-5">
-            <Calendar size={18} className="text-[#1B2A4A]" aria-hidden />
-            <h2
-              id="events-heading"
-              className="text-lg font-bold text-[#1B2A4A]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Upcoming Events
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {upcomingEvents.map((event) => (
-              <EventCard key={event.id} event={event} variant="strip" />
-            ))}
-            {upcomingEvents.length === 0 && (
-              <div className="text-center py-10 bg-white rounded-xl border border-slate-100">
-                <Calendar size={24} className="text-slate-300 mx-auto mb-2" aria-hidden />
-                <p className="text-sm text-slate-400">No upcoming events. Check back soon!</p>
-              </div>
-            )}
-          </div>
-
-          {featuredEvent && (
-            <div className="mt-4">
-              <EventCard event={featuredEvent} variant="featured" />
+      {/* ── Upcoming Events ──────────────────────────── */}
+      <section aria-labelledby="events-heading">
+        <div className="flex items-center gap-2.5 mb-6">
+          <Calendar size={18} className="text-[#1B2A4A]" aria-hidden />
+          <h2
+            id="events-heading"
+            className="text-xl font-bold text-[#1B2A4A]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Upcoming Events
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {upcomingEvents.map((event) => (
+            <EventCard key={event.id} event={event} variant="strip" />
+          ))}
+          {upcomingEvents.length === 0 && (
+            <div className="col-span-full text-center py-10 bg-white rounded-xl border border-slate-100">
+              <Calendar size={24} className="text-slate-300 mx-auto mb-2" aria-hidden />
+              <p className="text-sm text-slate-400">No upcoming events. Check back soon!</p>
             </div>
           )}
-        </section>
-      </div>
+        </div>
+        {featuredEvent && (
+          <div className="mt-4">
+            <EventCard event={featuredEvent} variant="featured" />
+          </div>
+        )}
+      </section>
 
       {/* ── Latest Podcast Episode ────────────────────── */}
       <section aria-labelledby="podcast-heading">

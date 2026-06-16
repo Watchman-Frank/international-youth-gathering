@@ -31,3 +31,15 @@ export async function deleteRecord(prefix: string, id: string): Promise<void> {
     await del(blob.url);
   }
 }
+
+export async function getRecord<T>(prefix: string, id: string): Promise<T | null> {
+  const { blobs } = await list({ prefix: `iyg/${prefix}/${id}.json` });
+  if (blobs.length === 0) return null;
+  try {
+    const res = await fetch(blobs[0].url, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as T;
+  } catch {
+    return null;
+  }
+}

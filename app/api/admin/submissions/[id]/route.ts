@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { putRecord, listRecords } from "@/lib/blobStore";
-import { checkAdminCookie, isSuperAdmin } from "@/lib/roles";
+import { checkAdminAuth, isSuperAdmin } from "@/lib/roles";
 import type { ArticleSubmission } from "@/app/api/submissions/route";
 import type { NextRequest } from "next/server";
 import type { Session } from "next-auth";
@@ -11,7 +11,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth() as Session | null;
-  if (!checkAdminCookie(request) && !isSuperAdmin(session)) {
+  if (!await checkAdminAuth(request) && !isSuperAdmin(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

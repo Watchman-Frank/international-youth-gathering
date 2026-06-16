@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Brush, Video, Megaphone, Heart, Users, CheckCircle2, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { Brush, Video, Megaphone, Heart, Users, CheckCircle2, ExternalLink, Loader2 } from "lucide-react";
 import type { VolunteerRole } from "@/lib/types";
 
 const roles: VolunteerRole[] = [
@@ -47,15 +48,47 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function GetInvolvedPage() {
+  const { data: session } = useSession();
   const [activeRole, setActiveRole] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", portfolio: "", message: "" });
 
   const selectedRole = roles.find((r) => r.id === activeRole);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (session?.user) {
+      setForm((f) => ({
+        ...f,
+        name: f.name || (session.user?.name ?? ""),
+        email: f.email || (session.user?.email ?? ""),
+      }));
+    }
+  }, [session]);
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-  };
+    setError("");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/volunteers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, role: selectedRole?.title ?? activeRole }),
+      });
+      if (!res.ok) {
+        const d = await res.json();
+        setError(d.error ?? "Something went wrong. Please try again.");
+      } else {
+        setSubmitted(true);
+      }
+    } catch {
+      setError("Network error. Please check your connection.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14">
@@ -111,7 +144,7 @@ export default function GetInvolvedPage() {
                         Commitment: <span className="font-medium text-slate-600">{role.commitment}</span>
                       </span>
                       <button
-                        onClick={() => setActiveRole(role.id)}
+                        onClick={() => { setActiveRole(role.id); setSubmitted(false); setError(""); }}
                         className="text-sm font-semibold text-[#F2B134] hover:text-[#D9960F] transition-colors"
                       >
                         Apply →
@@ -136,16 +169,41 @@ export default function GetInvolvedPage() {
             >
               Apply: {selectedRole?.title}
             </h2>
-            <p className="text-slate-500 text-sm mb-6">Tell us a bit about yourself. We'll review your application and reach out within 5 business days.</p>
+            <p className="text-slate-500 text-sm mb-6">
+              Tell us a bit about yourself. We&apos;ll review your application and reach out within 5 business days.
+            </p>
+
+            {error && (
+              <div className="mb-4 px-4 py-3 bg-red-50 border border-red-100 rounded-xl text-sm text-red-700">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-4" aria-label="Volunteer application form">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="v-name" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Full Name *</label>
-                  <input id="v-name" type="text" required className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent" placeholder="Your name" />
+                  <input
+                    id="v-name"
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    placeholder="Your name"
+                  />
                 </div>
                 <div>
                   <label htmlFor="v-email" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Email *</label>
-                  <input id="v-email" type="email" required className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent" placeholder="you@email.com" />
+                  <input
+                    id="v-email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                    placeholder="you@email.com"
+                  />
                 </div>
               </div>
               <div>
@@ -162,14 +220,34 @@ export default function GetInvolvedPage() {
               </div>
               <div>
                 <label htmlFor="v-portfolio" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Portfolio / Work Samples URL</label>
-                <input id="v-portfolio" type="url" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent" placeholder="https://yourwork.com" />
+                <input
+                  id="v-portfolio"
+                  type="url"
+                  value={form.portfolio}
+                  onChange={(e) => setForm((f) => ({ ...f, portfolio: e.target.value }))}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  placeholder="https://yourwork.com"
+                />
               </div>
               <div>
                 <label htmlFor="v-message" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Message *</label>
-                <textarea id="v-message" required rows={5} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent" placeholder="Tell us about yourself, your experience, and why you'd like to serve with IYG…" />
+                <textarea
+                  id="v-message"
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#F2B134] focus:border-transparent"
+                  placeholder="Tell us about yourself, your experience, and why you'd like to serve with IYG…"
+                />
               </div>
-              <button type="submit" className="w-full py-3.5 bg-[#1B2A4A] text-white font-bold text-sm rounded-xl hover:bg-[#2D4070] transition-colors">
-                Submit Application
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full py-3.5 bg-[#1B2A4A] text-white font-bold text-sm rounded-xl hover:bg-[#2D4070] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+              >
+                {submitting && <Loader2 size={15} className="animate-spin" />}
+                {submitting ? "Submitting…" : "Submit Application"}
               </button>
             </form>
           </div>
@@ -180,7 +258,15 @@ export default function GetInvolvedPage() {
         <div className="bg-green-50 border border-green-200 rounded-2xl p-10 max-w-xl text-center">
           <CheckCircle2 size={40} className="text-green-500 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>Application Received!</h2>
-          <p className="text-slate-500 text-sm mt-2">Thank you for your heart to serve. Our team will review your application and reach out within 5 business days.</p>
+          <p className="text-slate-500 text-sm mt-2">
+            Thank you, <strong>{form.name}</strong>, for your heart to serve with IYG. Our team will review your application and reach out within 5 business days.
+          </p>
+          <button
+            onClick={() => { setSubmitted(false); setActiveRole(null); }}
+            className="mt-4 text-sm font-semibold text-[#1B2A4A] underline"
+          >
+            Apply for another role
+          </button>
         </div>
       )}
 
@@ -195,7 +281,7 @@ export default function GetInvolvedPage() {
             Advertise With IYG
           </h2>
           <p className="text-slate-500 text-sm leading-relaxed mb-6">
-            Is your business or ministry looking to reach a young, faith-driven audience across the globe? IYG's media platform gives you direct access to engaged young believers. We work with Christian businesses, ministries, and mission organizations to promote products, services, and events that align with Kingdom values.
+            Is your business or ministry looking to reach a young, faith-driven audience across the globe? IYG&apos;s media platform gives you direct access to engaged young believers. We work with Christian businesses, ministries, and mission organizations to promote products, services, and events that align with Kingdom values.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a

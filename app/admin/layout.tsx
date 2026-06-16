@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Image, LogOut, ExternalLink, Users, Ticket, FileCheck, BarChart2, BookOpen, Layout } from "lucide-react";
+import {
+  LayoutDashboard, Image, LogOut, ExternalLink, Users, Ticket,
+  FileCheck, BarChart2, BookOpen, Layout, UserPlus, Shield,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -10,10 +13,12 @@ const navItems = [
   { href: "/admin/content", label: "Content", icon: Layout },
   { href: "/admin/submissions", label: "Submissions", icon: FileCheck },
   { href: "/admin/registrations", label: "Registrations", icon: Ticket },
+  { href: "/admin/volunteers", label: "Volunteers", icon: UserPlus },
   { href: "/admin/library", label: "Library", icon: BookOpen },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },
   { href: "/admin/media", label: "Media Library", icon: Image },
   { href: "/admin/contributors", label: "Contributors", icon: Users },
+  { href: "/admin/team", label: "Admin Team", icon: Shield },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -43,7 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-4" aria-label="Admin navigation">
+        <nav className="flex-1 px-3 py-4 overflow-y-auto" aria-label="Admin navigation">
           <ul className="space-y-0.5" role="list">
             {navItems.map(({ href, label, icon: Icon, exact }) => (
               <li key={href}>

@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { checkAdminCookie, isSuperAdmin } from "@/lib/roles";
+import { checkAdminAuth, isSuperAdmin } from "@/lib/roles";
 import { listRecords } from "@/lib/blobStore";
 import type { Registration } from "@/app/api/registrations/route";
 import type { NextRequest } from "next/server";
 import type { Session } from "next-auth";
 
-function isAuthorized(req: NextRequest, session: Session | null) {
-  return checkAdminCookie(req) || isSuperAdmin(session);
+async function isAuthorized(req: NextRequest, session: Session | null) {
+  return (await checkAdminAuth(req)) || isSuperAdmin(session);
 }
 
 function toCSV(registrations: Registration[]): string {
@@ -26,7 +26,7 @@ function toCSV(registrations: Registration[]): string {
 
 export async function GET(request: NextRequest) {
   const session = await auth() as Session | null;
-  if (!isAuthorized(request, session)) {
+  if (!await isAuthorized(request, session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

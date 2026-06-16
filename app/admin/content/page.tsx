@@ -36,16 +36,33 @@ export default function ContentPage() {
           </Link>
         ))}
 
-        <div className="bg-[#FAF8F3] rounded-xl border border-slate-100 p-6">
-          <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center mb-4">
-            <BookOpen size={18} className="text-[#1B2A4A]" />
+        <Link href="/admin/content/about" className="group block bg-white rounded-xl border border-slate-100 p-6 hover:border-slate-200 hover:shadow-md transition-all">
+          <div className="flex items-start justify-between">
+            <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center">
+              <BookOpen size={18} className="text-[#1B2A4A]" />
+            </div>
+            <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">Editable</span>
           </div>
-          <p className="font-bold text-[#1B2A4A] text-sm mb-1">Hero &amp; Static Copy</p>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            Homepage hero slides, core values, and about text are managed in the codebase.
-            Ask your developer to update <code className="bg-white px-1 rounded text-[11px]">components/home/HeroCarousel.tsx</code> and <code className="bg-white px-1 rounded text-[11px]">app/about/page.tsx</code>.
-          </p>
-        </div>
+          <p className="text-lg font-bold text-[#1B2A4A] mt-4">About IYG</p>
+          <p className="text-sm text-slate-500">Mission, vision &amp; page content</p>
+          <div className="flex items-center gap-1 text-xs font-bold text-[#1B2A4A] group-hover:text-[#F2B134] transition-colors mt-4">
+            Edit About Page <ArrowRight size={12} />
+          </div>
+        </Link>
+
+        <Link href="/admin/content/give" className="group block bg-white rounded-xl border border-slate-100 p-6 hover:border-slate-200 hover:shadow-md transition-all">
+          <div className="flex items-start justify-between">
+            <div className="w-10 h-10 rounded-lg bg-[#1B2A4A]/5 flex items-center justify-center">
+              <FileText size={18} className="text-[#1B2A4A]" />
+            </div>
+            <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">Editable</span>
+          </div>
+          <p className="text-lg font-bold text-[#1B2A4A] mt-4">Give / Support</p>
+          <p className="text-sm text-slate-500">Payment details &amp; donation links</p>
+          <div className="flex items-center gap-1 text-xs font-bold text-[#1B2A4A] group-hover:text-[#F2B134] transition-colors mt-4">
+            Edit Give Page <ArrowRight size={12} />
+          </div>
+        </Link>
       </div>
 
       {/* Articles quick list */}

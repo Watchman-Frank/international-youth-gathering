@@ -1,20 +1,20 @@
-import Link from "next/link";
-import { Calendar, Globe, Radio } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Calendar, Globe, Radio, Ticket } from "lucide-react";
 import { VideoPlayer } from "@/components/player/VideoPlayer";
 import { events, prayerPartyDates } from "@/lib/data/events";
 import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { RegisterModal } from "@/components/events/RegisterModal";
 import { formatDate } from "@/lib/utils";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Prayer & Prophetic Party",
-  description: "IYG's recurring intercessory gathering on US federal holidays — join online for prayer, prophetic declarations, and Spirit-led worship.",
-};
 
 export default function PrayerPartyPage() {
   const prayerEvents = events.filter((e) => e.type === "prayer-party");
   const upcoming = prayerEvents.filter((e) => e.isUpcoming);
   const past = prayerEvents.filter((e) => !e.isUpcoming);
+
+  const [modalEvent, setModalEvent] = useState<{ id: string; title: string } | null>(null);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14">
@@ -29,7 +29,7 @@ export default function PrayerPartyPage() {
             className="text-3xl sm:text-4xl font-bold text-white mt-4 text-balance"
             style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
           >
-            Prayer & Prophetic Party
+            Prayer &amp; Prophetic Party
           </h1>
           <p className="text-white/70 mt-4 max-w-xl mx-auto text-base leading-relaxed">
             On every US federal holiday, the IYG family gathers to intercede for the nations. While the world rests, we seek. Join us online for hours of Spirit-led prayer, prophetic declarations, and worship.
@@ -59,33 +59,59 @@ export default function PrayerPartyPage() {
                   <div className="text-xs text-slate-500 uppercase">{new Date(event.date).toLocaleString("en-US", { month: "short" })}</div>
                   <div className="text-xs text-slate-400">{new Date(event.date).getFullYear()}</div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
                     {event.title}
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">{event.shortDescription}</p>
-                  {event.joinLink && (
-                    <a
-                      href={event.joinLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#F2B134] hover:text-[#D9960F] transition-colors"
+                  <div className="flex items-center gap-3 mt-3">
+                    {event.joinLink && (
+                      <a
+                        href={event.joinLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#F2B134] hover:text-[#D9960F] transition-colors"
+                      >
+                        <Radio size={12} aria-hidden />
+                        Join Online
+                      </a>
+                    )}
+                    <button
+                      onClick={() => setModalEvent({ id: event.id, title: event.title })}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
                     >
-                      <Radio size={12} aria-hidden />
-                      Join Online
-                    </a>
-                  )}
+                      <Ticket size={12} aria-hidden />
+                      Register
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
+        {upcoming.length === 0 && (
+          <div className="text-center py-10 bg-white rounded-2xl border border-slate-100">
+            <p className="text-slate-400">Check back soon for upcoming Prayer Party dates.</p>
+          </div>
+        )}
+
         {/* Full schedule */}
         <div className="mt-6 bg-[#FAF8F3] rounded-2xl p-6">
-          <h3 className="font-bold text-[#1B2A4A] text-base mb-4" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
-            2026–2027 Schedule
-          </h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-bold text-[#1B2A4A] text-base" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>
+              2026–2027 Schedule
+            </h3>
+            <Button
+              variant="gold"
+              size="sm"
+              onClick={() => setModalEvent({ id: "prayer-party-general", title: "Prayer & Prophetic Party" })}
+              className="gap-1.5"
+            >
+              <Ticket size={14} />
+              Register for Updates
+            </Button>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {prayerPartyDates.map(({ date, name }) => (
               <div key={date} className="flex items-center gap-3 text-sm">
@@ -131,12 +157,21 @@ export default function PrayerPartyPage() {
           Why Federal Holidays?
         </h2>
         <p className="text-white/70 max-w-lg mx-auto text-base leading-relaxed">
-          Federal holidays are moments when nations pause. We believe those pauses are divine opportunities — strategic windows for the church to advance in prayer when the systems of the world are at rest. As Moses said: if Your presence does not go with us, we won't move from here.
+          Federal holidays are moments when nations pause. We believe those pauses are divine opportunities — strategic windows for the church to advance in prayer when the systems of the world are at rest. As Moses said: if Your presence does not go with us, we won&apos;t move from here.
         </p>
         <blockquote className="mt-6 text-[#F2B134] font-semibold italic text-base">
-          "The prayer of a righteous person is powerful and effective." — James 5:16
+          &ldquo;The prayer of a righteous person is powerful and effective.&rdquo; — James 5:16
         </blockquote>
       </section>
+
+      {/* Registration modal */}
+      {modalEvent && (
+        <RegisterModal
+          event={modalEvent}
+          isOpen={!!modalEvent}
+          onClose={() => setModalEvent(null)}
+        />
+      )}
     </div>
   );
 }

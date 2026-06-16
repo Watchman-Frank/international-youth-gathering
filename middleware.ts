@@ -5,10 +5,13 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    const token = request.cookies.get("iyg_admin");
+    const cookie = request.cookies.get("iyg_admin")?.value;
     const expected = process.env.ADMIN_TOKEN;
 
-    if (!expected || token?.value !== expected) {
+    const isSuperAdmin = expected && cookie === expected;
+    const isAppointedAdmin = cookie?.startsWith("appointed:") && cookie.split(":").length === 3;
+
+    if (!isSuperAdmin && !isAppointedAdmin) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }

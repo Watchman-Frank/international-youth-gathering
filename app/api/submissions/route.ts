@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { putRecord, listRecords } from "@/lib/blobStore";
-import { checkAdminCookie, isSuperAdmin } from "@/lib/roles";
+import { checkAdminAuth, isSuperAdmin } from "@/lib/roles";
 import { randomUUID } from "crypto";
 import type { NextRequest } from "next/server";
 import type { Session } from "next-auth";
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
 export async function GET(request: NextRequest) {
   const session = await auth() as Session | null;
-  if (!checkAdminCookie(request) && !isSuperAdmin(session)) {
+  if (!await checkAdminAuth(request) && !isSuperAdmin(session)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

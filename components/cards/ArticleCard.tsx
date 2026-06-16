@@ -70,27 +70,29 @@ export function ArticleCard({ article, variant = "default", className }: Article
       <Link
         href={`/articles/${article.slug}`}
         className={cn(
-          "relative block rounded-xl overflow-hidden group h-80 md:h-96 hover:shadow-lg hover:shadow-green-900/20 transition-all duration-300",
+          "relative block rounded-2xl overflow-hidden group h-80 md:h-96 hover:shadow-2xl hover:shadow-green-900/25 transition-all duration-400",
           className
         )}
       >
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#083D1C]/90 via-[#0D6B30]/25 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#083D1C]/95 via-[#083D1C]/40 to-transparent" />
+        {/* Gold top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C8831A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute inset-x-0 bottom-0 p-6">
           <CategoryBadge category={article.category} />
-          <h2 className="text-xl md:text-2xl font-bold text-white mt-2 line-clamp-2 text-balance" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
+          <h2 className="text-xl md:text-2xl font-bold text-white mt-2 line-clamp-3 text-balance leading-snug" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
             {article.title}
           </h2>
-          <div className="flex items-center gap-3 mt-3">
-            <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover ring-1 ring-[#C8831A]/50" />
-            <span className="text-white/80 text-sm">{article.author.name}</span>
-            <span className="text-white/40 text-sm">·</span>
-            <span className="text-white/55 text-xs">{formatShortDate(article.publishedAt)}</span>
+          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
+            <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover ring-1 ring-[#C8831A]/60" />
+            <span className="text-white/80 text-sm font-medium">{article.author.name}</span>
+            <span className="text-white/30">·</span>
+            <span className="text-white/50 text-xs">{formatShortDate(article.publishedAt)}</span>
           </div>
         </div>
       </Link>
@@ -101,7 +103,7 @@ export function ArticleCard({ article, variant = "default", className }: Article
     <Link
       href={`/articles/${article.slug}`}
       className={cn(
-        "block bg-white rounded-lg overflow-hidden border border-slate-100 hover:border-[#0D6B30]/20 hover:shadow-lg hover:shadow-green-900/10 hover:-translate-y-1 transition-all duration-300 group",
+        "block bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-[#0D6B30]/15 hover:shadow-xl hover:shadow-green-900/8 hover:-translate-y-1.5 transition-all duration-300 group",
         className
       )}
     >
@@ -109,22 +111,23 @@ export function ArticleCard({ article, variant = "default", className }: Article
         <img
           src={article.featuredImage}
           alt={article.title}
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-400"
+          className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
           loading="lazy"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-3 left-3">
           <CategoryBadge category={article.category} />
         </div>
       </div>
-      <div className="p-4">
+      <div className="p-5">
         <h3 className="font-bold text-[#083D1C] text-base leading-snug line-clamp-2 group-hover:text-[#0D6B30] transition-colors" style={{ fontFamily: "var(--font-display, Georgia, serif)" }}>
           {article.title}
         </h3>
-        <p className="text-sm text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">{article.excerpt}</p>
-        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-slate-100">
-          <img src={article.author.avatar} alt={article.author.name} className="w-7 h-7 rounded-full object-cover" />
+        <p className="text-sm text-slate-500 mt-2 line-clamp-2 leading-relaxed">{article.excerpt}</p>
+        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-100">
+          <img src={article.author.avatar} alt={article.author.name} className="w-8 h-8 rounded-full object-cover ring-2 ring-[#F0FAF3]" />
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-slate-700 truncate">{article.author.name}</p>
+            <p className="text-xs font-semibold text-slate-700 truncate">{article.author.name}</p>
             <div className="flex items-center gap-2 text-slate-400">
               <span className="text-[11px]">{formatShortDate(article.publishedAt)}</span>
               <span className="text-[11px] flex items-center gap-0.5"><Clock size={10} aria-hidden />{article.readingTime}</span>

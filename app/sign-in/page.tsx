@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -18,7 +18,7 @@ function GoogleIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-export default function SignInPage() {
+function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/";
@@ -71,10 +71,7 @@ export default function SignInPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <img src="/logo.png" alt="" aria-hidden className="h-16 w-16 rounded-full object-cover mx-auto mb-4" />
-          <h1
-            className="text-2xl font-bold text-[#1B2A4A]"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
+          <h1 className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
             {isSignUp ? "Join IYG" : "Welcome Back"}
           </h1>
           <p className="text-slate-500 text-sm mt-1">
@@ -92,31 +89,29 @@ export default function SignInPage() {
             </div>
           )}
 
+          {/* Google */}
           <button
             type="button"
             onClick={() => handleSocial("google")}
             disabled={!!loading}
             className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-60"
           >
-            {loading === "google" ? (
-              <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-slate-700 animate-spin" />
-            ) : (
-              <GoogleIcon size={18} />
-            )}
+            {loading === "google"
+              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-slate-700 animate-spin" />
+              : <GoogleIcon size={18} />}
             Continue with Google
           </button>
 
+          {/* Facebook */}
           <button
             type="button"
             onClick={() => handleSocial("facebook")}
             disabled={!!loading}
             className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-60"
           >
-            {loading === "facebook" ? (
-              <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-blue-600 animate-spin" />
-            ) : (
-              <FacebookIcon size={18} className="text-blue-600" />
-            )}
+            {loading === "facebook"
+              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-blue-600 animate-spin" />
+              : <FacebookIcon size={18} className="text-blue-600" />}
             Continue with Facebook
           </button>
 
@@ -129,9 +124,7 @@ export default function SignInPage() {
           <form className="space-y-4" onSubmit={handleCredentials}>
             {isSignUp && (
               <div>
-                <label htmlFor="fullname" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">
-                  Full Name
-                </label>
+                <label htmlFor="fullname" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Full Name</label>
                 <input
                   id="fullname"
                   type="text"
@@ -145,9 +138,7 @@ export default function SignInPage() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">
-                Email Address
-              </label>
+              <label htmlFor="email" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Email Address</label>
               <input
                 id="email"
                 type="email"
@@ -160,9 +151,7 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">
-                Password
-              </label>
+              <label htmlFor="password" className="block text-sm font-semibold text-[#1B2A4A] mb-1.5">Password</label>
               <div className="relative">
                 <input
                   id="password"
@@ -200,11 +189,7 @@ export default function SignInPage() {
           <p className="text-center text-sm text-slate-500">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
             <button
-              onClick={() => {
-                setIsSignUp(!isSignUp);
-                setError("");
-                setForm({ name: "", email: "", password: "" });
-              }}
+              onClick={() => { setIsSignUp(!isSignUp); setError(""); setForm({ name: "", email: "", password: "" }); }}
               className="font-semibold text-[#1B2A4A] hover:text-[#F2B134] transition-colors"
             >
               {isSignUp ? "Sign In" : "Sign Up Free"}
@@ -213,7 +198,7 @@ export default function SignInPage() {
         </div>
 
         <p className="text-center text-xs text-slate-400 mt-5">
-          By continuing, you agree to IYG's terms of use and privacy policy.
+          By continuing, you agree to IYG&apos;s terms of use and privacy policy.
         </p>
         <div className="text-center mt-4">
           <Link href="/" className="text-sm text-slate-500 hover:text-[#1B2A4A] transition-colors">
@@ -222,5 +207,17 @@ export default function SignInPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[80vh] flex items-center justify-center">
+        <span className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-[#1B2A4A] animate-spin" />
+      </div>
+    }>
+      <SignInForm />
+    </Suspense>
   );
 }

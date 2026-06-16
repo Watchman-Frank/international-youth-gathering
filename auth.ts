@@ -2,11 +2,11 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Facebook from "next-auth/providers/facebook";
 import Credentials from "next-auth/providers/credentials";
+import { getUserByEmail, verifyPassword } from "@/lib/userStore";
 
 const SUPERADMIN_EMAIL = "frankniimensah90@gmail.com";
 
 const providers = [
-  // Only load Google if credentials are configured
   ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
     ? [Google({
         clientId: process.env.GOOGLE_CLIENT_ID,
@@ -14,7 +14,6 @@ const providers = [
       })]
     : []),
 
-  // Only load Facebook if credentials are configured
   ...(process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET
     ? [Facebook({
         clientId: process.env.FACEBOOK_CLIENT_ID,
@@ -22,22 +21,26 @@ const providers = [
       })]
     : []),
 
-  // Email/password always available
   Credentials({
     credentials: {
-      name: { label: "Full Name" },
-      email: { label: "Email Address", type: "email" },
+      email:    { label: "Email",    type: "email" },
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials) {
-      const email = credentials?.email as string | undefined;
-      const password = credentials?.password as string | undefined;
-      const name = credentials?.name as string | undefined;
-      if (!email || !password || password.length < 8) return null;
+      const email    = (credentials?.email    as string | undefined)?.toLowerCase().trim();
+      const password = credentials?.password  as string | undefined;
+      if (!email || !password) return null;
+
+      const user = await getUserByEmail(email);
+      if (!user) return null;
+
+      const valid = await verifyPassword(password, user.passwordHash);
+      if (!valid) return null;
+
       return {
-        id: email,
-        name: name || email.split("@")[0],
-        email,
+        id:    user.id,
+        name:  user.name,
+        email: user.email,
       };
     },
   }),
@@ -48,12 +51,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   pages: {
     signIn: "/sign-in",
-    error: "/sign-in",
+    error:  "/sign-in",
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id   = user.id;
         token.role = user.email === SUPERADMIN_EMAIL ? "superadmin" : "user";
       }
       return token;

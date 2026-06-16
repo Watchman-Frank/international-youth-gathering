@@ -4,7 +4,7 @@ import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
 import { FacebookIcon } from "@/components/ui/SocialIcons";
 
 function GoogleIcon({ size = 18 }: { size?: number }) {
@@ -20,13 +20,15 @@ function GoogleIcon({ size = 18 }: { size?: number }) {
 
 function SignInForm() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/";
+  const rawCallback = searchParams.get("callbackUrl") ?? "/";
+  // Guard against looping back to sign-in
+  const callbackUrl = rawCallback.startsWith("/sign-in") ? "/" : rawCallback;
   const urlError = searchParams.get("error");
 
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp]       = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState<string | null>(null);
-  const [error, setError] = useState(
+  const [loading, setLoading]           = useState<string | null>(null);
+  const [error, setError]               = useState(
     urlError === "OAuthAccountNotLinked"
       ? "This email is already linked to a different sign-in method."
       : ""
@@ -45,32 +47,80 @@ function SignInForm() {
 
   async function handleCredentials(e: React.FormEvent) {
     e.preventDefault();
-    if (isSignUp && !form.name.trim()) { setError("Please enter your full name."); return; }
-    if (form.password.length < 8) { setError("Password must be at least 8 characters."); return; }
+    setError("");
+
+    if (isSignUp && !form.name.trim()) {
+      setError("Please enter your full name.");
+      return;
+    }
+    if (form.password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
 
     setLoading("credentials");
+
+    // ── SIGN-UP: create the account first, then sign in ──
+    if (isSignUp) {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:     form.name.trim(),
+          email:    form.email.trim(),
+          password: form.password,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Could not create your account. Please try again.");
+        setLoading(null);
+        return;
+      }
+    }
+
+    // ── SIGN-IN (or post-signup sign-in) ──
     const result = await signIn("credentials", {
-      name: form.name,
-      email: form.email,
+      email:    form.email.trim(),
       password: form.password,
       redirect: false,
     });
 
-    if (result?.error) {
-      setError("Invalid email or password. Please try again.");
+    if (result?.error || !result?.ok) {
+      if (isSignUp) {
+        setError("Account created! But sign-in failed — please try signing in manually.");
+      } else {
+        setError("Incorrect email or password. Please try again.");
+      }
       setLoading(null);
-    } else {
-      // Full reload so the session cookie is picked up by the Navbar and all components
-      window.location.href = isSignUp ? "/profile" : callbackUrl;
+      return;
     }
+
+    // Full page reload so the JWT cookie is read by all components
+    window.location.href = isSignUp ? "/profile" : callbackUrl;
+  }
+
+  function switchMode() {
+    setIsSignUp((v) => !v);
+    setError("");
+    setForm({ name: "", email: "", password: "" });
   }
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="" aria-hidden className="h-16 w-16 rounded-full object-cover mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-[#0D6B30]" style={{ fontFamily: "var(--font-display)" }}>
+          <img
+            src="/logo.png"
+            alt=""
+            aria-hidden
+            className="h-16 w-16 rounded-full object-cover mx-auto mb-4"
+          />
+          <h1
+            className="text-2xl font-bold text-[#0D6B30]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
             {isSignUp ? "Join IYG" : "Welcome Back"}
           </h1>
           <p className="text-slate-500 text-sm mt-1">
@@ -83,7 +133,7 @@ function SignInForm() {
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-8 space-y-4">
           {error && (
             <div className="flex items-start gap-2.5 px-4 py-3 bg-red-50 border border-red-100 rounded-xl text-sm text-red-700">
-              <AlertCircle size={15} className="flex-shrink-0 mt-0.5" />
+              <AlertCircle size={15} className="flex-shrink-0 mt-0.5" aria-hidden />
               {error}
             </div>
           )}
@@ -96,7 +146,7 @@ function SignInForm() {
             className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-60"
           >
             {loading === "google"
-              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-slate-700 animate-spin" />
+              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-slate-700 animate-spin" aria-hidden />
               : <GoogleIcon size={18} />}
             Continue with Google
           </button>
@@ -109,58 +159,81 @@ function SignInForm() {
             className="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-60"
           >
             {loading === "facebook"
-              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-blue-600 animate-spin" />
+              ? <span className="h-4 w-4 rounded-full border-2 border-slate-300 border-t-blue-600 animate-spin" aria-hidden />
               : <FacebookIcon size={18} className="text-blue-600" />}
             Continue with Facebook
           </button>
 
           <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-slate-200" />
-            <span className="text-xs text-slate-400 font-medium">or continue with email</span>
+            <span className="text-xs text-slate-400 font-medium">or with email</span>
             <div className="flex-1 h-px bg-slate-200" />
           </div>
 
-          <form className="space-y-4" onSubmit={handleCredentials}>
+          <form className="space-y-4" onSubmit={handleCredentials} noValidate>
             {isSignUp && (
               <div>
-                <label htmlFor="fullname" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Full Name</label>
+                <label htmlFor="fullname" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">
+                  Full Name
+                </label>
                 <input
                   id="fullname"
                   type="text"
                   required
+                  autoComplete="name"
                   placeholder="Your full name"
                   value={form.name}
                   onChange={(e) => setField("name", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
+                  disabled={!!loading}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent disabled:opacity-60"
                 />
               </div>
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">
+                Email Address
+              </label>
               <input
                 id="email"
                 type="email"
                 required
+                autoComplete={isSignUp ? "email" : "username"}
                 placeholder="you@email.com"
                 value={form.email}
                 onChange={(e) => setField("email", e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
+                disabled={!!loading}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent disabled:opacity-60"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-[#0D6B30] mb-1.5">Password</label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label htmlFor="password" className="block text-sm font-semibold text-[#0D6B30]">
+                  Password
+                </label>
+                {!isSignUp && (
+                  <button
+                    type="button"
+                    className="text-xs text-[#C8831A] hover:underline"
+                    onClick={() => setError("Password reset is not yet available. Please contact support.")}
+                  >
+                    Forgot password?
+                  </button>
+                )}
+              </div>
               <div className="relative">
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   required
                   minLength={8}
+                  autoComplete={isSignUp ? "new-password" : "current-password"}
                   placeholder="Min. 8 characters"
                   value={form.password}
                   onChange={(e) => setField("password", e.target.value)}
-                  className="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent"
+                  disabled={!!loading}
+                  className="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8831A] focus:border-transparent disabled:opacity-60"
                 />
                 <button
                   type="button"
@@ -171,6 +244,13 @@ function SignInForm() {
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+              {isSignUp && form.password.length > 0 && (
+                <p className={`text-xs mt-1 flex items-center gap-1 ${form.password.length >= 8 ? "text-green-600" : "text-slate-400"}`}>
+                  {form.password.length >= 8
+                    ? <><CheckCircle size={11} /> Password meets minimum length</>
+                    : `${8 - form.password.length} more character${8 - form.password.length !== 1 ? "s" : ""} needed`}
+                </p>
+              )}
             </div>
 
             <button
@@ -179,7 +259,7 @@ function SignInForm() {
               className="w-full py-3.5 bg-[#0D6B30] text-white font-bold text-sm rounded-xl hover:bg-[#0A5423] transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
             >
               {loading === "credentials" && (
-                <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" aria-hidden />
               )}
               {isSignUp ? "Create Account" : "Sign In"}
             </button>
@@ -188,7 +268,8 @@ function SignInForm() {
           <p className="text-center text-sm text-slate-500">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
             <button
-              onClick={() => { setIsSignUp(!isSignUp); setError(""); setForm({ name: "", email: "", password: "" }); }}
+              type="button"
+              onClick={switchMode}
               className="font-semibold text-[#0D6B30] hover:text-[#C8831A] transition-colors"
             >
               {isSignUp ? "Sign In" : "Sign Up Free"}
@@ -213,7 +294,7 @@ export default function SignInPage() {
   return (
     <Suspense fallback={
       <div className="min-h-[80vh] flex items-center justify-center">
-        <span className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-[#0D6B30] animate-spin" />
+        <span className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-[#0D6B30] animate-spin" aria-hidden />
       </div>
     }>
       <SignInForm />

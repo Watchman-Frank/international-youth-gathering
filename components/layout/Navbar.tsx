@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Search, ChevronDown, User, Bell } from "lucide-react";
+import { Menu, X, Search, ChevronDown, User, Bell, LogOut } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -30,10 +31,13 @@ const navItems = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   const isActive = (href: string) => pathname.startsWith(href);
 
@@ -47,6 +51,9 @@ export function Navbar() {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setOpenDropdown(null);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -162,7 +169,7 @@ export function Navbar() {
               <Search size={17} />
             </Link>
             <button
-              aria-label="Notifications (1 unread)"
+              aria-label="Notifications"
               className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 hover:text-[#1B2A4A] hover:bg-slate-100 transition-colors relative"
             >
               <Bell size={17} />
@@ -175,13 +182,53 @@ export function Navbar() {
             >
               Give
             </Link>
-            <Link
-              href="/sign-in"
-              className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1B2A4A] rounded-lg hover:bg-[#2D4070] transition-colors"
-            >
-              <User size={14} aria-hidden />
-              Sign In
-            </Link>
+            {session ? (
+              <div className="relative" ref={userMenuRef}>
+                <button
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-lg hover:bg-slate-100 transition-colors"
+                  aria-label="Account menu"
+                >
+                  {session.user?.image ? (
+                    <img
+                      src={session.user.image}
+                      alt={session.user.name ?? ""}
+                      className="w-7 h-7 rounded-full object-cover border border-slate-200"
+                    />
+                  ) : (
+                    <span className="w-7 h-7 rounded-full bg-[#1B2A4A] text-white text-xs font-bold flex items-center justify-center">
+                      {(session.user?.name ?? "U")[0].toUpperCase()}
+                    </span>
+                  )}
+                  <span className="text-sm font-semibold text-[#1B2A4A] max-w-[100px] truncate">
+                    {session.user?.name?.split(" ")[0]}
+                  </span>
+                </button>
+                {userMenuOpen && (
+                  <div className="absolute right-0 top-full mt-1.5 w-52 bg-white rounded-xl border border-slate-100 shadow-lg py-1.5 z-50">
+                    <div className="px-4 py-2 border-b border-slate-100 mb-1">
+                      <p className="text-sm font-semibold text-[#1B2A4A] truncate">{session.user?.name}</p>
+                      <p className="text-xs text-slate-400 truncate">{session.user?.email}</p>
+                    </div>
+                    <button
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-600 hover:text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      <LogOut size={14} aria-hidden />
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/sign-in"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1B2A4A] rounded-lg hover:bg-[#2D4070] transition-colors"
+              >
+                <User size={14} aria-hidden />
+                Sign In
+              </Link>
+            )}
           </div>
 
           {/* Mobile: search + burger */}
@@ -248,13 +295,23 @@ export function Navbar() {
               )}
             </ul>
             <div className="mt-4 pt-4 border-t border-slate-100 px-3 flex gap-2">
-              <Link
-                href="/sign-in"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
-              >
-                <User size={15} aria-hidden />
-                Sign In
-              </Link>
+              {session ? (
+                <button
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
+                >
+                  <LogOut size={15} aria-hidden />
+                  Sign Out
+                </button>
+              ) : (
+                <Link
+                  href="/sign-in"
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-[#1B2A4A] rounded-xl hover:bg-[#2D4070] transition-colors"
+                >
+                  <User size={15} aria-hidden />
+                  Sign In
+                </Link>
+              )}
               <Link
                 href="/give"
                 className="flex items-center justify-center px-5 py-2.5 text-sm font-bold text-[#1B2A4A] bg-[#F2B134] rounded-xl hover:bg-[#D9960F] transition-colors"

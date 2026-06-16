@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Image, LogOut, ExternalLink } from "lucide-react";
+import { LayoutDashboard, Image, LogOut, ExternalLink, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/media", label: "Media Library", icon: Image },
+  { href: "/admin/contributors", label: "Contributors", icon: Users },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

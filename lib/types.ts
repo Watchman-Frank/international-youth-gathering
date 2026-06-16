@@ -20,6 +20,13 @@ export interface Author {
   avatar: string;
   bio?: string;
   role?: string;
+  website?: string;
+  socials?: {
+    twitter?: string;
+    instagram?: string;
+    linkedin?: string;
+    facebook?: string;
+  };
 }
 
 export type ArticleCategory =

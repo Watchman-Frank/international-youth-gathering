@@ -1,18 +1,21 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import { Calendar, MapPin, Globe, Video, Ticket } from "lucide-react";
 import { events } from "@/lib/data/events";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PastConferenceSessions } from "@/components/conference/PastConferenceSessions";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "God-Life Conference",
-  description: "IYG's flagship annual gathering — days of worship, apostolic teaching, and prophetic activation. Join us in person or online.",
-};
+import { RegisterModal } from "@/components/events/RegisterModal";
 
 export default function ConferencePage() {
   const upcoming = events.find((e) => e.type === "conference" && e.isUpcoming);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const eventInfo = {
+    id: upcoming?.id ?? "god-life-2026",
+    title: upcoming?.title ?? "God-Life Conference 2026",
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
@@ -30,7 +33,7 @@ export default function ConferencePage() {
             <h1
               id="conf-heading"
               className="text-4xl sm:text-5xl font-bold text-white mt-4 leading-tight text-balance max-w-2xl"
-              style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Rise: A Generation Ascending
             </h1>
@@ -56,12 +59,10 @@ export default function ConferencePage() {
               </div>
             )}
             <div className="flex flex-wrap gap-3 mt-8" id="register">
-              <Link href="/sign-in">
-                <Button variant="gold" size="lg" className="gap-2">
-                  <Ticket size={18} aria-hidden />
-                  Register / Get Tickets
-                </Button>
-              </Link>
+              <Button variant="gold" size="lg" className="gap-2" onClick={() => setModalOpen(true)}>
+                <Ticket size={18} aria-hidden />
+                Register / Get Tickets
+              </Button>
               {upcoming?.watchLiveLink && (
                 <a href={upcoming.watchLiveLink} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-white/10 text-white hover:bg-white/20 gap-2">
@@ -83,7 +84,7 @@ export default function ConferencePage() {
         <h2
           id="expect-heading"
           className="text-2xl font-bold text-[#1B2A4A] mb-8"
-          style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           What to Expect at God-Life 2026
         </h2>
@@ -96,7 +97,7 @@ export default function ConferencePage() {
           ].map(({ icon, title, body }) => (
             <div key={title} className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-all">
               <div className="text-3xl mb-3" aria-hidden>{icon}</div>
-              <h3 className="font-bold text-[#1B2A4A] mb-2" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{title}</h3>
+              <h3 className="font-bold text-[#1B2A4A] mb-2" style={{ fontFamily: "var(--font-display)" }}>{title}</h3>
               <p className="text-sm text-slate-500 leading-relaxed">{body}</p>
             </div>
           ))}
@@ -112,31 +113,25 @@ export default function ConferencePage() {
           { value: "Spiritual Intelligence", desc: "Discerning the times with wisdom" },
         ].map(({ value, desc }) => (
           <div key={value}>
-            <div className="text-lg font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}>{value}</div>
+            <div className="text-lg font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>{value}</div>
             <div className="text-xs text-slate-500 mt-1 leading-relaxed">{desc}</div>
           </div>
         ))}
       </section>
 
-      {/* Past Sessions — live from YouTube */}
+      {/* Past Sessions */}
       <section aria-labelledby="past-heading">
         <div className="border-l-[3px] border-[#F2B134] pl-4 mb-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#F2B134] mb-1">
-            On Demand
-          </p>
-          <h2
-            id="past-heading"
-            className="text-2xl font-bold text-[#1B2A4A]"
-            style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
-          >
+          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#F2B134] mb-1">On Demand</p>
+          <h2 id="past-heading" className="text-2xl font-bold text-[#1B2A4A]" style={{ fontFamily: "var(--font-display)" }}>
             Past Conference Sessions
           </h2>
-          <p className="text-sm text-slate-500 mt-1">
-            Watch full replays from previous God-Life Conferences — auto-synced from our YouTube channel.
-          </p>
+          <p className="text-sm text-slate-500 mt-1">Watch full replays from previous God-Life Conferences.</p>
         </div>
         <PastConferenceSessions />
       </section>
+
+      <RegisterModal event={eventInfo} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

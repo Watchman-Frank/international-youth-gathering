@@ -2,11 +2,16 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Image, LogOut, ExternalLink, Users } from "lucide-react";
+import { LayoutDashboard, Image, LogOut, ExternalLink, Users, Ticket, FileCheck, BarChart2, BookOpen, Layout } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/admin/content", label: "Content", icon: Layout },
+  { href: "/admin/submissions", label: "Submissions", icon: FileCheck },
+  { href: "/admin/registrations", label: "Registrations", icon: Ticket },
+  { href: "/admin/library", label: "Library", icon: BookOpen },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },
   { href: "/admin/media", label: "Media Library", icon: Image },
   { href: "/admin/contributors", label: "Contributors", icon: Users },
 ];

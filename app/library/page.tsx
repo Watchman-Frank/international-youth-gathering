@@ -4,9 +4,12 @@ import { useState, useMemo } from "react";
 import { Library, Search } from "lucide-react";
 import { ResourceCard } from "@/components/cards/ResourceCard";
 import { resources, topics, resourceTypes } from "@/lib/data/library";
+import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
 export default function LibraryPage() {
+  const { data: session } = useSession();
+  const isAuthenticated = !!session?.user;
   const [topic, setTopic] = useState<string>("All");
   const [type, setType] = useState<string>("All");
   const [search, setSearch] = useState("");
@@ -111,7 +114,7 @@ export default function LibraryPage() {
           <p className="text-sm text-slate-500">{filtered.length} resource{filtered.length !== 1 ? "s" : ""} found</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource} />
+              <ResourceCard key={resource.id} resource={resource} isAuthenticated={isAuthenticated} />
             ))}
           </div>
         </>

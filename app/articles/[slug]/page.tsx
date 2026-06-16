@@ -147,7 +147,10 @@ export default async function ArticlePage({ params }: Props) {
           {/* Reactions + Share */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6 pt-6 border-t border-slate-100">
             <Reactions likes={article.reactions.likes} hearts={article.reactions.hearts} />
-            <SocialShare title={article.title} />
+            <SocialShare
+              url={`https://internationalyouthgathering.org/articles/${article.slug}`}
+              title={article.title}
+            />
           </div>
 
           {/* Author bio box */}

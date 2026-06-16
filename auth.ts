@@ -3,6 +3,8 @@ import Google from "next-auth/providers/google";
 import Facebook from "next-auth/providers/facebook";
 import Credentials from "next-auth/providers/credentials";
 
+const SUPERADMIN_EMAIL = "frankniimensah90@gmail.com";
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Google({
@@ -23,9 +25,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const email = credentials?.email as string | undefined;
         const password = credentials?.password as string | undefined;
         const name = credentials?.name as string | undefined;
-
         if (!email || !password || password.length < 8) return null;
-
         return {
           id: email,
           name: name || email.split("@")[0],
@@ -43,12 +43,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.role = user.email === SUPERADMIN_EMAIL ? "superadmin" : "user";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        (session.user as { role?: string }).role = token.role as string;
       }
       return session;
     },
